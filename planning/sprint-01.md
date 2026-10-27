@@ -13,7 +13,7 @@ Objetivo: tornar o build reproduzível, medir a base e permitir desenvolvimento 
 | 7 | NO-007 | Android dados | Definir gateway testável sem alterar todos os endpoints |
 | 8 | NO-008 | QA/dados | Fixtures e servidor simulado para paginação/erros/eventos |
 
-A preparação já contém documentação, scripts, identidade de desenvolvimento e workflow. NO-001 e NO-006 não foram concluídas: faltam build real e execução de CI no destino. Todos os IDs permanecem Backlog até refinamento/atribuição pelo time.
+A preparação já contém documentação, scripts, identidade de desenvolvimento e workflow. Build standardDebug, testes unitários e lint já passaram no destino (ver docs/development/VALIDATION.md). NO-001 ainda exige registrar APK/hash do baseline; NO-006 ainda exige decidir e configurar as regras de branch com os checks reais. Todos os IDs permanecem Backlog até refinamento/atribuição pelo time.
 
 Primeira fatia de implementação após fundação: lista de amigos alimentada por repository fake, estados inicial/cache/refresh/erro parcial, IDs estáveis e teste que demonstre que recomendações lentas não bloqueiam a lista. Não iniciar por troca de toda a navegação, iconografia final ou módulos.
 

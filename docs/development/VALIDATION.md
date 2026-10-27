@@ -47,3 +47,21 @@ importação e JDK aprovados, setup Android falhou antes da compilação porque 
 action fixada solicita o pacote descontinuado `tools` por padrão. Correção:
 passar `packages: platform-tools` explicitamente, mantendo as versões do app.
 O CI recorrente será executado novamente; este registro não declara build aprovado.
+
+
+## CI Android aprovado — 27/10/2026
+
+Commit validado: 6de23c56bba7d1dba9cc8f349f2e75205998c596.
+Execução: https://github.com/c0destep/nateorbit/actions/runs/40585516342
+Job: debug-checks (122475758888), conclusão success.
+
+JDK 21 e componentes do SDK instalados. `bash scripts/check.sh --stacktrace`
+aprovou os checks de integridade, sete testes dos scripts e as tasks
+`:app:assembleStandardDebug`, `:app:testStandardDebugUnitTest` e
+`:app:lintStandardDebug`. Relatórios enviados no artefato android-check-reports.
+O workflow recorrente tem apenas contents:read e não publica release/APK.
+
+Essa evidência valida a base herdada e a preparação; os testes de domínio novos,
+instrumentação, smoke em aparelho e benchmarks ainda não foram implementados ou
+executados. O teste unitário legado não demonstra os critérios funcionais futuros.
+A preparação não conclui todo G0 e não resolve NO-003/NO-009.

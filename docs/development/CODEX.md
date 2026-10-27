@@ -5,6 +5,20 @@ O AGENTS.md da raiz contém as instruções comuns. As cinco skills ficam em
 Não é necessário copiar arquivos para a pasta pessoal de skills.
 Não foi instalado nenhum plugin/MCP adicional nem alterado ~/.codex/config.toml.
 
+## Instalação do CLI (se necessário)
+
+O instalador oficial para Linux permite:
+
+```bash
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+codex --version
+codex
+```
+
+Fazer login pelo fluxo apresentado pelo CLI. Não gravar a autenticação no repositório.
+Essa opção dispensa Node/npm.
+Alternativas e requisitos atuais: https://developers.openai.com/codex/cli.
+
 ## Primeira sessão no Linux
 
 Preparar JDK/SDK em [LINUX.md](LINUX.md), clonar e iniciar na raiz:
@@ -20,7 +34,7 @@ codex
 O comando pressupõe Codex CLI já instalado e autenticado. Em IDE/app, abrir a mesma
 pasta do clone. Verificar versão com `codex --version`; usar `codex --help` para a
 sintaxe da instalação disponível. Instalação oficial: https://developers.openai.com/codex/cli.
-Não instalar uma versão móvel do CLI ou fixar modelo em arquivos deste projeto.
+Não fixar modelo em arquivos deste projeto; usar a seleção disponível na instalação.
 
 Solicitar ao Codex: “Resuma as instruções deste repositório e liste as skills
 nateorbit disponíveis antes de alterar arquivos.” Confirmar leitura do AGENTS.md

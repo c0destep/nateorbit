@@ -2,7 +2,7 @@
 
 Assistente Android pessoal para amigos e mundos do VRChat, derivado de [Nyabsi/VRCAA](https://github.com/Nyabsi/VRCAA).
 
-**Estado: bootstrap de desenvolvimento.** Código funcional herdado do VRCAA, nova identidade de desenvolvimento e planejamento incorporado. A nova arquitetura e as funcionalidades planejadas ainda serão implementadas. A compilação Android desta branch está pendente de validação em ambiente com JDK 21, Android SDK e acesso aos repositórios Gradle.
+**Estado: bootstrap de desenvolvimento.** Código funcional herdado do VRCAA, nova identidade de desenvolvimento e planejamento incorporado. A nova arquitetura e as funcionalidades planejadas ainda serão implementadas. Build standardDebug, testes unitários e lint aprovados no [CI inicial](https://github.com/c0destep/nateorbit/actions/runs/40585516342) com JDK 21 e Android SDK 36. Testes em aparelho e benchmarks continuam pendentes.
 
 ## Começar
 

@@ -22,7 +22,7 @@ No Windows com PowerShell, executar os dois scripts Python e depois:
 .\gradlew.bat assembleStandardDebug testStandardDebugUnitTest lintStandardDebug --no-daemon
 ```
 
-As tasks são as candidatas da variante standardDebug; sua configuração/execução completa ainda precisa passar pelo primeiro CI. O teste aritmético herdado não substitui a suíte de domínio planejada.
+As tasks da variante standardDebug passaram no CI inicial; veja VALIDATION.md para commit e evidência. O teste aritmético herdado não substitui a suíte de domínio planejada.
 
 ## Rede
 
