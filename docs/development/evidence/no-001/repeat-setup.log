@@ -1,0 +1,131 @@
+python3 scripts/verify_bootstrap.py
+PASS: 36 backlog items, acyclic dependencies, XML, license, identity and CI policy.
+python3 scripts/verify_codex.py
+PASS: 5 repository skills, documentation links and Android environment pins.
+python3 -m unittest discover -s scripts/tests -v
+test_complete_sdk_and_wrapper_pass (test_linux_tools.LinuxToolsTest.test_complete_sdk_and_wrapper_pass) ... ok
+test_provisioning_with_fake_tools_installs_pinned_packages (test_linux_tools.LinuxToolsTest.test_provisioning_with_fake_tools_installs_pinned_packages) ... ok
+test_sdk_conflict_and_incomplete_build_tools_fail (test_linux_tools.LinuxToolsTest.test_sdk_conflict_and_incomplete_build_tools_fail) ... ok
+test_sdk_env_precedence_and_escaped_properties (test_linux_tools.LinuxToolsTest.test_sdk_env_precedence_and_escaped_properties) ... ok
+test_setup_help_and_invalid_option_do_not_create_sdk (test_linux_tools.LinuxToolsTest.test_setup_help_and_invalid_option_do_not_create_sdk) ... ok
+test_version_parser_rejects_failed_process (test_linux_tools.LinuxToolsTest.test_version_parser_rejects_failed_process) ... ok
+test_wrong_runtime_or_missing_compiler_fails (test_linux_tools.LinuxToolsTest.test_wrong_runtime_or_missing_compiler_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.191s
+
+OK
+OK: JDK — JAVA_HOME / java e javac precisam de JDK 21
+RESULT: pré-requisitos encontrados; execute o build
+Este diagnóstico não valida downloads, licenças, compilação ou dispositivos.
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080
+
+python3 scripts/doctor.py
+OK: JDK — JAVA_HOME / java e javac precisam de JDK 21
+OK: SDK variables — ANDROID_HOME e ANDROID_SDK_ROOT devem apontar para o mesmo SDK
+OK: Android SDK — ANDROID_HOME ou sdk.dir em local.properties
+OK: Platform — Instalar platforms;android-36
+OK: Build tools — Instalar build-tools;36.0.0 completo e executável
+OK: Git — Git disponível no PATH
+OK: Wrapper — Usar o Gradle wrapper do projeto
+OK: Wrapper executable — chmod +x gradlew no Linux
+RESULT: pré-requisitos encontrados; execute o build
+Este diagnóstico não valida downloads, licenças, compilação ou dispositivos.
+PASS: 36 backlog items, acyclic dependencies, XML, license, identity and CI policy.
+PASS: 5 repository skills, documentation links and Android environment pins.
+test_complete_sdk_and_wrapper_pass (test_linux_tools.LinuxToolsTest.test_complete_sdk_and_wrapper_pass) ... ok
+test_provisioning_with_fake_tools_installs_pinned_packages (test_linux_tools.LinuxToolsTest.test_provisioning_with_fake_tools_installs_pinned_packages) ... ok
+test_sdk_conflict_and_incomplete_build_tools_fail (test_linux_tools.LinuxToolsTest.test_sdk_conflict_and_incomplete_build_tools_fail) ... ok
+test_sdk_env_precedence_and_escaped_properties (test_linux_tools.LinuxToolsTest.test_sdk_env_precedence_and_escaped_properties) ... ok
+test_setup_help_and_invalid_option_do_not_create_sdk (test_linux_tools.LinuxToolsTest.test_setup_help_and_invalid_option_do_not_create_sdk) ... ok
+test_version_parser_rejects_failed_process (test_linux_tools.LinuxToolsTest.test_version_parser_rejects_failed_process) ... ok
+test_wrong_runtime_or_missing_compiler_fails (test_linux_tools.LinuxToolsTest.test_wrong_runtime_or_missing_compiler_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.199s
+
+OK
+OK: JDK — JAVA_HOME / java e javac precisam de JDK 21
+OK: SDK variables — ANDROID_HOME e ANDROID_SDK_ROOT devem apontar para o mesmo SDK
+OK: Android SDK — ANDROID_HOME ou sdk.dir em local.properties
+OK: Platform — Instalar platforms;android-36
+OK: Build tools — Instalar build-tools;36.0.0 completo e executável
+OK: Git — Git disponível no PATH
+OK: Wrapper — Usar o Gradle wrapper do projeto
+OK: Wrapper executable — chmod +x gradlew no Linux
+RESULT: pré-requisitos encontrados; execute o build
+Este diagnóstico não valida downloads, licenças, compilação ou dispositivos.
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :app
+Unable to initialize metrics, ensure /home/agent/.android is writable, details: /home/agent/.android/analytics.settings (No such file or directory)
+No Android AppExtension found. Skipping Android tasks registration. Please ensure your Android Gradle plugin is applied BEFORE the AboutLibraries plugin.
+Warning: Release signing configuration not fully set up from environment variables.
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preStandardDebugBuild UP-TO-DATE
+> Task :app:mergeStandardDebugNativeDebugMetadata NO-SOURCE
+> Task :app:generateStandardDebugBuildConfig UP-TO-DATE
+> Task :app:extractStandardDebugSupportedLocales UP-TO-DATE
+> Task :app:generateStandardDebugLocaleConfig UP-TO-DATE
+> Task :app:generateStandardDebugResources UP-TO-DATE
+> Task :app:packageStandardDebugResources UP-TO-DATE
+> Task :app:processStandardDebugNavigationResources UP-TO-DATE
+> Task :app:parseStandardDebugLocalResources UP-TO-DATE
+> Task :app:generateStandardDebugRFile UP-TO-DATE
+> Task :app:compileStandardDebugKotlin UP-TO-DATE
+> Task :app:javaPreCompileStandardDebug UP-TO-DATE
+> Task :app:compileStandardDebugJavaWithJavac UP-TO-DATE
+> Task :app:generateStandardDebugAssets UP-TO-DATE
+> Task :app:mergeStandardDebugAssets UP-TO-DATE
+> Task :app:compressStandardDebugAssets UP-TO-DATE
+> Task :app:checkStandardDebugDuplicateClasses UP-TO-DATE
+> Task :app:desugarStandardDebugFileDependencies UP-TO-DATE
+> Task :app:mergeExtDexStandardDebug UP-TO-DATE
+> Task :app:mergeLibDexStandardDebug UP-TO-DATE
+> Task :app:checkStandardDebugAarMetadata UP-TO-DATE
+> Task :app:compileStandardDebugNavigationResources UP-TO-DATE
+> Task :app:mapStandardDebugSourceSetPaths UP-TO-DATE
+> Task :app:mergeStandardDebugResources UP-TO-DATE
+> Task :app:createStandardDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksStandardDebug UP-TO-DATE
+> Task :app:processStandardDebugMainManifest UP-TO-DATE
+> Task :app:processStandardDebugManifest UP-TO-DATE
+> Task :app:processStandardDebugManifestForPackage UP-TO-DATE
+> Task :app:processStandardDebugResources UP-TO-DATE
+> Task :app:dexBuilderStandardDebug UP-TO-DATE
+> Task :app:mergeProjectDexStandardDebug UP-TO-DATE
+> Task :app:mergeStandardDebugGlobalSynthetics UP-TO-DATE
+> Task :app:processStandardDebugJavaRes UP-TO-DATE
+> Task :app:mergeStandardDebugJavaResource UP-TO-DATE
+> Task :app:mergeStandardDebugJniLibFolders UP-TO-DATE
+> Task :app:mergeStandardDebugNativeLibs UP-TO-DATE
+> Task :app:stripStandardDebugDebugSymbols UP-TO-DATE
+> Task :app:validateSigningStandardDebug UP-TO-DATE
+> Task :app:writeStandardDebugAppMetadata UP-TO-DATE
+> Task :app:writeStandardDebugSigningConfigVersions UP-TO-DATE
+> Task :app:packageStandardDebug UP-TO-DATE
+> Task :app:createStandardDebugApkListingFileRedirect UP-TO-DATE
+> Task :app:assembleStandardDebug UP-TO-DATE
+> Task :app:bundleStandardDebugClassesToRuntimeJar UP-TO-DATE
+> Task :app:bundleStandardDebugClassesToCompileJar UP-TO-DATE
+> Task :app:preStandardDebugUnitTestBuild UP-TO-DATE
+> Task :app:compileStandardDebugUnitTestKotlin UP-TO-DATE
+> Task :app:javaPreCompileStandardDebugUnitTest UP-TO-DATE
+> Task :app:compileStandardDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processStandardDebugUnitTestJavaRes UP-TO-DATE
+> Task :app:testStandardDebugUnitTest UP-TO-DATE
+> Task :app:preStandardDebugAndroidTestBuild SKIPPED
+> Task :app:generateStandardDebugAndroidTestLintModel UP-TO-DATE
+> Task :app:extractProguardFiles UP-TO-DATE
+> Task :app:generateStandardDebugLintReportModel UP-TO-DATE
+> Task :app:generateStandardDebugUnitTestLintModel UP-TO-DATE
+> Task :app:lintAnalyzeStandardDebug UP-TO-DATE
+> Task :app:lintAnalyzeStandardDebugAndroidTest UP-TO-DATE
+> Task :app:lintAnalyzeStandardDebugUnitTest UP-TO-DATE
+> Task :app:lintReportStandardDebug UP-TO-DATE
+> Task :app:lintStandardDebug
+
+BUILD SUCCESSFUL in 19s
+55 actionable tasks: 1 executed, 54 up-to-date

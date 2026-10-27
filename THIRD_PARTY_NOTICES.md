@@ -5,3 +5,7 @@ Este projeto deriva de VRChat Android Assistant (VRCAA), de Nyabsi e colaborador
 A preparação NateOrbit altera identidade de desenvolvimento, documentação, automação e verificações locais. Não existe alegação de endosso de Nyabsi ou VRChat Inc.
 
 Este arquivo é atribuição inicial, não inventário completo. NO-004 deve revisar dependências diretas/transitivas, fontes, traduções, imagens e avisos distribuídos antes do release. A arte de marca em brand/ é conceito gerado, com proveniência e prompt documentados; não se presume coberta pela licença raiz do código upstream.
+
+O [inventário inicial NO-004](docs/development/NO-004-inventory.md) registra
+dependências, grafo runtime, ativos com hashes e links herdados. A revisão de
+licenças transitivas e proveniência de ativos continua pendente.

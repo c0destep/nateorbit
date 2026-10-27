@@ -1,8 +1,8 @@
 ﻿id,epic,priority,milestone,size,owner_role,status,dependencies,title,acceptance_criteria,test_reference
-NO-001,Fundação,P0,G0,M,Lead,Backlog,,Reproduzir baseline do VRCAA,Build debug do SHA fixado reproduzido com versões e comandos registrados; APK identificado por hash; falhas do ambiente separadas de falhas do código.,Build smoke
+NO-001,Fundação,P0,G0,M,Lead,Done,,Reproduzir baseline do VRCAA,Build debug do SHA fixado reproduzido com versões e comandos registrados; APK identificado por hash; falhas do ambiente separadas de falhas do código.,Build smoke
 NO-002,Fundação,P0,G0,M,QA,Backlog,NO-001,Medir fluxos críticos,"30 execuções controladas de startup e retorno; p50/p95, requests e jank registrados; dados sintéticos e mesmo aparelho para comparação.","RNF-01,03"
 NO-003,Fundação,P0,G0,M,Analista/Lead,Backlog,,Resolver viabilidade de autenticação/API,Decisão escrita com fontes atuais e mecanismo aceitável; ausência de solução mantém integração real bloqueada e fixtures funcionando; não assumir OAuth.,RF-01
-NO-004,Fundação,P0,G0,S,Release,Backlog,NO-001,Inventariar licenças e origem,LICENSE/copyrights preservados; dependências e ativos classificados; links de suporte upstream listados para substituição.,Licenças
+NO-004,Fundação,P0,G0,S,Release,In Progress,NO-001,Inventariar licenças e origem,LICENSE/copyrights preservados; dependências e ativos classificados; links de suporte upstream listados para substituição.,Licenças
 NO-005,UX,P0,G0,M,Designer/Analista,Backlog,,Validar tarefas e protótipo,"Nate executa três tarefas com dados fictícios; dificuldades registradas; estados offline, vazio, erro e parcial especificados.","RF-02,05,07"
 NO-006,Fundação,P0,G1,M,Lead,Backlog,NO-001;NO-004,Preparar identidade e CI do fork,"ID próprio, debug separado e PR checks funcionando; nenhum segredo de release acessível em PR; build permanece utilizável.",CI smoke
 NO-007,Dados,P0,G1,M,Android A,Backlog,NO-001,Encapsular gateway legado,UI não chama cliente global diretamente; fake e gateway real usam mesmo contrato; erros tipados distinguem falha e vazio.,Contrato

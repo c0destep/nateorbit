@@ -10,7 +10,7 @@
       "milestone": "G0",
       "size": "M",
       "owner_role": "Lead",
-      "status": "Backlog",
+      "status": "Done",
       "dependencies": [],
       "title": "Reproduzir baseline do VRCAA",
       "acceptance_criteria": "Build debug do SHA fixado reproduzido com versões e comandos registrados; APK identificado por hash; falhas do ambiente separadas de falhas do código.",
@@ -51,7 +51,7 @@
       "milestone": "G0",
       "size": "S",
       "owner_role": "Release",
-      "status": "Backlog",
+      "status": "In Progress",
       "dependencies": [
         "NO-001"
       ],
@@ -585,5 +585,5 @@
       "test_reference": "Release externo"
     }
   ],
-  "bootstrap_note": "Preparação adicionada em 27/10/2026; validação Android pendente. NO-001 e NO-006 seguem Backlog até critérios completos."
+  "bootstrap_note": "NO-001 concluído com baseline cloud do SHA 5761edde7f135efcecfdeba876396de0ea141b23 e hash do APK registrados em docs/development/NO-001-baseline.md. NO-004 em andamento; inventário inicial não libera distribuição. G0 e NO-006 continuam pendentes."
 }

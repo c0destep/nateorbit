@@ -1,0 +1,93 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :app
+Unable to initialize metrics, ensure /home/agent/.android is writable, details: /home/agent/.android/analytics.settings (No such file or directory)
+No Android AppExtension found. Skipping Android tasks registration. Please ensure your Android Gradle plugin is applied BEFORE the AboutLibraries plugin.
+Warning: Release signing configuration not fully set up from environment variables.
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preStandardDebugBuild UP-TO-DATE
+> Task :app:mergeStandardDebugNativeDebugMetadata NO-SOURCE
+> Task :app:generateStandardDebugBuildConfig
+> Task :app:extractStandardDebugSupportedLocales
+> Task :app:generateStandardDebugLocaleConfig
+> Task :app:generateStandardDebugResources
+> Task :app:processStandardDebugNavigationResources
+> Task :app:packageStandardDebugResources
+> Task :app:generateStandardDebugAssets UP-TO-DATE
+> Task :app:javaPreCompileStandardDebug
+> Task :app:parseStandardDebugLocalResources
+> Task :app:mergeStandardDebugAssets
+> Task :app:compressStandardDebugAssets
+> Task :app:generateStandardDebugRFile
+> Task :app:checkStandardDebugDuplicateClasses
+> Task :app:desugarStandardDebugFileDependencies
+> Task :app:compileStandardDebugKotlin
+> Task :app:mergeExtDexStandardDebug
+
+> Task :app:compileStandardDebugKotlin
+w: file:///workspace/nateorbit/app/src/main/java/cc/sovellus/vrcaa/base/BaseClient.kt:218:53 Unnecessary safe call on a non-null receiver of type 'ResponseBody'.
+w: file:///workspace/nateorbit/app/src/main/java/cc/sovellus/vrcaa/base/BaseClient.kt:257:53 Unnecessary safe call on a non-null receiver of type 'ResponseBody'.
+w: file:///workspace/nateorbit/app/src/main/java/cc/sovellus/vrcaa/base/BaseClient.kt:296:53 Unnecessary safe call on a non-null receiver of type 'ResponseBody'.
+w: file:///workspace/nateorbit/app/src/main/java/cc/sovellus/vrcaa/base/BaseClient.kt:441:45 Unnecessary safe call on a non-null receiver of type 'ResponseBody'.
+w: file:///workspace/nateorbit/app/src/main/java/cc/sovellus/vrcaa/ui/components/card/ProfileCard.kt:218:64 'fun rememberPlainTooltipPositionProvider(spacingBetweenTooltipAndAnchor: Dp = ...): PopupPositionProvider' is deprecated. Deprecated in favor of rememberTooltipPositionProvider API.
+w: file:///workspace/nateorbit/app/src/main/java/cc/sovellus/vrcaa/ui/components/misc/Languages.kt:133:56 'fun rememberPlainTooltipPositionProvider(spacingBetweenTooltipAndAnchor: Dp = ...): PopupPositionProvider' is deprecated. Deprecated in favor of rememberTooltipPositionProvider API.
+w: file:///workspace/nateorbit/app/src/main/java/cc/sovellus/vrcaa/ui/screen/licenses/LicensesScreen.kt:66:17 'fun LibrariesContainer(modifier: Modifier = ..., libraryModifier: Modifier = ..., librariesBlock: (Context) -> Libs = ..., lazyListState: LazyListState = ..., contentPadding: PaddingValues = ..., showAuthor: Boolean = ..., showDescription: Boolean = ..., showVersion: Boolean = ..., showLicenseBadges: Boolean = ..., showFundingBadges: Boolean = ..., colors: LibraryColors = ..., padding: LibraryPadding = ..., dimensions: LibraryDimensions = ..., textStyles: LibraryTextStyles = ..., header: (LazyListScope.() -> Unit)? = ..., divider: ComposableFunction1<LazyItemScope, Unit>? = ..., footer: (LazyListScope.() -> Unit)? = ..., onLibraryClick: ((Library) -> Unit)? = ..., onFundingClick: ((Funding) -> Unit)? = ...): Unit' is deprecated. Use `LibrariesContainer` variant with `Libs` instead. Use `produceLibraries` to load the libraries.
+
+> Task :app:compileStandardDebugJavaWithJavac
+> Task :app:mergeLibDexStandardDebug
+> Task :app:checkStandardDebugAarMetadata
+> Task :app:compileStandardDebugNavigationResources
+> Task :app:mapStandardDebugSourceSetPaths
+> Task :app:createStandardDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksStandardDebug
+> Task :app:mergeStandardDebugResources
+> Task :app:processStandardDebugMainManifest
+> Task :app:processStandardDebugManifest
+> Task :app:processStandardDebugJavaRes
+> Task :app:processStandardDebugManifestForPackage
+> Task :app:processStandardDebugResources
+> Task :app:mergeStandardDebugJavaResource
+> Task :app:dexBuilderStandardDebug
+> Task :app:mergeProjectDexStandardDebug
+> Task :app:mergeStandardDebugJniLibFolders
+> Task :app:mergeStandardDebugGlobalSynthetics
+> Task :app:mergeStandardDebugNativeLibs
+> Task :app:validateSigningStandardDebug
+> Task :app:writeStandardDebugAppMetadata
+> Task :app:writeStandardDebugSigningConfigVersions
+
+> Task :app:stripStandardDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so. Run with --info option to learn more.
+
+> Task :app:preStandardDebugUnitTestBuild UP-TO-DATE
+> Task :app:bundleStandardDebugClassesToRuntimeJar
+> Task :app:preStandardDebugAndroidTestBuild SKIPPED
+> Task :app:javaPreCompileStandardDebugUnitTest
+> Task :app:extractProguardFiles
+> Task :app:bundleStandardDebugClassesToCompileJar
+> Task :app:generateStandardDebugLintReportModel
+> Task :app:packageStandardDebug
+> Task :app:createStandardDebugApkListingFileRedirect
+> Task :app:assembleStandardDebug
+> Task :app:compileStandardDebugUnitTestKotlin
+> Task :app:generateStandardDebugAndroidTestLintModel
+> Task :app:compileStandardDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processStandardDebugUnitTestJavaRes
+> Task :app:testStandardDebugUnitTest
+> Task :app:generateStandardDebugUnitTestLintModel
+
+> Task :app:lintAnalyzeStandardDebugUnitTest
+Warning: Unable to initialize metrics, ensure /home/agent/.android is writable, details: /home/agent/.android/analytics.settings (No such file or directory)
+
+> Task :app:lintAnalyzeStandardDebugAndroidTest
+> Task :app:lintAnalyzeStandardDebug
+
+> Task :app:lintReportStandardDebug
+Wrote HTML report to file:///workspace/nateorbit/app/build/reports/lint-results-standardDebug.html
+
+> Task :app:lintStandardDebug
+
+BUILD SUCCESSFUL in 7m 47s
+55 actionable tasks: 55 executed

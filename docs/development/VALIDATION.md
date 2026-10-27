@@ -65,3 +65,15 @@ Essa evidência valida a base herdada e a preparação; os testes de domínio no
 instrumentação, smoke em aparelho e benchmarks ainda não foram implementados ou
 executados. O teste unitário legado não demonstra os critérios funcionais futuros.
 A preparação não conclui todo G0 e não resolve NO-003/NO-009.
+
+## Baseline cloud e início do inventário — 27/10/2026
+
+NO-001 concluído para o SHA `5761edde7f135efcecfdeba876396de0ea141b23`:
+[versões, comandos, logs, limites e hash do APK](NO-001-baseline.md).
+Build standardDebug, sete testes dos scripts, um teste unitário herdado e lint
+aprovados neste executor; lint com 137 avisos e nenhum erro. Setup repetido com
+saída zero. Isso substitui as limitações antigas do ambiente para esta instância,
+sem alterar os registros históricos acima. Aparelho e benchmark continuam pendentes.
+
+NO-004 iniciado com [inventário de dependências, ativos e links](NO-004-inventory.md).
+Revisão de transitivas/proveniência e avisos distribuídos permanece aberta.
