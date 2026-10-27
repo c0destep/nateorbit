@@ -1,0 +1,4 @@
+interface:
+  display_name: "Revisar sincronização NateOrbit"
+  short_description: "Revisar cache, eventos, sessão e concorrência"
+  default_prompt: "Use $nateorbit-sync-review para revisar o diff de sincronização e sessão."

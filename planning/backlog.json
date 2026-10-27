@@ -1,0 +1,589 @@
+{
+  "project": "NateOrbit",
+  "version": "1.0",
+  "date": "2026-10-27",
+  "items": [
+    {
+      "id": "NO-001",
+      "epic": "Fundação",
+      "priority": "P0",
+      "milestone": "G0",
+      "size": "M",
+      "owner_role": "Lead",
+      "status": "Backlog",
+      "dependencies": [],
+      "title": "Reproduzir baseline do VRCAA",
+      "acceptance_criteria": "Build debug do SHA fixado reproduzido com versões e comandos registrados; APK identificado por hash; falhas do ambiente separadas de falhas do código.",
+      "test_reference": "Build smoke"
+    },
+    {
+      "id": "NO-002",
+      "epic": "Fundação",
+      "priority": "P0",
+      "milestone": "G0",
+      "size": "M",
+      "owner_role": "QA",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-001"
+      ],
+      "title": "Medir fluxos críticos",
+      "acceptance_criteria": "30 execuções controladas de startup e retorno; p50/p95, requests e jank registrados; dados sintéticos e mesmo aparelho para comparação.",
+      "test_reference": "RNF-01,03"
+    },
+    {
+      "id": "NO-003",
+      "epic": "Fundação",
+      "priority": "P0",
+      "milestone": "G0",
+      "size": "M",
+      "owner_role": "Analista/Lead",
+      "status": "Backlog",
+      "dependencies": [],
+      "title": "Resolver viabilidade de autenticação/API",
+      "acceptance_criteria": "Decisão escrita com fontes atuais e mecanismo aceitável; ausência de solução mantém integração real bloqueada e fixtures funcionando; não assumir OAuth.",
+      "test_reference": "RF-01"
+    },
+    {
+      "id": "NO-004",
+      "epic": "Fundação",
+      "priority": "P0",
+      "milestone": "G0",
+      "size": "S",
+      "owner_role": "Release",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-001"
+      ],
+      "title": "Inventariar licenças e origem",
+      "acceptance_criteria": "LICENSE/copyrights preservados; dependências e ativos classificados; links de suporte upstream listados para substituição.",
+      "test_reference": "Licenças"
+    },
+    {
+      "id": "NO-005",
+      "epic": "UX",
+      "priority": "P0",
+      "milestone": "G0",
+      "size": "M",
+      "owner_role": "Designer/Analista",
+      "status": "Backlog",
+      "dependencies": [],
+      "title": "Validar tarefas e protótipo",
+      "acceptance_criteria": "Nate executa três tarefas com dados fictícios; dificuldades registradas; estados offline, vazio, erro e parcial especificados.",
+      "test_reference": "RF-02,05,07"
+    },
+    {
+      "id": "NO-006",
+      "epic": "Fundação",
+      "priority": "P0",
+      "milestone": "G1",
+      "size": "M",
+      "owner_role": "Lead",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-001",
+        "NO-004"
+      ],
+      "title": "Preparar identidade e CI do fork",
+      "acceptance_criteria": "ID próprio, debug separado e PR checks funcionando; nenhum segredo de release acessível em PR; build permanece utilizável.",
+      "test_reference": "CI smoke"
+    },
+    {
+      "id": "NO-007",
+      "epic": "Dados",
+      "priority": "P0",
+      "milestone": "G1",
+      "size": "M",
+      "owner_role": "Android A",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-001"
+      ],
+      "title": "Encapsular gateway legado",
+      "acceptance_criteria": "UI não chama cliente global diretamente; fake e gateway real usam mesmo contrato; erros tipados distinguem falha e vazio.",
+      "test_reference": "Contrato"
+    },
+    {
+      "id": "NO-008",
+      "epic": "QA",
+      "priority": "P0",
+      "milestone": "G1",
+      "size": "M",
+      "owner_role": "QA/Android A",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-007"
+      ],
+      "title": "Criar fixtures e servidor simulado",
+      "acceptance_criteria": "Cenários 0/100/1000/5000 amigos, paginação, 401/429/500 e eventos inválidos reproduzíveis sem credenciais reais.",
+      "test_reference": "Integração"
+    },
+    {
+      "id": "NO-009",
+      "epic": "Sessão",
+      "priority": "P0",
+      "milestone": "G1",
+      "size": "L",
+      "owner_role": "Android A",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-003",
+        "NO-007"
+      ],
+      "title": "Isolar sessão e remover senha persistida",
+      "acceptance_criteria": "Método validado implementado; nenhuma senha em disco; logs/backup sem segredo; falha Keystore ou sessão expirada pede recuperação explícita.",
+      "test_reference": "RF-01,RNF-06"
+    },
+    {
+      "id": "NO-010",
+      "epic": "Dados",
+      "priority": "P0",
+      "milestone": "G1",
+      "size": "L",
+      "owner_role": "Android A",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-007",
+        "NO-008"
+      ],
+      "title": "Criar schema Room e repositories",
+      "acceptance_criteria": "IDs pessoais escopados por conta; DAO observado por Flow; migração inicial testada; sem destructive fallback.",
+      "test_reference": "RNF-05"
+    },
+    {
+      "id": "NO-011",
+      "epic": "Dados",
+      "priority": "P0",
+      "milestone": "G1",
+      "size": "L",
+      "owner_role": "Android A",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-008",
+        "NO-010"
+      ],
+      "title": "Sincronizar snapshots por recurso",
+      "acceptance_criteria": "Páginas parciais não apagam snapshot válido; online é publicado antes do offline completo; recomendações não bloqueiam amigos.",
+      "test_reference": "RF-02,09"
+    },
+    {
+      "id": "NO-012",
+      "epic": "Dados",
+      "priority": "P0",
+      "milestone": "G2",
+      "size": "L",
+      "owner_role": "Android A",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-008",
+        "NO-010",
+        "NO-011"
+      ],
+      "title": "Reconciliar eventos e snapshot",
+      "acceptance_criteria": "Evento durante carga não se perde no commit do snapshot; duplicatas não duplicam feed; ordem incerta marca necessidade de reconciliação.",
+      "test_reference": "RNF-04"
+    },
+    {
+      "id": "NO-013",
+      "epic": "Dados",
+      "priority": "P0",
+      "milestone": "G2",
+      "size": "M",
+      "owner_role": "Android A",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-007",
+        "NO-008"
+      ],
+      "title": "Controlar requests e retentativas",
+      "acceptance_criteria": "Chamadas iguais compartilham operação; concorrência limitada; 429 pausa fila; tentativa de escrita ambígua não repete automaticamente.",
+      "test_reference": "Rate-limit"
+    },
+    {
+      "id": "NO-014",
+      "epic": "Sessão",
+      "priority": "P0",
+      "milestone": "G2",
+      "size": "M",
+      "owner_role": "Android A",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-009",
+        "NO-012"
+      ],
+      "title": "Cancelar no logout e no lifecycle",
+      "acceptance_criteria": "Logout invalida callbacks; start repetido não cria segunda conexão; reconexão pendente é cancelada; dados de conta não se misturam.",
+      "test_reference": "Lifecycle"
+    },
+    {
+      "id": "NO-015",
+      "epic": "Marca",
+      "priority": "P1",
+      "milestone": "G2",
+      "size": "M",
+      "owner_role": "Designer",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-005"
+      ],
+      "title": "Finalizar identidade e ícones",
+      "acceptance_criteria": "Conceito revisado por Nate; vetor único, adaptive icon e monocromia entregues; legibilidade/máscaras e licenças testadas.",
+      "test_reference": "Brand QA"
+    },
+    {
+      "id": "NO-016",
+      "epic": "UI",
+      "priority": "P0",
+      "milestone": "G1",
+      "size": "M",
+      "owner_role": "Android B",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-005"
+      ],
+      "title": "Criar componentes e estados de UI",
+      "acceptance_criteria": "Lista/cartão/chips/banner suportam tema claro/escuro, font scale e TalkBack; estados parciais não bloqueiam conteúdo existente.",
+      "test_reference": "RF-10"
+    },
+    {
+      "id": "NO-017",
+      "epic": "Amigos",
+      "priority": "P0",
+      "milestone": "G2",
+      "size": "L",
+      "owner_role": "Android B",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-010",
+        "NO-011",
+        "NO-016"
+      ],
+      "title": "Entregar lista local-first",
+      "acceptance_criteria": "Lista cacheada utilizável sem rede; IDs estáveis e posição preservada; zero spinner global para atraso de recomendação.",
+      "test_reference": "RF-02,RNF-01"
+    },
+    {
+      "id": "NO-018",
+      "epic": "Amigos",
+      "priority": "P0",
+      "milestone": "G2",
+      "size": "M",
+      "owner_role": "Android B",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-017"
+      ],
+      "title": "Adicionar busca e filtros",
+      "acceptance_criteria": "Nome/status/plataforma combináveis; clear funciona; busca local mede meta RNF-02; retorno do detalhe preserva filtros.",
+      "test_reference": "RF-03"
+    },
+    {
+      "id": "NO-019",
+      "epic": "Amigos",
+      "priority": "P0",
+      "milestone": "G2",
+      "size": "M",
+      "owner_role": "Android B",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-010",
+        "NO-017"
+      ],
+      "title": "Categorias, pins e notas locais",
+      "acceptance_criteria": "CRUD offline persiste; categoria não dispara chamada remota; mudança aparece sem depender de evento de presença.",
+      "test_reference": "RF-04"
+    },
+    {
+      "id": "NO-020",
+      "epic": "Amigos",
+      "priority": "P0",
+      "milestone": "G2",
+      "size": "M",
+      "owner_role": "Android B",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-017",
+        "NO-018"
+      ],
+      "title": "Detalhe de amigo e localização",
+      "acceptance_criteria": "Localização privada/ausente distinguida; estado antigo não parece ao vivo; navegação recebe IDs e preserva origem.",
+      "test_reference": "RF-06,09"
+    },
+    {
+      "id": "NO-021",
+      "epic": "Mundos",
+      "priority": "P0",
+      "milestone": "G2",
+      "size": "L",
+      "owner_role": "Android B",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-010",
+        "NO-013",
+        "NO-016"
+      ],
+      "title": "Detalhe progressivo de mundo",
+      "acceptance_criteria": "Cabeçalho e guardar disponíveis antes das instâncias; falha de proprietário não bloqueia mundo; chamadas iguais deduplicadas.",
+      "test_reference": "RF-05"
+    },
+    {
+      "id": "NO-022",
+      "epic": "Mundos",
+      "priority": "P0",
+      "milestone": "G2",
+      "size": "M",
+      "owner_role": "Android A/B",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-012",
+        "NO-020",
+        "NO-021"
+      ],
+      "title": "Agrupar amigos por instância",
+      "acceptance_criteria": "ID completo evita misturar instâncias; prioriza instâncias com amigos; não afirma acesso quando não confirmado.",
+      "test_reference": "RF-06"
+    },
+    {
+      "id": "NO-023",
+      "epic": "Mundos",
+      "priority": "P0",
+      "milestone": "G2",
+      "size": "M",
+      "owner_role": "Android B",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-010",
+        "NO-021"
+      ],
+      "title": "Coleções de mundos",
+      "acceptance_criteria": "Criar/renomear/excluir e ordenar offline; remoção com desfazer; claramente distintas dos favoritos VRChat.",
+      "test_reference": "RF-07"
+    },
+    {
+      "id": "NO-024",
+      "epic": "Mundos",
+      "priority": "P1",
+      "milestone": "G3",
+      "size": "M",
+      "owner_role": "Android B",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-013",
+        "NO-021"
+      ],
+      "title": "Busca remota de mundos",
+      "acceptance_criteria": "Debounce e cancelamento de consulta antiga; resultado tardio não sobrescreve consulta nova; cache/erro/vazio explícitos.",
+      "test_reference": "RF-05"
+    },
+    {
+      "id": "NO-025",
+      "epic": "Atividade",
+      "priority": "P0",
+      "milestone": "G3",
+      "size": "L",
+      "owner_role": "Android A/B",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-010",
+        "NO-012",
+        "NO-016"
+      ],
+      "title": "Feed paginado e retenção",
+      "acceptance_criteria": "Paginar 10 mil eventos sintéticos sem carregar tudo; filtros; dedupe; limpeza 30 dias; lacunas de observação sinalizadas.",
+      "test_reference": "RF-08"
+    },
+    {
+      "id": "NO-026",
+      "epic": "Configurações",
+      "priority": "P0",
+      "milestone": "G3",
+      "size": "M",
+      "owner_role": "Android B",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-014",
+        "NO-016"
+      ],
+      "title": "Preferências e dados pessoais",
+      "acceptance_criteria": "Tema/idioma/densidade persistem; limpeza local e logout explicam efeito; texto de privacidade e licenças acessível.",
+      "test_reference": "RF-10"
+    },
+    {
+      "id": "NO-027",
+      "epic": "Diagnóstico",
+      "priority": "P0",
+      "milestone": "G3",
+      "size": "M",
+      "owner_role": "Android A",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-006",
+        "NO-013"
+      ],
+      "title": "Diagnósticos locais redigidos",
+      "acceptance_criteria": "Exportação voluntária contém commit e latências; nenhum token, cookie, URL auth ou payload de amigos.",
+      "test_reference": "RF-11,RNF-06"
+    },
+    {
+      "id": "NO-028",
+      "epic": "QA",
+      "priority": "P0",
+      "milestone": "G3",
+      "size": "L",
+      "owner_role": "QA",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-017",
+        "NO-020",
+        "NO-022",
+        "NO-025",
+        "NO-026",
+        "NO-018",
+        "NO-019",
+        "NO-023",
+        "NO-024",
+        "NO-027"
+      ],
+      "title": "Validar acessibilidade e lifecycle",
+      "acceptance_criteria": "Matriz crítica executada com ambiente/evidências; fonte 200%, TalkBack, modo avião, rede trocada e process death aprovados.",
+      "test_reference": "QA matriz"
+    },
+    {
+      "id": "NO-029",
+      "epic": "Performance",
+      "priority": "P0",
+      "milestone": "G3",
+      "size": "L",
+      "owner_role": "Lead/QA",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-002",
+        "NO-017",
+        "NO-021",
+        "NO-025"
+      ],
+      "title": "Comparar performance e otimizar",
+      "acceptance_criteria": "Mesmo protocolo baseline/derivado; metas avaliadas; hot paths corrigidos; Baseline Profile se ganho confirmado.",
+      "test_reference": "RNF-01,02,03"
+    },
+    {
+      "id": "NO-030",
+      "epic": "Release",
+      "priority": "P0",
+      "milestone": "G4",
+      "size": "M",
+      "owner_role": "Release/QA",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-004",
+        "NO-009",
+        "NO-014",
+        "NO-015",
+        "NO-027",
+        "NO-028",
+        "NO-029"
+      ],
+      "title": "Preparar beta pessoal e release",
+      "acceptance_criteria": "APK assinado, checksum e notas; zero S0/S1; método API resolvido; recuperação testada; PO aceita uso pessoal.",
+      "test_reference": "Gate G4"
+    },
+    {
+      "id": "NO-031",
+      "epic": "Alertas",
+      "priority": "P2",
+      "milestone": "Pós-MVP",
+      "size": "M",
+      "owner_role": "Android A/B",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-025",
+        "NO-030"
+      ],
+      "title": "Alertas seletivos",
+      "acceptance_criteria": "Opt-in, permissão, silêncio e cooldown testados; eventos de snapshot não geram tempestade; sem promessa de 24/7.",
+      "test_reference": "RF-12"
+    },
+    {
+      "id": "NO-032",
+      "epic": "Background",
+      "priority": "P2",
+      "milestone": "Pós-MVP",
+      "size": "L",
+      "owner_role": "Lead/QA",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-014",
+        "NO-030"
+      ],
+      "title": "Spike de acompanhamento contínuo",
+      "acceptance_criteria": "Tipo de serviço e política validados; notificação/stop visíveis; consumo físico medido; resultado decide implementar ou rejeitar.",
+      "test_reference": "Background"
+    },
+    {
+      "id": "NO-033",
+      "epic": "Portabilidade",
+      "priority": "P2",
+      "milestone": "Pós-MVP",
+      "size": "L",
+      "owner_role": "Android A/QA",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-010",
+        "NO-030"
+      ],
+      "title": "Backup e importação controlada",
+      "acceptance_criteria": "Formato upstream investigado; importação pré-visualizada/transacional; arquivos maliciosos rejeitados; nunca importar sessão.",
+      "test_reference": "Migração"
+    },
+    {
+      "id": "NO-034",
+      "epic": "Favoritos",
+      "priority": "P2",
+      "milestone": "Pós-MVP",
+      "size": "M",
+      "owner_role": "Android A/B",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-013",
+        "NO-019",
+        "NO-023",
+        "NO-030"
+      ],
+      "title": "Editar favoritos remotos explicitamente",
+      "acceptance_criteria": "UI separa remoto/local; confirma ações; reconcilia erro ambíguo; operação não apaga coleções locais.",
+      "test_reference": "RF-04,07"
+    },
+    {
+      "id": "NO-035",
+      "epic": "Descoberta",
+      "priority": "P3",
+      "milestone": "Futuro",
+      "size": "M",
+      "owner_role": "Analista/Android A",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-023",
+        "NO-030"
+      ],
+      "title": "Reavaliar recomendações",
+      "acceptance_criteria": "Validar utilidade com Nate; processamento fora do startup; orçamento de requisições e dados locais explícitos.",
+      "test_reference": "Discovery"
+    },
+    {
+      "id": "NO-036",
+      "epic": "Publicação",
+      "priority": "P3",
+      "milestone": "Futuro",
+      "size": "L",
+      "owner_role": "PO/Release",
+      "status": "Backlog",
+      "dependencies": [
+        "NO-030"
+      ],
+      "title": "Avaliar distribuição pública",
+      "acceptance_criteria": "Marca, licenças de ativos, privacidade, API e requisitos do canal revisados; decisão separada de publicação registrada.",
+      "test_reference": "Release externo"
+    }
+  ],
+  "bootstrap_note": "Preparação adicionada em 27/10/2026; validação Android pendente. NO-001 e NO-006 seguem Backlog até critérios completos."
+}

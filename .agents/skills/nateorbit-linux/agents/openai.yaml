@@ -1,0 +1,4 @@
+interface:
+  display_name: "Preparar Linux NateOrbit"
+  short_description: "Diagnosticar JDK, SDK e build Android no Linux"
+  default_prompt: "Use $nateorbit-linux para diagnosticar e preparar o ambiente Android no Linux."

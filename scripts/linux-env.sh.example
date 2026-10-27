@@ -1,0 +1,5 @@
+# Copy to local/linux-env.sh and source it from the project root (Bash or Zsh).
+# Set these to real directories on YOUR machine. This file starts no services.
+export JAVA_HOME="/absolute/path/to/jdk-21"
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$JAVA_HOME/bin:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"

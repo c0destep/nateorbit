@@ -1,0 +1,4 @@
+interface:
+  display_name: "Validar alteração NateOrbit"
+  short_description: "Escolher checks e registrar evidências reais"
+  default_prompt: "Use $nateorbit-verify para validar as alterações desta branch."

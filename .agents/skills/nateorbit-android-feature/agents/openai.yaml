@@ -1,0 +1,4 @@
+interface:
+  display_name: "Implementar Android NateOrbit"
+  short_description: "Entregar uma fatia Kotlin e Compose com testes"
+  default_prompt: "Use $nateorbit-android-feature para implementar a tarefa selecionada do backlog."

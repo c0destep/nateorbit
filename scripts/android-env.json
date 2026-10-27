@@ -1,0 +1,6 @@
+{
+  "jdk": 21,
+  "compile_sdk": 36,
+  "build_tools": "36.0.0",
+  "sdk_packages": ["platform-tools", "platforms;android-36", "build-tools;36.0.0"]
+}

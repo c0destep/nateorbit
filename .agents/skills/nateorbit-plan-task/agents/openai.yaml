@@ -1,0 +1,4 @@
+interface:
+  display_name: "Planejar tarefa NateOrbit"
+  short_description: "Refinar escopo, critérios e handoff de uma tarefa"
+  default_prompt: "Use $nateorbit-plan-task para preparar a próxima tarefa da Sprint 01."

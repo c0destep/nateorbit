@@ -1,0 +1,36 @@
+# Validação desta preparação — 27/10/2026
+
+## Executado
+
+- Clone do upstream com histórico; HEAD de origem confirmado em eb3978247d969e2c593837175fc7598e95f51b35.
+- Branch chore/nateorbit-bootstrap e remoto upstream configurados; origin de destino ausente.
+- Documentos/backlog/templates incorporados, ID de desenvolvimento e nome ajustados, licença preservada.
+- Workflow nightly herdado desativado; CI debug com actions fixadas em SHA e permissão contents:read.
+
+Verificações locais aprovadas: 36 IDs únicos e dependências sem ciclos; XML do app parseado; licença e identidade conferidas; workflow sem schedule/publicação, actions fixadas em SHA; sintaxe Python/Bash/YAML e git diff --check aprovados.
+
+## Limitações encontradas
+
+Java disponível: OpenJDK runtime 17, sem javac. Android SDK/sdkmanager/adb ausentes. Tentativa de `./gradlew assembleStandardDebug testStandardDebugUnitTest lintStandardDebug --no-daemon`: falha no download do Gradle 9.3.1 com `java.net.SocketException: Network is unreachable`, antes de configurar o projeto.
+
+Nenhum build Android, teste unitário Gradle, lint, teste instrumentado ou benchmark pôde ser executado. Nenhum APK foi gerado. A execução de CI precisa ocorrer no repositório destino e pode revelar problemas herdados de dependências/configuração ainda não observados.
+
+## Ainda pendente
+
+Validar ambiente e tasks no CI, inventariar dependências, implementar testes de domínio, definir autenticação, remover persistência de senha herdada, revisar links/ícones upstream e escolher destino GitHub. Preparação de repositório não conclui G0.
+
+
+## Preparação Codex/Linux — 27/10/2026
+
+- AGENTS.md revisado; cinco skills de repositório validadas pelo validador oficial.
+- make verify aprovado: integridade da base/backlog/XML, links/pins de ambiente e
+  sete testes dos scripts Linux. Testes incluem SDK incompleto, JDK ausente,
+  variáveis conflitantes e provisionamento simulado com caminhos contendo espaços.
+- Sintaxe Bash, metadados YAML e git diff --check conferidos.
+- make doctor confirma que este executor ainda tem runtime Java 17, sem JDK 21 e
+  sem Android SDK. Build/testes/lint Android não foram aprovados aqui.
+- Destino definido: c0destep/nateorbit. A importação inicial via Actions preserva
+  a base upstream fixada e remove o workflow de importação do resultado. Apenas
+  esse job usa contents:write para o primeiro envio; o CI recorrente usa leitura.
+- Resultado remoto de importação e build deve ser consultado em Actions; esta
+  seção não antecipa aprovação. O app continua sem modo fake implementado.
