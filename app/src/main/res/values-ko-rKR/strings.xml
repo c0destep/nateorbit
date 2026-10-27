@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- Universal Strings -->
+    <string name="result_not_found">표시할 항목이 없습니다!</string>
+    <string name="legal_disclaimer">"VRCAA는 VRChat Inc. 및 그 계열사의 승인을 받은 제품이 아닙니다."</string>
+    <!-- Friends -->
+    <string-array name="friend_selection_options">
+        <item>친한 친구</item>
+        <item>온라인</item>
+        <item>웹사이트</item>
+        <item>오프라인</item>
+    </string-array>
+    <string name="friend_toast_friend_request_cancelled">Your friend request for %1$s was cancelled.</string>
+    <string name="friend_toast_friend_request_cancel_failed">Failed to cancel friend request for %1$s.</string>
+    <string name="friend_toast_friend_removed">Removed %1$s from your friend list.</string>
+    <string name="friend_toast_friend_remove_failed">Failed to remove %1$s from your friend list.</string>
+    <string name="friend_toast_friend_requested">Your friend request was sent to %1$s.</string>
+    <string name="friend_toast_friend_request_failed">Failed to send friend request for %1$s.</string>
+    <string name="friend_toast_friend_request_accepted">Accepted friend request from %1$s.</string>
+    <string name="friend_toast_friend_request_accept_failed">Failed to accept friend request for %1$s.</string>
+    <!-- Home -->
+    <string name="home_active_friends">온라인 친구</string>
+    <string name="home_recently_visited">최근 방문</string>
+    <string name="home_friend_locations">친구 위치</string>
+    <string name="home_curated_for_you">Curated For You</string>
+    <!-- Login -->
+    <string name="login_text">VRC Android Assistant에 로그인</string>
+    <string name="login_label_username">닉네임 혹은 이메일</string>
+    <string name="login_label_password">비밀번호</string>
+    <string name="login_button_text">로그인</string>
+    <string name="login_toast_wrong_credentials">닉네임 또는 비밀번호가 올바르지 않습니다.</string>
+    <string name="login_toast_wrong_code">코드를 다시 한 번 확인해 주세요.</string>
+    <!-- Onboarding -->
+    <string name="onboarding_title">Let\'s get started!</string>
+    <string name="onboarding_description">Stay connected to your VRChat world. Manage your profile, keep up with friends, and never miss what’s happening — all from your Android device.</string>
+    <string name="onboarding_permissions_title">You might need to grant permissions.</string>
+    <string name="onboarding_permissions_description">Enable notifications to receive friend updates and activity alerts in real time.</string>
+    <!-- Two Auth -->
+    <string name="auth_text_email">이메일로 전송된 숫자 코드를 입력하세요</string>
+    <string name="auth_text_app">인증 앱의 코드를 입력해 주세요.</string>
+    <string name="auth_button_text">인증</string>
+    <string name="auth_button_paste">붙여넣기</string>
+    <!-- Main -->
+    <string name="main_search_placeholder">월드, 유저 또는 아바타 검색…</string>
+    <!-- Profile -->
+    <string name="profile_label_current_location">현재 인스턴스</string>
+    <string name="profile_label_note">메모</string>
+    <string name="profile_label_biography">자기소개</string>
+    <string name="profile_label_last_activity">마지막 활동</string>
+    <string name="profile_label_date_joined">계정 생성일</string>
+    <string name="profile_text_no_biography">자기소개 없음</string>
+    <string name="profile_user_dropdown_manage_notifications">알림 관리</string>
+    <string name="profile_user_not_found_message">유저를 찾을 수 없습니다.</string>
+    <string name="profile_user_avatar_private">비공개 아바타입니다.</string>
+    <string name="profile_user_avatar_unreachable">아바타를 찾을 수 없습니다.</string>
+    <string name="profile_user_note_dialog_title">Set Note</string>
+    <!-- Search -->
+    <string name="search_text_result">검색 결과:</string>
+    <string name="search_filter_label_count">표시 수</string>
+    <string name="search_filter_label_platform">Platform</string>
+    <string name="search_filter_label_content_gating">Content Gating</string>
+    <string name="search_filter_label_performance_rank">Performance Rank</string>
+    <string name="copy_id_label">ID 복사</string>
+    <string name="copied_toast">%1$s의 ID를 복사했습니다.</string>
+    <string name="search_filter_button_reset">초기화</string>
+    <string name="search_filter_button_apply">적용</string>
+    <string-array name="search_selection_options">
+        <item>월드</item>
+        <item>유저</item>
+        <item>아바타</item>
+        <item>그룹</item>
+    </string-array>
+    <string name="search_button_more">더 보기</string>
+    <!-- Settings -->
+    <string name="settings_item_about">정보</string>
+    <string name="settings_item_about_description">기기 및 VRCAA에 대한 추가 정보.</string>
+    <string name="settings_item_theming">표시 설정</string>
+    <string name="settings_item_theming_description">표시 설정 구성 및 간소화 모드</string>
+    <string name="settings_item_rich_presence" tools:keep="@string/settings_item_rich_presence">활동 상태 (실험적)</string>
+    <string name="settings_item_rich_presence_description" tools:keep="@string/settings_item_rich_presence_description">Discord 활동 상태 표시 연동</string>
+    <string name="settings_item_advanced_settings">고급</string>
+    <string name="settings_item_advanced_settings_description">고급 로그 기록 및 추가 기능</string>
+    <string name="settings_item_database_settings">데이터베이스 및 통계</string>
+    <string name="settings_item_database_settings_description">통계를 확인하고 데이터를 복원하거나 백업합니다.</string>
+    <string name="settings_item_logout">로그아웃</string>
+    <string name="settings_kofi_donation_button">Ko-fi로 후원하기</string>
+    <!-- Worlds -->
+    <string name="world_label_description">설명</string>
+    <string name="world_label_tags">태그</string>
+    <string name="world_text_no_tags">작성자가 태그를 지정하지 않았습니다.</string>
+    <string name="world_title_created_at">최초 업로드</string>
+    <string name="world_title_updated_at">마지막 업데이트</string>
+    <string name="world_title_visits">방문자 수</string>
+    <string name="world_title_favorites">즐겨찾기 수</string>
+    <string name="world_title_capacity">인원 제한</string>
+    <string name="world_title_occupants">유저 수</string>
+    <string name="world_title_time_spent">Time Spent</string>
+    <string name="world_description_no_data_time_spent">No data available.</string>
+    <string name="world_title_publication_date">공개일</string>
+    <string name="world_title_heat">히트</string>
+    <string name="world_title_popularity">인기</string>
+    <string name="world_toast_not_found">비공개이거나 존재하지 않는 월드입니다.</string>
+    <string-array name="world_selection_options">
+        <item>정보</item>
+        <item>인스턴스</item>
+    </string-array>
+    <string name="world_author_label">작성자: %1$s</string>
+    <string name="world_instance_invite_dialog_title">나에게 초대 보내기</string>
+    <string name="world_instance_invite_dialog_description">이 인스턴스에 본인을 초대합니다. 계속할까요?</string>
+    <string name="world_instance_no_public_instances_message">공개 인스턴스가 없습니다.</string>
+    <!-- Tabs -->
+    <string name="tabs_label_friends">친구</string>
+    <string name="tabs_label_home">홈</string>
+    <string name="tabs_label_favorites">즐겨찾기</string>
+    <string name="tabs_label_feed">피드</string>
+    <string name="tabs_label_profile">프로필</string>
+    <string name="tabs_label_settings">설정</string>
+    <!-- Notifications -->
+    <string name="service_notification">VRCAA가 백그라운드에서 친구 활동을 모니터링 중입니다.</string>
+    <string name="service_killed_by_vendor_notification">VRCAA가 시스템에 의해 강제 종료되었습니다! 자세한 내용은 https://dontkillmyapp.com/를 확인하세요.</string>
+    <string name="service_notification_rich_presence" tools:keep="@string/service_notification_rich_presence">VRCAA가 이제 활동 상태 정보를 보고하고 있습니다.</string>
+    <string name="notification_service_title_online">친구가 온라인 상태가 되었습니다.</string>
+    <string name="notification_service_description_online">친구 %1$s님이 온라인 상태가 되었습니다.</string>
+    <string name="notification_service_title_offline">친구가 오프라인 상태가 되었습니다.</string>
+    <string name="notification_service_description_offline">친구 %1$s님이 오프라인 상태가 되었습니다.</string>
+    <string name="notification_service_title_location">친구가 위치를 변경했습니다.</string>
+    <string name="notification_service_description_location">친구 %1$s님이 %2$s로 이동했습니다.</string>
+    <string name="notification_service_title_friend_removed">친구가 당신을 친구 목록에서 제거했습니다.</string>
+    <string name="notification_service_description_friend_removed">%1$s님과 더 이상 친구가 아닙니다.</string>
+    <string name="notification_service_title_friend_added">새로운 친구가 생겼습니다.</string>
+    <string name="notification_service_description_friend_added">%1$s님과 이제 친구입니다.</string>
+    <string name="notification_title_player">의 알림</string>
+    <string name="notification_label_enable">알림 활성화</string>
+    <string name="notification_label_intent_online">온라인 알림</string>
+    <string name="notification_label_intent_offline">오프라인 알림</string>
+    <string name="notification_label_intent_location">위치 알림</string>
+    <string name="notification_label_intent_status">상태 변경 알림</string>
+    <string name="notification_service_title_status">친구가 상태를 변경했습니다.</string>
+    <string name="notification_service_description_status">친구 %1$s님이 상태를 %2$s에서 %3$s(으)로 변경했습니다.</string>
+    <string name="notifications_page_title">Notifications</string>
+    <string name="notifications_type_invite">Invite</string>
+    <string name="notifications_type_invite_response">Invite Response</string>
+    <string name="notifications_type_invite_request">Invite Request</string>
+    <string name="notifications_type_invite_request_response">Invite Request Response</string>
+    <string name="notifications_type_friend_request">Friend Request</string>
+    <string name="notifications_type_friend_request_content">%1$s - wants to be your friend!</string>
+    <string name="notification_dialog_title">Notification</string>
+    <string name="notification_dialog_description">What do you want to do with this notification?</string>
+    <string name="notification_dialog_button_delete">Delete</string>
+    <string name="notification_dialog_button_read">Mark As Read</string>
+    <string name="notification_dialog_button_unsubscribe">Unsubscribe</string>
+    <string name="notification_dialog_button_accept">Accept</string>
+    <string name="notification_dialog_button_reject">Reject</string>
+    <string name="notification_dialog_button_block">Block</string>
+    <string name="notification_dialog_button_start">Start</string>
+    <string name="notification_dialog_button_continue">Continue</string>
+    <string name="notification_dialog_button_restart">Restart</string>
+    <string name="notification_dialog_button_abandon">Abandon</string>
+    <string name="notification_invite_text">has invited you to</string>
+    <string name="notification_invite_response_text">rejected your request to join</string>
+    <string name="notification_invite_request_text">wants to join you</string>
+    <string name="notification_invite_request_response_text">rejected your invite request</string>
+    <!-- Avatars -->
+    <string name="avatar_dropdown_label_select">아바타 변경</string>
+    <string name="avatar_dropdown_toast_select_avatar">아바타가 선택되었습니다.</string>
+    <string name="avatar_title_description">설명</string>
+    <string name="avatar_title_created_at">최초 업로드</string>
+    <string name="avatar_title_updated_at">마지막 업데이트</string>
+    <string name="avatar_title_content_labels">콘텐츠 라벨</string>
+    <string name="avatar_text_author">작성자: %1$s</string>
+    <string name="avatar_title_version">버전</string>
+    <string name="avatar_text_content_labels_not_found">아바타에 콘텐츠 경고 정보가 없습니다.</string>
+    <string name="avatar_toast_avatar_not_found_message">이 아바타는 비공개이거나 유효하지 않습니다.</string>
+    <!-- Feed -->
+    <string name="feed_online_label">온라인</string>
+    <string name="feed_online_text">님이 온라인 상태가 되었습니다.</string>
+    <string name="feed_offline_label">오프라인</string>
+    <string name="feed_offline_text">님이 오프라인 상태가 되었습니다.</string>
+    <string name="feed_location_label">위치</string>
+    <string name="feed_location_text">님이 위치를 변경했습니다:</string>
+    <string name="feed_status_label">상태</string>
+    <string name="feed_status_text">님이 상태를 변경했습니다:</string>
+    <string name="feed_added_label">친구 추가됨</string>
+    <string name="feed_added_text">님이 당신을 친구로 추가했습니다.</string>
+    <string name="feed_removed_label">친구 삭제됨</string>
+    <string name="feed_removed_text">님이 당신을 친구 목록에서 제거했습니다.</string>
+    <string name="feed_friend_request_label">친구 요청</string>
+    <string name="feed_friend_request_text">님이 친구가 되고 싶어합니다.</string>
+    <string name="feed_search_placeholder">유저 혹은 위치 검색...</string>
+    <string name="feed_friend_avatar_label">아바타 변경</string>
+    <string name="feed_friend_avatar_text">님이 아바타를 변경했습니다:</string>
+    <string name="feed_friend_username_changed_label">Username Change</string>
+    <string name="feed_friend_username_changed_text">changed their username to</string>
+    <!-- About -->
+    <string name="about_page_title">정보</string>
+    <string name="about_page_open_source_licenses_title">오픈 소스 라이선스</string>
+    <string name="about_page_translate_title">번역에 기여하기</string>
+    <string name="about_page_battery_optimizations_toast" tools:keep="@string/about_page_battery_optimizations_toast">배터리 최적화가 이미 비활성화되어 있습니다.</string>
+    <string name="license_title">오픈소스 라이선스</string>
+    <!-- API -->
+    <string name="api_session_has_expired_text">세션이 만료되었습니다. 다시 로그인해 주세요.</string>
+    <!-- Discord Rich Presence -->
+    <string name="discord_login_restarted_service_toast" tools:keep="@string/discord_login_restarted_service_toast">변경 사항 적용을 위해 서비스를 재시작했습니다.</string>
+    <string name="discord_login_label_enable" tools:keep="@string/discord_login_label_enable">활동 상태 표시 활성화</string>
+    <string name="discord_login_label_set_webhook" tools:keep="@string/discord_login_label_set_webhook">Webhook URL 설정</string>
+    <string name="discord_login_description_set_webhook" tools:keep="@string/discord_login_description_set_webhook">월드 썸네일 기능 사용 시 필요 (선택사항)</string>
+    <string name="discord_login_description_enable" tools:keep="@string/discord_login_description_enable">Discord에 현재 상태 표시</string>
+    <!-- Crash -->
+    <string name="crash_title_text">치명적인 오류가 발생했습니다.</string>
+    <string name="crash_button_restart_text">다시 시작</string>
+    <string name="crash_button_copy_log_text">정보 복사</string>
+    <string name="crash_button_report_text">문제 신고</string>
+    <!-- Groups -->
+    <string-array name="group_selection_options">
+        <item>정보</item>
+        <item>인스턴스</item>
+    </string-array>
+    <string name="group_toast_not_found_message">그룹을 찾을 수 없습니다. 입력한 정보를 확인해 주세요.</string>
+    <string name="group_page_label_description">설명</string>
+    <string name="group_page_label_rules">규칙</string>
+    <string name="group_page_dropdown_view_author">작성자 프로필 보기</string>
+    <string name="group_page_dropdown_request_invite">초대 요청</string>
+    <string name="group_page_dropdown_request_invite_cancel">초대 요청 취소</string>
+    <string name="group_page_dropdown_join_group">그룹 가입</string>
+    <string name="group_page_dropdown_leave_group">그룹 탈퇴</string>
+    <string name="group_page_toast_invite_requested">초대 요청을 보냈습니다.</string>
+    <string name="group_page_toast_invite_requested_fail">초대 요청에 실패했습니다.</string>
+    <string name="group_page_toast_invite_requested_cancel">초대 요청을 취소했습니다.</string>
+    <string name="group_page_toast_invite_requested_cancel_fail">초대 요청 취소에 실패했습니다.</string>
+    <string name="group_page_toast_join_group">그룹에 가입했습니다.</string>
+    <string name="group_page_toast_join_group_fail">그룹 가입에 실패했습니다.</string>
+    <string name="group_page_toast_leave_group">그룹을 탈퇴했습니다.</string>
+    <string name="group_page_toast_leave_group_fail">그룹 탈퇴에 실패했습니다.</string>
+    <string name="group_user_no_groups_message">이 유저는 어떤 그룹에도 소속되어 있지 않습니다.</string>
+    <string name="group_user_viewing_groups_username">%1$s님의 그룹</string>
+    <!-- Misc -->
+    <string name="misc_no_internet_title">인터넷 연결 없음</string>
+    <string name="misc_no_internet_description">인터넷 연결을 확인해 주세요. 이 애플리케이션은 오프라인 상태에서는 사용할 수 없습니다.</string>
+    <string name="misc_no_internet_label">애플리케이션 다시 시작</string>
+    <string name="misc_exit_toast_label">한 번 더 누르면 앱이 종료됩니다.</string>
+    <string name="misc_no_premium_subscription">이 기능을 사용하려면 VRC+ 구독이 활성화되어 있어야 합니다.</string>
+    <string name="global_app_default_loading_text">초기화 중…</string>
+    <string name="generic_text_public">Public</string>
+    <string name="generic_text_private">Private</string>
+    <string name="generic_text_upload">Upload</string>
+    <string name="generic_text_cancel">Cancel</string>
+    <string name="generic_text_ok">OK</string>
+    <!-- User -->
+    <string name="user_overlay_friend_add">Add Friend</string>
+    <string name="user_overlay_friend_remove">Remove Friend</string>
+    <string name="user_overlay_friend_accept">Accept Request</string>
+    <string name="user_overlay_friend_cancel">Cancel Request</string>
+    <string name="user_overlay_groups">그룹</string>
+    <string name="user_overlay_worlds">월드</string>
+    <string name="user_overlay_favorites">즐겨찾기</string>
+    <string name="user_overlay_find_avatar">아바타 찾기</string>
+    <string name="user_overlay_invite">Invite Me</string>
+    <string name="user_overlay_note">Add Note</string>
+    <!-- Profile Edit Dialog -->
+    <string name="profile_edit_dialog_title_status">상태</string>
+    <string name="profile_edit_dialog_title_age_verification_visibility">연령 인증 공개여부</string>
+    <string name="profile_edit_dialog_title_status_description">상태 설명</string>
+    <string name="profile_edit_dialog_title_bio">자기소개</string>
+    <string name="profile_edit_dialog_title_bio_links">소셜 링크</string>
+    <string name="profile_edit_dialog_toast_updated">프로필이 변경되었습니다.</string>
+    <string name="profile_edit_dialog_toast_cancelled" tools:keep="@string/profile_edit_dialog_toast_cancelled">변경을 취소했습니다.</string>
+    <string name="profile_edit_dialog_title_pronouns">대명사</string>
+    <string name="profile_edit_dialog_button_cancel">취소</string>
+    <string name="profile_edit_dialog_button_apply">적용</string>
+    <!-- Logout dialog -->
+    <string name="logout_dialog_title">로그아웃</string>
+    <string name="logout_dialog_description">아래 \'확인\'을 누르면 VRCAA에서 로그아웃되며, 앱을 계속 사용하려면 다시 로그인해야 합니다.</string>
+    <!-- Widgets -->
+    <string name="widget_name_friend_list" tools:keep="@string/widget_name_friend_list">친구의 현재 위치 보기</string>
+    <string name="widget_name_loading_text" tools:keep="@string/widget_name_loading_text">로딩 중...</string>
+    <string name="favorite_page_title">즐겨찾기</string>
+    <string-array name="favorites_selection_options">
+        <item>월드</item>
+        <item>아바타</item>
+        <item>친구</item>
+    </string-array>
+    <string-array name="user_favorites_selection_options">
+        <item>월드</item>
+        <item>아바타</item>
+    </string-array>
+    <string name="favorite_label_add">즐겨찾기 추가</string>
+    <string name="favorite_label_remove">즐겨찾기 해제</string>
+    <string name="favorite_toast_favorite_added">%1$s(을)를 즐겨찾기에 추가했습니다.</string>
+    <string name="favorite_toast_favorite_added_failed">%1$s(을)를 즐겨찾기에 추가하는 데에 실패했습니다.</string>
+    <string name="favorite_toast_favorite_removed">%1$s(을)를 즐겨찾기에서 해제했습니다.</string>
+    <string name="favorite_toast_favorite_removed_failed">%1$s(을)를 즐겨찾기에서 해제하는 데에 실패했습니다.</string>
+    <string name="favorite_dialog_button_add">추가</string>
+    <string name="favorite_dialog_button_cancel">취소</string>
+    <string name="favorite_dialog_title">"즐겨찾기 추가"</string>
+    <string name="favorite_edit_title">%1$s 수정</string>
+    <string name="favorite_edit_display_name">표시 이름</string>
+    <string name="favorite_edit_visibility">공개 설정</string>
+    <string name="favorite_edit_discarded">변경사항이 취소되었습니다.</string>
+    <string name="favorite_edit_applied">변경사항이 적용되었습니다.</string>
+    <string name="favorite_dialog_button_edit">수정</string>
+    <string name="favorite_tab_refresh_favorites">즐겨찾기 새로고침</string>
+    <string name="favorite_toast_refreshed_favorites">즐겨찾기를 새로고침했습니다.</string>
+    <string name="favorite_remove_dialog_title">Do you want remove this favorite?</string>
+    <string name="favorite_remove_dialog_description">This favorite is no longer available, it might have been deleted or made private by the author do you want to remove it from the list?</string>
+    <!-- Activities -->
+    <!-- Worlds -->
+    <string name="worlds_page_title">%1$s님의 월드</string>
+    <!-- Avatars -->
+    <string name="avatars_page_title">아바타 보기</string>
+    <!-- Debug -->
+    <string name="developer_mode_toggle_toast">변경 사항을 적용하려면 앱을 다시 시작해야 합니다.</string>
+    <string name="debug_notification_title_out_of_memory">알림</string>
+    <string name="debug_notification_content_out_of_memory">애플리케이션의 메모리가 부족하여 작업을 계속하기 위해 디버그 캐시를 삭제했습니다.</string>
+    <!-- Loading Texts -->
+    <string name="loading_text_worlds">월드 목록을 불러오는 중...</string>
+    <string name="loading_text_users">유저 목록을 불러오는 중...</string>
+    <string name="loading_text_avatars">아바타 목록을 불러오는 중...</string>
+    <string name="loading_text_groups">그룹 목록을 불러오는 중...</string>
+    <string name="loading_text_user">유저 정보를 불러오는 중...</string>
+    <string name="loading_text_world">월드 정보를 불러오는 중...</string>
+    <string name="loading_text_avatar">아바타 정보를 불러오는 중...</string>
+    <string name="loading_text_group">그룹 정보를 불러오는 중...</string>
+    <string name="loading_text_instances">인스턴스 정보를 불러오는 중...</string>
+    <string name="loading_text_gallery">갤러리를 불러오는 중...</string>
+    <string name="loading_text_icons">아이콘을 불러오는 중...</string>
+    <string name="loading_text_prints">프린트를 불러오는 중...</string>
+    <string name="loading_text_stickers">스티커를 불러오는 중...</string>
+    <string name="loading_text_emojis">이모지를 불러오는 중...</string>
+    <string name="loading_text_items">아이템을 불러오는 중...</string>
+    <string name="loading_text_favorites">즐겨찾기를 불러오는 중...</string>
+    <string name="loading_text_notifications">Loading notifications…</string>
+    <!-- Theming -->
+    <string name="theme_page_title">테마</string>
+    <string name="theme_page_minimalist_mode_text">간소화 모드</string>
+    <string name="theme_page_minimalist_mode_text_description">"간소화 모드는 작은 화면에서도 콘텐츠가 잘 보이도록 도와줍니다."</string>
+    <string-array name="theme_page_selection_options">
+        <item>밝게</item>
+        <item>어둡게</item>
+        <item>기기</item>
+    </string-array>
+    <string-array name="column_count_options">
+        <item>자동</item>
+        <item>고정</item>
+    </string-array>
+    <string name="theme_page_section_theme_title">테마</string>
+    <string name="theme_page_section_display_title">화면</string>
+    <string name="theme_page_section_column_title">열 수</string>
+    <!-- Advanced Settings -->
+    <string name="advanced_page_title">고급 설정</string>
+    <string name="advanced_page_section_networking">네트워킹</string>
+    <string name="advanced_page_network_logging">네트워크 로깅</string>
+    <string name="advanced_page_network_logging_description">HTTP 및 WebSocket 트래픽 포착</string>
+    <string name="advanced_page_view_network_logs">네트워크 로그 보기</string>
+    <string name="advanced_page_section_background_activities">백그라운드 활동</string>
+    <string name="advanced_page_battery_optimization" tools:keep="@string/advanced_page_battery_optimization">배터리 최적화 비활성화</string>
+    <string name="advanced_page_battery_optimization_description" tools:keep="@string/advanced_page_battery_optimization_description">실시간 네트워크 이벤트가 수신되지 않는 문제를 해결하는 데 도움이 될 수 있습니다.</string>
+    <string name="advanced_page_kill_service">백그라운드 서비스 종료</string>
+    <string name="advanced_page_kill_service_description">실시간 이벤트를 처리하는 백그라운드 서비스를 종료합니다.</string>
+    <string name="advanced_page_section_database">데이터베이스</string>
+    <string name="advanced_page_database_delete">데이터베이스 삭제</string>
+    <string name="advanced_page_database_delete_description">데이터 저장을 담당하는 내부 데이터베이스를 삭제합니다.</string>
+    <string name="advanced_page_section_testing">Testing</string>
+    <string name="advanced_page_reset_onboarding">Reset Onboarding State</string>
+    <string name="advanced_page_reset_onboarding_description">Shows onboarding again when the app starts</string>
+    <string name="advanced_page_reset_onboarding_toast">Onboarding state reset.</string>
+    <!-- Database -->
+    <string name="database_page_title">데이터베이스 및 통계</string>
+    <string name="database_page_section_statistics">통계</string>
+    <string name="database_page_statistics_size">데이터베이스 크기</string>
+    <string name="database_page_statistics_row_count">행 개수</string>
+    <string name="database_page_section_recovery">복원 및 백업</string>
+    <string name="database_page_recovery_backup">데이터베이스 백업</string>
+    <string name="database_page_recovery_backup_description">현재 데이터를 백업합니다.</string>
+    <string name="database_page_recovery_restore">데이터베이스 복원</string>
+    <string name="database_page_recovery_restore_description">이전 백업을 복원합니다.</string>
+    <string name="database_page_section_glide">Glide 캐시</string>
+    <string name="database_page_glide_cache_size">캐시 크기</string>
+    <string name="database_page_glide_clean_cache">캐시 삭제</string>
+    <string name="database_page_glide_clean_cache_description">캐시를 삭제하면 로딩 시간이 늘어나고 앱 반응 속도가 느려질 수 있습니다</string>
+    <string name="database_page_glide_clean_cache_toast">캐시가 삭제되었습니다!</string>
+    <string name="database_page_toast_recovery_failed">백업으로부터 데이터베이스를 복원하는 데 실패했습니다! 선택한 백업 파일이 올바른지 확인해 주세요.</string>
+    <!-- Inventory -->
+    <string-array name="inventory_selection_options">
+        <item>갤러리</item>
+        <item>유저 아이콘</item>
+        <item>월드</item>
+        <item>아바타</item>
+        <item>그룹</item>
+        <item>이모티콘</item>
+        <item>스티커</item>
+        <item>프린트</item>
+        <item>아이템</item>
+    </string-array>
+    <string name="gallery_page_title">갤러리</string>
+    <string name="gallery_page_button_upload">이미지 업로드</string>
+    <string name="icon_gallery_page_title">유저 아이콘</string>
+    <string name="icon_gallery_page_button_upload">아이콘 업로드</string>
+    <string name="prints_page_title">프린트</string>
+    <string name="prints_page_button_upload">프린트 업로드</string>
+    <string name="emojis_page_title">이모지</string>
+    <string name="emojis_page_button_upload">이모드 업로드</string>
+    <string-array name="emojis_page_sections">
+        <item>공식</item>
+        <item>커스텀</item>
+        <item>보관됨</item>
+    </string-array>
+    <string name="stickers_page_title">스티커</string>
+    <string name="stickers_page_button_upload">스티커 업로드</string>
+    <string-array name="sticker_page_sections">
+        <item>공식</item>
+        <item>커스텀</item>
+        <item>보관됨</item>
+    </string-array>
+    <string name="items_page_title">아이템</string>
+    <string-array name="items_page_sections">
+        <item>모든 아이템</item>
+        <item>보관됨</item>
+    </string-array>
+    <string name="image_preview_dialog_title">미리보기</string>
+    <string name="image_preview_toast_picture_saved">Saved picture.</string>
+    <string name="image_preview_toast_picture_save_failed">Unable to save picture.</string>
+    <string name="activity_peek_no_url_handler">No app available to open the URL.</string>
+</resources>

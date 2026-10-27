@@ -1,0 +1,319 @@
+/*
+ * Copyright (C) 2025. Nyabsi <nyabsi@sovellus.cc>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package cc.sovellus.vrcaa.ui.screen.favorites
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Cabin
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Group
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MultiChoiceSegmentedButtonRow
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringArrayResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import cafe.adriel.voyager.core.model.rememberNavigatorScreenModel
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.core.screen.uniqueScreenKey
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import cc.sovellus.vrcaa.R
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IFavorites.FavoriteType
+import cc.sovellus.vrcaa.manager.FavoriteManager
+import cc.sovellus.vrcaa.manager.FriendManager
+import cc.sovellus.vrcaa.ui.components.dialog.FavoriteEditDialog
+import cc.sovellus.vrcaa.ui.components.dialog.GenericDialog
+import cc.sovellus.vrcaa.ui.components.layout.FavoriteHorizontalRow
+import cc.sovellus.vrcaa.ui.components.layout.RowItem
+import cc.sovellus.vrcaa.ui.screen.avatar.AvatarScreen
+import cc.sovellus.vrcaa.ui.screen.favorites.FavoritesScreenModel.FavoriteState
+import cc.sovellus.vrcaa.ui.screen.misc.LoadingIndicatorScreen
+import cc.sovellus.vrcaa.ui.screen.profile.UserProfileScreen
+import cc.sovellus.vrcaa.ui.screen.world.WorldScreen
+
+class FavoritesScreen : Screen {
+
+    override val key = uniqueScreenKey
+
+    @Composable
+    override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
+        val model = navigator.rememberNavigatorScreenModel { FavoritesScreenModel() }
+
+        val state by model.state.collectAsState()
+
+        when (state) {
+            is FavoriteState.Loading -> LoadingIndicatorScreen().Content()
+            is FavoriteState.Result -> ShowScreen(model)
+            else -> {}
+        }
+    }
+
+    @Composable
+    fun ShowScreen(model: FavoritesScreenModel) {
+
+        val groupMetadata = model.groupMetadata.collectAsState()
+
+        if (model.editDialogShown.value) {
+            FavoriteEditDialog(
+                tag = model.currentSelectedGroup.value,
+                isFriend = model.currentSelectedIsFriend.value,
+                groupMetadata = groupMetadata.value,
+                onDismiss = {
+                    model.editDialogShown.value = false
+                    model.currentSelectedIsFriend.value = false
+                },
+                onConfirmation = {
+                    model.editDialogShown.value = false
+                    model.currentSelectedIsFriend.value = false
+                },
+                onUpdateGroupMetadata = { tag, metadata, isFriend ->
+                    if (isFriend) {
+                        FavoriteManager.updateGroupMetadataOnlyName(tag, metadata)
+                    } else {
+                        FavoriteManager.updateGroupMetadata(tag, metadata)
+                    }
+                }
+            )
+        }
+
+        if (model.deleteDialogShown.value) {
+            GenericDialog(
+                title = stringResource(R.string.favorite_remove_dialog_title),
+                description = stringResource(R.string.favorite_remove_dialog_description),
+                onDismiss = {
+                    model.deleteDialogShown.value = false
+                },
+                onConfirmation = {
+                    model.removeFavorite()
+                    model.deleteDialogShown.value = false
+                }
+            )
+        }
+
+        val options = stringArrayResource(R.array.favorites_selection_options)
+        val icons = listOf(Icons.Filled.Cabin, Icons.Filled.Person, Icons.Filled.Group)
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            MultiChoiceSegmentedButtonRow(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, end = 16.dp)
+            ) {
+                options.forEachIndexed { index, label ->
+                    SegmentedButton(
+                        shape = SegmentedButtonDefaults.itemShape(
+                            index = index,
+                            count = options.size
+                        ),
+                        icon = {
+                            SegmentedButtonDefaults.Icon(
+                                active = index == model.currentIndex.intValue,
+                                activeContent = {
+                                    Icon(
+                                        imageVector = Icons.Filled.Check,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(SegmentedButtonDefaults.IconSize).offset(y = 2.5.dp)
+                                    )
+                                },
+                                inactiveContent = {
+                                    Icon(
+                                        imageVector = icons[index],
+                                        contentDescription = null,
+                                        modifier = Modifier.size(SegmentedButtonDefaults.IconSize).offset(y = 2.5.dp)
+                                    )
+                                }
+                            )
+                        },
+                        onCheckedChange = {
+                            model.currentIndex.intValue = index
+                        },
+                        checked = index == model.currentIndex.intValue
+                    ) {
+                        Text(text = label, softWrap = true, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.padding(4.dp))
+
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .padding(start = 16.dp, end = 16.dp)
+            ) {
+                item {
+                    when (model.currentIndex.intValue) {
+                        0 -> ShowWorlds(model, groupMetadata.value)
+                        1 -> ShowAvatars(model, groupMetadata.value)
+                        2 -> ShowFriends(model, groupMetadata.value)
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun ShowWorlds(
+        model: FavoritesScreenModel,
+        groupMetadata: Map<String, FavoriteManager.FavoriteGroupMetadata>
+    ) {
+        val navigator = LocalNavigator.currentOrThrow
+        val worldList = model.worldList.collectAsStateWithLifecycle()
+
+        worldList.value.forEach { item ->
+            if (item.value.isNotEmpty()) {
+                val metadata = groupMetadata[item.key]
+                val title = "${metadata?.displayName ?: metadata?.name ?: item.key} (${metadata?.size ?: 0}/${FavoriteManager.getMaximumFavoritesForType(FavoriteType.FAVORITE_WORLD)})"
+
+                FavoriteHorizontalRow(
+                    title = title,
+                    allowEdit = true,
+                    onEdit = {
+                        model.currentSelectedGroup.value = item.key
+                        model.editDialogShown.value = true
+                    }
+                ) {
+                    items(item.value.distinct()) {
+                        RowItem(name = it.name, url = it.thumbnailUrl) {
+                            if (it.name != "???") {
+                                navigator.parent?.parent?.push(WorldScreen(it.id) {
+                                    model.deleteDialogShown.value = true
+                                    model.currentSelectedType.value = FavoriteType.FAVORITE_WORLD
+                                    model.currentSelectedId.value = it.id
+                                })
+                            } else {
+                                model.deleteDialogShown.value = true
+                                model.currentSelectedType.value = FavoriteType.FAVORITE_WORLD
+                                model.currentSelectedId.value = it.id
+                            }
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.padding(4.dp))
+            }
+        }
+    }
+
+    @Composable
+    fun ShowAvatars(
+        model: FavoritesScreenModel,
+        groupMetadata: Map<String, FavoriteManager.FavoriteGroupMetadata>
+    ) {
+        val navigator = LocalNavigator.currentOrThrow
+        val avatarList = model.avatarList.collectAsStateWithLifecycle()
+
+        avatarList.value.forEach { item ->
+            if (item.value.isNotEmpty()) {
+                val metadata = groupMetadata[item.key]
+                val title = "${metadata?.displayName ?: metadata?.name ?: item.key} (${metadata?.size ?: 0}/${FavoriteManager.getMaximumFavoritesForType(FavoriteType.FAVORITE_AVATAR)})"
+
+                FavoriteHorizontalRow(
+                    title = title,
+                    allowEdit = true,
+                    onEdit = {
+                        model.currentSelectedGroup.value = item.key
+                        model.editDialogShown.value = true
+                    }
+                ) {
+                    items(item.value.distinct()) {
+                        RowItem(name = it.name, url = it.thumbnailUrl) {
+                            if (it.name != "???") {
+                                navigator.parent?.parent?.push(AvatarScreen(it.id) {
+                                    model.deleteDialogShown.value = true
+                                    model.currentSelectedType.value = FavoriteType.FAVORITE_AVATAR
+                                    model.currentSelectedId.value = it.id
+                                })
+                            } else {
+                                model.deleteDialogShown.value = true
+                                model.currentSelectedType.value = FavoriteType.FAVORITE_AVATAR
+                                model.currentSelectedId.value = it.id
+                            }
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.padding(4.dp))
+            }
+        }
+    }
+
+    @Composable
+    fun ShowFriends(
+        model: FavoritesScreenModel,
+        groupMetadata: Map<String, FavoriteManager.FavoriteGroupMetadata>
+    ) {
+        val navigator = LocalNavigator.currentOrThrow
+        val friendList = model.friendList.collectAsStateWithLifecycle()
+
+        friendList.value.forEach { item ->
+            if (item.value.isNotEmpty()) {
+                val metadata = groupMetadata[item.key]
+                val title = "${metadata?.displayName ?: metadata?.name ?: item.key} (${metadata?.size ?: 0}/${FavoriteManager.getMaximumFavoritesForType(FavoriteType.FAVORITE_FRIEND)})"
+
+                FavoriteHorizontalRow(
+                    title = title,
+                    allowEdit = true,
+                    onEdit = {
+                        model.currentSelectedIsFriend.value = true
+                        model.currentSelectedGroup.value = item.key
+                        model.editDialogShown.value = true
+                    }
+                ) {
+                    items(item.value.distinct()) {
+                        val user = FriendManager.getFriend(it.id)
+                        user?.let {
+                            RowItem(name = user.displayName, url = it.iconUrl) {
+                                navigator.parent?.parent?.push(UserProfileScreen(it.id))
+                            }
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.padding(4.dp))
+            }
+        }
+    }
+}

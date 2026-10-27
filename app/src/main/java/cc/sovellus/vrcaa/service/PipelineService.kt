@@ -1,0 +1,529 @@
+/*
+ * Copyright (C) 2025. Nyabsi <nyabsi@sovellus.cc>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package cc.sovellus.vrcaa.service
+
+import android.app.Service
+import android.content.Intent
+import android.content.SharedPreferences
+import android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE
+import android.os.Build
+import android.os.Handler
+import android.os.HandlerThread
+import android.os.IBinder
+import android.os.Looper
+import android.os.Message
+import android.os.Process.THREAD_PRIORITY_FOREGROUND
+import androidx.core.app.NotificationCompat
+import cc.sovellus.vrcaa.App
+import cc.sovellus.vrcaa.R
+import cc.sovellus.vrcaa.api.vrchat.pipeline.PipelineSocket
+import cc.sovellus.vrcaa.api.vrchat.pipeline.models.FriendActive
+import cc.sovellus.vrcaa.api.vrchat.pipeline.models.FriendAdd
+import cc.sovellus.vrcaa.api.vrchat.pipeline.models.FriendDelete
+import cc.sovellus.vrcaa.api.vrchat.pipeline.models.FriendLocation
+import cc.sovellus.vrcaa.api.vrchat.pipeline.models.FriendOffline
+import cc.sovellus.vrcaa.api.vrchat.pipeline.models.FriendOnline
+import cc.sovellus.vrcaa.api.vrchat.pipeline.models.FriendUpdate
+import cc.sovellus.vrcaa.api.vrchat.pipeline.models.HideNotification
+import cc.sovellus.vrcaa.api.vrchat.pipeline.models.Notification
+import cc.sovellus.vrcaa.api.vrchat.pipeline.models.NotificationV2
+import cc.sovellus.vrcaa.api.vrchat.pipeline.models.NotificationV2Delete
+import cc.sovellus.vrcaa.api.vrchat.pipeline.models.SeeNotification
+import cc.sovellus.vrcaa.api.vrchat.pipeline.models.UserLocation
+import cc.sovellus.vrcaa.api.vrchat.pipeline.models.UserUpdate
+import cc.sovellus.vrcaa.helper.ApiHelper
+import cc.sovellus.vrcaa.helper.JsonHelper
+import cc.sovellus.vrcaa.helper.LocationHelper
+import cc.sovellus.vrcaa.helper.NotificationHelper
+import cc.sovellus.vrcaa.helper.StatusHelper
+import cc.sovellus.vrcaa.manager.ApiManager.api
+import cc.sovellus.vrcaa.manager.CacheManager
+import cc.sovellus.vrcaa.manager.FeedManager
+import cc.sovellus.vrcaa.manager.FriendManager
+import cc.sovellus.vrcaa.manager.NotificationManager
+import cc.sovellus.vrcaa.manager.PresenceManager
+import cc.sovellus.vrcaa.manager.RecommendationManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
+
+
+class PipelineService : Service(), CoroutineScope {
+
+    private val serviceJob = SupervisorJob()
+    override val coroutineContext = Dispatchers.IO + serviceJob
+
+    private var pipeline: PipelineSocket? = null
+    private var handlerThread: HandlerThread? = null
+    private var serviceLooper: Looper? = null
+    private var serviceHandler: ServiceHandler? = null
+    private var foregroundStarted = false
+
+    private val listener = object : PipelineSocket.SocketListener {
+        override fun onMessage(message: Any?) {
+            if (message != null) {
+                serviceHandler?.obtainMessage()?.also { msg ->
+                    msg.obj = message
+                    serviceHandler?.sendMessage(msg)
+                }
+            }
+        }
+    }
+
+    private inner class ServiceHandler(looper: Looper) : Handler(looper) {
+
+        override fun handleMessage(msg: Message) {
+            when (msg.obj) {
+                is FriendOnline -> {
+                    val update = msg.obj as FriendOnline
+                    val friend = FriendManager.getFriend(update.userId)
+
+                    if (friend != null && (friend.platform.isEmpty() || friend.platform == "web") && friend.location == "offline") {
+                        val feed = FeedManager.Feed(FeedManager.FeedType.FRIEND_FEED_ONLINE).apply {
+                            friendId = update.userId
+                            friendName = update.user.displayName
+                            friendPictureUrl = update.user.iconUrl
+                        }
+
+                        if (NotificationHelper.isOnWhitelist(update.userId) &&
+                            NotificationHelper.isIntentEnabled(
+                                update.userId,
+                                NotificationHelper.Intents.FRIEND_FLAG_ONLINE
+                            )
+                        ) {
+                            NotificationHelper.pushNotification(
+                                title = application.getString(R.string.notification_service_title_online),
+                                content = application.getString(R.string.notification_service_description_online)
+                                    .format(update.user.displayName),
+                                channel = NotificationHelper.CHANNEL_ONLINE_ID
+                            )
+                        }
+
+                        FeedManager.addFeed(feed)
+                        FriendManager.updateFriend(update.user)
+                        FriendManager.updatePlatform(update.userId, update.platform)
+                        FriendManager.updateLocation(update.userId, update.location)
+                    }
+                }
+
+                is FriendOffline -> {
+
+                    val update = msg.obj as FriendOffline
+                    val friend = FriendManager.getFriend(update.userId)
+
+                    if (friend != null && friend.platform.isNotEmpty() && friend.location != "offline") {
+                        val feed = FeedManager.Feed(FeedManager.FeedType.FRIEND_FEED_OFFLINE).apply {
+                            friendId = friend.id
+                            friendName = friend.displayName
+                            friendPictureUrl = friend.iconUrl
+                        }
+
+                        if (NotificationHelper.isOnWhitelist(friend.id) &&
+                            NotificationHelper.isIntentEnabled(
+                                friend.id,
+                                NotificationHelper.Intents.FRIEND_FLAG_OFFLINE
+                            )
+                        ) {
+                            NotificationHelper.pushNotification(
+                                title = application.getString(R.string.notification_service_title_offline),
+                                content = application.getString(R.string.notification_service_description_offline)
+                                    .format(friend.displayName),
+                                channel = NotificationHelper.CHANNEL_OFFLINE_ID
+                            )
+                        }
+
+                        FeedManager.addFeed(feed)
+
+                        FriendManager.updateLocation(update.userId, "offline")
+                        FriendManager.updatePlatform(update.userId, update.platform)
+                    }
+                }
+
+                is FriendLocation -> {
+                    val update = msg.obj as FriendLocation
+                    val friend = FriendManager.getFriend(update.userId)
+
+                    update.world?.let {
+                        CacheManager.updateWorld(update.world)
+                    }
+
+                    // if "friend.travelingToLocation" is not empty, it means friend is currently travelling.
+                    // We want to show it only once, so only show when the travelling is done.
+                    if (update.travelingToLocation.isEmpty() && update.world != null && friend?.location != update.location)
+                    {
+                        if (NotificationHelper.isOnWhitelist(update.userId) &&
+                            NotificationHelper.isIntentEnabled(
+                                update.userId,
+                                NotificationHelper.Intents.FRIEND_FLAG_LOCATION
+                            )
+                        ) {
+                            NotificationHelper.pushNotification(
+                                title = application.getString(R.string.notification_service_title_location),
+                                content = application.getString(R.string.notification_service_description_location)
+                                    .format(update.user.displayName, update.world.name),
+                                channel = NotificationHelper.CHANNEL_LOCATION_ID
+                            )
+                        }
+
+                        val feed = FeedManager.Feed(FeedManager.FeedType.FRIEND_FEED_LOCATION).apply {
+                            friendId = update.userId
+                            friendName = update.user.displayName
+                            travelDestination = LocationHelper.getReadableLocation(update.location)
+                            worldId = update.worldId
+                            friendPictureUrl = update.user.iconUrl
+                        }
+
+                        FeedManager.addFeed(feed)
+                    }
+
+                    FriendManager.updateFriend(update.user)
+                    FriendManager.updateLocation(update.userId, update.location)
+                }
+
+                is FriendUpdate -> {
+                    val update = msg.obj as FriendUpdate
+                    val friend = FriendManager.getFriend(update.userId)
+
+                    if (friend != null) {
+                        if (
+                            StatusHelper.getStatusFromString(update.user.status) !=
+                            StatusHelper.getStatusFromString(friend.status)
+                        ) {
+                            val feed = FeedManager.Feed(FeedManager.FeedType.FRIEND_FEED_STATUS).apply {
+                                friendId = update.userId
+                                friendName = update.user.displayName
+                                friendPictureUrl = update.user.iconUrl
+                                friendStatus = StatusHelper.getStatusFromString(update.user.status)
+                            }
+
+                            if (NotificationHelper.isOnWhitelist(update.userId) &&
+                                NotificationHelper.isIntentEnabled(
+                                    update.userId,
+                                    NotificationHelper.Intents.FRIEND_FLAG_STATUS
+                                )
+                            ) {
+                                NotificationHelper.pushNotification(
+                                    title = application.getString(R.string.notification_service_title_status),
+                                    content = application.getString(R.string.notification_service_description_status)
+                                        .format(
+                                            update.user.displayName,
+                                            StatusHelper.getStatusFromString(friend.status)
+                                                .toString(),
+                                            StatusHelper.getStatusFromString(update.user.status)
+                                                .toString()
+                                        ),
+                                    channel = NotificationHelper.CHANNEL_LOCATION_ID
+                                )
+                            }
+
+                            FeedManager.addFeed(feed)
+                        }
+
+                        if (friend.displayName != update.user.displayName) {
+                            val feed = FeedManager.Feed(FeedManager.FeedType.FRIEND_FEED_USERNAME_CHANGE).apply {
+                                friendId = update.userId
+                                friendName = friend.displayName // store the old name
+                                friendPictureUrl = update.user.iconUrl
+                            }
+                            FeedManager.addFeed(feed)
+                        }
+
+                        // Oh... You don't have VRChat+ I'm sorry to hear that...
+                        if (friend.iconUrl != update.user.iconUrl) {
+                            launch {
+                                val fileId = ApiHelper.extractFileIdFromUrl(update.user.iconUrl)
+                                fileId?.let {
+                                    api.files.fetchMetadataByFileId(fileId)?.let { metadata ->
+
+                                        val name = metadata.name.split(" - ")
+
+                                        if (name.size > 1) {
+                                            val feed = FeedManager.Feed(FeedManager.FeedType.FRIEND_FEED_AVATAR).apply {
+                                                friendId = update.userId
+                                                friendName = update.user.displayName
+                                                friendPictureUrl = update.user.iconUrl
+                                                avatarName = name[1]
+                                            }
+
+                                            FeedManager.addFeed(feed)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    FriendManager.updateFriend(update.user)
+                }
+
+                is UserLocation -> {
+                    val user = msg.obj as UserLocation
+
+                    if (user.location.contains("wrld_")) {
+                        launch {
+                            val instance = api.instances.fetchInstance(user.location)
+                            instance?.let {
+                                CacheManager.updateWorld(instance.world)
+
+                                RecommendationManager.updateLocation(instance)
+
+                                val location = LocationHelper.parseLocationInfo(user.location)
+                                val info = PresenceManager.PresenceInfo().apply {
+                                    worldName = instance.world.name
+                                    worldThumbnailUrl = instance.world.thumbnailImageUrl
+                                    worldId = instance.world.id
+                                    instanceInfo = "${location.instanceType} #${instance.name}"
+                                    instanceNonce = user.location
+                                    instanceType = location.instanceType
+                                    userStatus = StatusHelper.getStatusFromString(user.user.status)
+                                }
+
+                                PresenceManager.updateWorld(info)
+                                CacheManager.addRecentWorld(instance.world)
+                            } ?: run {
+                                RecommendationManager.updateLocation(null)
+                            }
+                        }
+                    } else {
+                        launch {
+                            RecommendationManager.updateLocation(null)
+                        }
+                    }
+                }
+
+                is UserUpdate -> {
+                    val user = msg.obj as UserUpdate
+
+                    launch {
+                        PresenceManager.updateStatus(user.user.status)
+                    }
+                    CacheManager.updateUser(user.user)
+                }
+
+                is FriendDelete -> {
+                    val update = msg.obj as FriendDelete
+                    val friend = FriendManager.getFriend(update.userId)
+
+                    if (friend != null) {
+                        val feed = FeedManager.Feed(FeedManager.FeedType.FRIEND_FEED_REMOVED).apply {
+                            friendId = update.userId
+                            friendName = friend.displayName
+                            friendPictureUrl = friend.iconUrl
+                        }
+
+                        NotificationHelper.pushNotification(
+                            title = application.getString(R.string.notification_service_title_friend_removed),
+                            content = application.getString(R.string.notification_service_description_friend_removed)
+                                .format(friend.displayName),
+                            channel = NotificationHelper.CHANNEL_STATUS_ID
+                        )
+
+                        FeedManager.addFeed(feed)
+                        FriendManager.removeFriend(update.userId)
+                    }
+                }
+
+                is FriendAdd -> {
+                    val update = msg.obj as FriendAdd
+                    val friend = FriendManager.getFriend(update.userId)
+
+                    if (friend == null) {
+                        val feed = FeedManager.Feed(FeedManager.FeedType.FRIEND_FEED_ADDED).apply {
+                            friendId = update.userId
+                            friendName = update.user.displayName
+                            friendPictureUrl = update.user.iconUrl
+                        }
+
+                        NotificationHelper.pushNotification(
+                            title = application.getString(R.string.notification_service_title_friend_added),
+                            content = application.getString(R.string.notification_service_description_friend_added)
+                                .format(update.user.displayName),
+                            channel = NotificationHelper.CHANNEL_STATUS_ID
+                        )
+
+                        FeedManager.addFeed(feed)
+                        FriendManager.addFriend(update.user)
+                    }
+                }
+
+                is FriendActive -> {
+                    val update = msg.obj as FriendActive
+                    // val friend = FriendManager.getFriend(update.userId)
+                    // PS. Active != Offline, it implies the user become active on a secondary platform
+                    // However this does not guarantee the player actually went active on the client.
+
+                    /*
+                    val feed = FeedManager.Feed(FeedManager.FeedType.FRIEND_FEED_ONLINE).apply {
+                        friendId = update.userId
+                        friendName = update.user.displayName
+                        friendPictureUrl = update.user.userIcon.ifEmpty { update.user.profilePicOverride.ifEmpty { update.user.currentAvatarImageUrl } }
+                    }
+
+                    if (NotificationHelper.isOnWhitelist(update.userId) &&
+                        NotificationHelper.isIntentEnabled(
+                            update.userId,
+                            NotificationHelper.Intents.FRIEND_FLAG_ONLINE
+                        )
+                    ) {
+                        NotificationHelper.pushNotification(
+                            title = application.getString(R.string.notification_service_title_online),
+                            content = application.getString(R.string.notification_service_description_online)
+                                .format(update.user.displayName),
+                            channel = NotificationHelper.CHANNEL_ONLINE_ID
+                        )
+                    }
+
+                    FeedManager.addFeed(feed)
+                    */
+
+                    FriendManager.updateFriend(update.user)
+                    FriendManager.updatePlatform(update.userId, update.platform)
+                }
+
+                is Notification -> {
+                    val notification = msg.obj as Notification
+
+                    val convertedNotification = JsonHelper.convert(notification, cc.sovellus.vrcaa.api.vrchat.http.models.Notification::class.java)
+                    NotificationManager.addNotification(convertedNotification)
+
+                    launch {
+                        val sender = api.users.fetchUserByUserId(notification.senderUserId)
+
+                        when (notification.type) {
+                            "friendRequest" -> {
+                                val feed = FeedManager.Feed(FeedManager.FeedType.FRIEND_FEED_FRIEND_REQUEST).apply {
+                                    friendId = notification.senderUserId
+                                    friendName = notification.senderUsername
+                                    friendPictureUrl = sender?.iconUrl.toString()
+                                }
+
+                                FeedManager.addFeed(feed)
+                            }
+
+                            else -> {}
+                        }
+                    }
+                }
+
+                is SeeNotification -> {
+                    val notification = msg.obj as SeeNotification
+                    NotificationManager.removeNotification(notification.notificationId)
+                }
+
+                is HideNotification -> {
+                    val notification = msg.obj as HideNotification
+                    NotificationManager.removeNotification(notification.notificationId)
+                }
+
+                is NotificationV2 -> {
+                    val notification = msg.obj as NotificationV2
+                    val convertedNotification = JsonHelper.convert(notification, cc.sovellus.vrcaa.api.vrchat.http.models.NotificationV2::class.java)
+                    NotificationManager.addNotificationV2(convertedNotification)
+                }
+
+                is NotificationV2Delete -> {
+                    val notification = msg.obj as NotificationV2Delete
+                    notification.ids.forEach { id ->
+                        NotificationManager.removeNotificationV2(id)
+                    }
+                }
+
+                else -> {}
+            }
+        }
+    }
+
+    override fun onCreate() {
+        handlerThread = HandlerThread("VRCAA_BackgroundWorker", THREAD_PRIORITY_FOREGROUND).apply {
+            start()
+
+            serviceLooper = looper
+            serviceHandler = ServiceHandler(looper)
+        }
+    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+
+        try {
+            startService()
+        } catch (_:  Throwable) {
+            NotificationHelper.pushNotification(
+                application.getString(R.string.app_name),
+                application.getString(R.string.service_killed_by_vendor_notification),
+                NotificationHelper.CHANNEL_DEFAULT_ID,
+                true
+            )
+        }
+
+        launch {
+            api.auth.fetchToken()?.let { token ->
+                pipeline = PipelineSocket(token)
+                pipeline?.let { pipeline ->
+                    pipeline.setListener(listener)
+                    pipeline.connect()
+                }
+            }
+            CacheManager.buildCache()
+        }
+
+        return START_STICKY
+    }
+
+    fun startService() {
+        if (foregroundStarted) return
+        foregroundStarted = true
+
+        val builder = NotificationCompat.Builder(this, NotificationHelper.CHANNEL_DEFAULT_ID)
+            .setSmallIcon(R.drawable.ic_notification_icon)
+            .setContentTitle(application.getString(R.string.app_name))
+            .setContentText(application.getString(R.string.service_notification))
+            .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            startForeground(
+                NOTIFICATION_ID,
+                builder.build(),
+                FOREGROUND_SERVICE_TYPE_SPECIAL_USE
+            )
+        } else {
+            // Older versions do not require to specify the `foregroundServiceType`
+            startForeground(NOTIFICATION_ID, builder.build())
+        }
+    }
+
+    override fun onDestroy() {
+        serviceHandler?.removeCallbacksAndMessages(null)
+        serviceHandler = null
+        serviceLooper = null
+        handlerThread?.quitSafely()
+        handlerThread = null
+
+        serviceJob.cancel()
+        super.onDestroy()
+        pipeline?.disconnect()
+        pipeline = null
+    }
+
+    override fun onBind(intent: Intent?): IBinder? {
+        return null
+    }
+
+    companion object {
+        private const val NOTIFICATION_ID: Int = 42069
+    }
+}

@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- Universal Strings -->
+    <string name="result_not_found">这里空空如也～</string>
+    <string name="legal_disclaimer">"VRCAA is not endorsed by VRChat Inc. or any of their affiliates.
+（VRCAA 并非是 VRChat Inc. 官方应用，也并未受其或任何相关附属公司认可）"</string>
+    <!-- Friends -->
+    <string-array name="friend_selection_options">
+        <item>收藏</item>
+        <item>在线</item>
+        <item>网页</item>
+        <item>离线</item>
+    </string-array>
+    <string name="friend_toast_friend_request_cancelled">已拒绝 %1$s 的好友申请。</string>
+    <string name="friend_toast_friend_request_cancel_failed">对 %1$s 的好友申请拒绝失败。</string>
+    <string name="friend_toast_friend_removed">现在 %1$s 已不再是您的好友了。</string>
+    <string name="friend_toast_friend_remove_failed">好友 %1$s 删除失败。</string>
+    <string name="friend_toast_friend_requested">已向 %1$s 发送好友申请。</string>
+    <string name="friend_toast_friend_request_failed">无法向 %1$s 发送好友申请。</string>
+    <string name="friend_toast_friend_request_accepted">已同意来自 %1$s 的好友申请。</string>
+    <string name="friend_toast_friend_request_accept_failed">无法同意来自 %1$s 的好友申请。</string>
+    <!-- Home -->
+    <string name="home_active_friends">好友（在线）</string>
+    <string name="home_recently_visited">最近访问</string>
+    <string name="home_friend_locations">好友位置</string>
+    <string name="home_curated_for_you">为你推荐</string>
+    <!-- Login -->
+    <string name="login_text">登录到 VRC Android Assistant</string>
+    <string name="login_label_username">用户名或电子邮件地址</string>
+    <string name="login_label_password">密码</string>
+    <string name="login_button_text">登录</string>
+    <string name="login_toast_wrong_credentials">用户名或密码错误。</string>
+    <string name="login_toast_wrong_code">验证失败，请检查代码。</string>
+    <!-- Onboarding -->
+    <string name="onboarding_title">让我们开始吧！</string>
+    <string name="onboarding_description">与你的 VRChat 世界保持紧密联系。管理个人资料、紧跟好友动态、绝不错过任何新鲜事——一切尽在你的 Android 设备中。</string>
+    <string name="onboarding_permissions_title">需要允许权限</string>
+    <string name="onboarding_permissions_description">启用设备通知，以实时获取好友动态与活动提醒。</string>
+    <!-- Two Auth -->
+    <string name="auth_text_email">输入发送到您电子邮件的代码</string>
+    <string name="auth_text_app">输入您身份验证应用中的代码</string>
+    <string name="auth_button_text">验证</string>
+    <string name="auth_button_paste">粘贴</string>
+    <!-- Main -->
+    <string name="main_search_placeholder">搜索世界、用户或模型…</string>
+    <!-- Profile -->
+    <string name="profile_label_current_location">当前位置</string>
+    <string name="profile_label_note">备注</string>
+    <string name="profile_label_biography">自我介绍</string>
+    <string name="profile_label_last_activity">最后活动</string>
+    <string name="profile_label_date_joined">账号创建日期</string>
+    <string name="profile_text_no_biography">未填写自我介绍。</string>
+    <string name="profile_user_dropdown_manage_notifications">管理通知</string>
+    <string name="profile_user_not_found_message">用户不存在。</string>
+    <string name="profile_user_avatar_private">模型是私密的！</string>
+    <string name="profile_user_avatar_unreachable">无法访问该模型</string>
+    <string name="profile_user_note_dialog_title">设置备注</string>
+    <!-- Search -->
+    <string name="search_text_result">搜索结果：</string>
+    <string name="search_filter_label_count">数量</string>
+    <string name="search_filter_label_platform">平台</string>
+    <string name="search_filter_label_content_gating">内容分级</string>
+    <string name="search_filter_label_performance_rank">性能等级</string>
+    <string name="copy_id_label">复制 ID</string>
+    <string name="copied_toast">成功复制 %1$s 的 ID</string>
+    <string name="search_filter_button_reset">重置</string>
+    <string name="search_filter_button_apply">应用</string>
+    <string-array name="search_selection_options">
+        <item>世界</item>
+        <item>用户</item>
+        <item>模型</item>
+        <item>群组</item>
+    </string-array>
+    <string name="search_button_more">更多…</string>
+    <!-- Settings -->
+    <string name="settings_item_about">关于</string>
+    <string name="settings_item_about_description">关于您的设备和 VRCAA 的更多信息</string>
+    <string name="settings_item_theming">外观</string>
+    <string name="settings_item_theming_description">外观配置，简约模式</string>
+    <string name="settings_item_rich_presence" tools:keep="@string/settings_item_rich_presence">状态面板（实验性）</string>
+    <string name="settings_item_rich_presence_description" tools:keep="@string/settings_item_rich_presence_description">Discord 游戏状态面板集成</string>
+    <string name="settings_item_advanced_settings">高级</string>
+    <string name="settings_item_advanced_settings_description">高级日志和功能</string>
+    <string name="settings_item_database_settings">数据库和统计信息</string>
+    <string name="settings_item_database_settings_description">查看统计信息, 备份和恢复您的数据</string>
+    <string name="settings_item_logout">退出登录</string>
+    <string name="settings_kofi_donation_button">通过 Ko-fi 给我买杯咖啡</string>
+    <!-- Worlds -->
+    <string name="world_label_description">描述</string>
+    <string name="world_label_tags">标签</string>
+    <string name="world_text_no_tags">作者未提供标签。</string>
+    <string name="world_title_created_at">创建时间</string>
+    <string name="world_title_updated_at">最后更新</string>
+    <string name="world_title_visits">游玩人次</string>
+    <string name="world_title_favorites">收藏人数</string>
+    <string name="world_title_capacity">推荐人数</string>
+    <string name="world_title_occupants">地图内在线人数</string>
+    <string name="world_title_time_spent">停留时间</string>
+    <string name="world_description_no_data_time_spent">无数据</string>
+    <string name="world_title_publication_date">正式公开于</string>
+    <string name="world_title_heat">热度</string>
+    <string name="world_title_popularity">知名度</string>
+    <string name="world_toast_not_found">世界是私密的，或者不存在。</string>
+    <string-array name="world_selection_options">
+        <item>信息</item>
+        <item>房间</item>
+    </string-array>
+    <string name="world_author_label">作者：%1$s</string>
+    <string name="world_instance_invite_dialog_title">您真的要这么做吗？</string>
+    <string name="world_instance_invite_dialog_description">您将要向自己发送邀请到这个房间中，您真的想要这样做吗？</string>
+    <string name="world_instance_no_public_instances_message">没有公开的房间。</string>
+    <!-- Tabs -->
+    <string name="tabs_label_friends">好友</string>
+    <string name="tabs_label_home">主页</string>
+    <string name="tabs_label_favorites">收藏</string>
+    <string name="tabs_label_feed">动态</string>
+    <string name="tabs_label_profile">个人资料</string>
+    <string name="tabs_label_settings">设置</string>
+    <!-- Notifications -->
+    <string name="service_notification">VRCAA 正在后台查看您的好友动态。</string>
+    <string name="service_killed_by_vendor_notification">VRCAA 进程被您的系统终止了! 访问 https://dontkillmyapp.com 获取更多信息</string>
+    <string name="service_notification_rich_presence" tools:keep="@string/service_notification_rich_presence">VRCAA 现在开始推送更丰富的玩家状态信息</string>
+    <string name="notification_service_title_online">好友上线了！</string>
+    <string name="notification_service_description_online">您的好友 %1$s 上线了！</string>
+    <string name="notification_service_title_offline">好友下线了！</string>
+    <string name="notification_service_description_offline">您的好友 %1$s 下线了！</string>
+    <string name="notification_service_title_location">好友的位置发生变化！</string>
+    <string name="notification_service_description_location">您的好友 %1$s 前往了 %2$s 。</string>
+    <string name="notification_service_title_friend_removed">您的好友已将您移除。</string>
+    <string name="notification_service_description_friend_removed">您的好友 %1$s 不再是您的好友 :(</string>
+    <string name="notification_service_title_friend_added">你有一个新的好友！</string>
+    <string name="notification_service_description_friend_added">%1$s 现在是您的好友了！</string>
+    <string name="notification_title_player">的通知</string>
+    <string name="notification_label_enable">开启通知</string>
+    <string name="notification_label_intent_online">上线通知</string>
+    <string name="notification_label_intent_offline">下线通知</string>
+    <string name="notification_label_intent_location">位置通知</string>
+    <string name="notification_label_intent_status">状态变更通知</string>
+    <string name="notification_service_title_status">好友更改了状态！</string>
+    <string name="notification_service_description_status">您的好友 %1$s 将状态从 %2$s 更改为 %3$s 。</string>
+    <string name="notifications_page_title">通知设置</string>
+    <string name="notifications_type_invite">邀请</string>
+    <string name="notifications_type_invite_response">邀请·回应</string>
+    <string name="notifications_type_invite_request">邀请·申请</string>
+    <string name="notifications_type_invite_request_response">邀请·回应申请</string>
+    <string name="notifications_type_friend_request">好友申请</string>
+    <string name="notifications_type_friend_request_content">%1$s 想要成为你的好友~！</string>
+    <string name="notification_dialog_title">通知</string>
+    <string name="notification_dialog_description">请选择对此通知的处理方式</string>
+    <string name="notification_dialog_button_delete">删除</string>
+    <string name="notification_dialog_button_read">标为已读</string>
+    <string name="notification_dialog_button_unsubscribe">取消订阅</string>
+    <string name="notification_dialog_button_accept">同意</string>
+    <string name="notification_dialog_button_reject">拒绝</string>
+    <string name="notification_dialog_button_block">屏蔽</string>
+    <string name="notification_dialog_button_start">开始</string>
+    <string name="notification_dialog_button_continue">继续</string>
+    <string name="notification_dialog_button_restart">重启</string>
+    <string name="notification_dialog_button_abandon">弃置</string>
+    <string name="notification_invite_text">已邀请您加入</string>
+    <string name="notification_invite_response_text">已拒绝你加入</string>
+    <string name="notification_invite_request_text">想要加入您所在的房间</string>
+    <string name="notification_invite_request_response_text">拒绝了你的邀请</string>
+    <!-- Avatars -->
+    <string name="avatar_dropdown_label_select">更换为此模型</string>
+    <string name="avatar_dropdown_toast_select_avatar">已选择此模型！</string>
+    <string name="avatar_title_description">描述</string>
+    <string name="avatar_title_created_at">创建时间</string>
+    <string name="avatar_title_updated_at">最后更新</string>
+    <string name="avatar_title_content_labels">内容标签</string>
+    <string name="avatar_text_author">作者：%1$s</string>
+    <string name="avatar_title_version">版本</string>
+    <string name="avatar_text_content_labels_not_found">此模型没有指定内容警告。</string>
+    <string name="avatar_toast_avatar_not_found_message">此模型是私有的或无效的。</string>
+    <!-- Feed -->
+    <string name="feed_online_label">在线</string>
+    <string name="feed_online_text">已上线。</string>
+    <string name="feed_offline_label">离线</string>
+    <string name="feed_offline_text">已下线。</string>
+    <string name="feed_location_label">GPS</string>
+    <string name="feed_location_text">前往了</string>
+    <string name="feed_status_label">状态</string>
+    <string name="feed_status_text">状态已更改为</string>
+    <string name="feed_added_label">好友添加</string>
+    <string name="feed_added_text">已将您添加为好友。</string>
+    <string name="feed_removed_label">好友移除</string>
+    <string name="feed_removed_text">已将您从好友中移除。</string>
+    <string name="feed_friend_request_label">好友请求</string>
+    <string name="feed_friend_request_text">想要添加您为好友。</string>
+    <string name="feed_search_placeholder">搜索用户或房间…</string>
+    <string name="feed_friend_avatar_label">更换模型</string>
+    <string name="feed_friend_avatar_text">更改模型为</string>
+    <string name="feed_friend_username_changed_label">更换用户名</string>
+    <string name="feed_friend_username_changed_text">更改用户名为</string>
+    <!-- About -->
+    <string name="about_page_title">关于</string>
+    <string name="about_page_open_source_licenses_title">开源许可证</string>
+    <string name="about_page_translate_title">贡献翻译</string>
+    <string name="about_page_battery_optimizations_toast" tools:keep="@string/about_page_battery_optimizations_toast">已禁用电池优化。</string>
+    <string name="license_title">开源许可证</string>
+    <!-- API -->
+    <string name="api_session_has_expired_text">您的登录信息已过期，请重新登录。</string>
+    <!-- Discord Rich Presence -->
+    <string name="discord_login_restarted_service_toast" tools:keep="@string/discord_login_restarted_service_toast">已重启并启用服务。</string>
+    <string name="discord_login_label_enable" tools:keep="@string/discord_login_label_enable">启用状态面板</string>
+    <string name="discord_login_label_set_webhook" tools:keep="@string/discord_login_label_set_webhook">设置 Webhook URL</string>
+    <string name="discord_login_description_set_webhook" tools:keep="@string/discord_login_description_set_webhook">显示世界缩略图（可选）</string>
+    <string name="discord_login_description_enable" tools:keep="@string/discord_login_description_enable">在 Discord 中显示您的当前状态</string>
+    <!-- Crash -->
+    <string name="crash_title_text">应用程序遇到致命错误。</string>
+    <string name="crash_button_restart_text">重启</string>
+    <string name="crash_button_copy_log_text">复制信息</string>
+    <string name="crash_button_report_text">报告问题</string>
+    <!-- Groups -->
+    <string-array name="group_selection_options">
+        <item>信息</item>
+        <item>房间</item>
+    </string-array>
+    <string name="group_toast_not_found_message">未找到该群组，请检查输入内容。</string>
+    <string name="group_page_label_description">描述</string>
+    <string name="group_page_label_rules">规则</string>
+    <string name="group_page_dropdown_view_author">查看拥有者</string>
+    <string name="group_page_dropdown_request_invite">申请加入</string>
+    <string name="group_page_dropdown_request_invite_cancel">取消邀请</string>
+    <string name="group_page_dropdown_join_group">加入群组</string>
+    <string name="group_page_dropdown_leave_group">离开群组</string>
+    <string name="group_page_toast_invite_requested">已发送邀请消息。</string>
+    <string name="group_page_toast_invite_requested_fail">无法发送邀请消息。</string>
+    <string name="group_page_toast_invite_requested_cancel">现已取消邀请。</string>
+    <string name="group_page_toast_invite_requested_cancel_fail">无法取消邀请。</string>
+    <string name="group_page_toast_join_group">已加入此群组。</string>
+    <string name="group_page_toast_join_group_fail">无法加入此群组</string>
+    <string name="group_page_toast_leave_group">已离开此群组</string>
+    <string name="group_page_toast_leave_group_fail">无法离开群组</string>
+    <string name="group_user_no_groups_message">用户不属于任何群组。</string>
+    <string name="group_user_viewing_groups_username">%1$s 的群组</string>
+    <!-- Misc -->
+    <string name="misc_no_internet_title">无互联网连接</string>
+    <string name="misc_no_internet_description">请确保您已连接到互联网，此应用无法离线运行。</string>
+    <string name="misc_no_internet_label">重启应用</string>
+    <string name="misc_exit_toast_label">再次按下以退出。</string>
+    <string name="misc_no_premium_subscription">此功能需要您有活跃的 VRC+ 订阅</string>
+    <string name="global_app_default_loading_text">初始化...</string>
+    <string name="generic_text_public">Public</string>
+    <string name="generic_text_private">私人</string>
+    <string name="generic_text_upload">上传</string>
+    <string name="generic_text_cancel">取消</string>
+    <string name="generic_text_ok">OK</string>
+    <!-- User -->
+    <string name="user_overlay_friend_add">添加好友</string>
+    <string name="user_overlay_friend_remove">移除好友</string>
+    <string name="user_overlay_friend_accept">同意请求</string>
+    <string name="user_overlay_friend_cancel">拒绝申请</string>
+    <string name="user_overlay_groups">群组</string>
+    <string name="user_overlay_worlds">世界</string>
+    <string name="user_overlay_favorites">收藏</string>
+    <string name="user_overlay_find_avatar">查看模型</string>
+    <string name="user_overlay_invite">向我发送邀请</string>
+    <string name="user_overlay_note">添加备注</string>
+    <!-- Profile Edit Dialog -->
+    <string name="profile_edit_dialog_title_status">社交状态</string>
+    <string name="profile_edit_dialog_title_age_verification_visibility">年龄验证可见性</string>
+    <string name="profile_edit_dialog_title_status_description">社交状态描述</string>
+    <string name="profile_edit_dialog_title_bio">自我介绍</string>
+    <string name="profile_edit_dialog_title_bio_links">社交链接</string>
+    <string name="profile_edit_dialog_toast_updated">已更新个人资料。</string>
+    <string name="profile_edit_dialog_toast_cancelled" tools:keep="@string/profile_edit_dialog_toast_cancelled">已放弃更改</string>
+    <string name="profile_edit_dialog_title_pronouns">人称代词</string>
+    <string name="profile_edit_dialog_button_cancel">取消</string>
+    <string name="profile_edit_dialog_button_apply">应用</string>
+    <!-- Logout dialog -->
+    <string name="logout_dialog_title">您真的要这么做吗？</string>
+    <string name="logout_dialog_description">按下“继续”按钮后，您将登出 VRCAA，再次使用时须重新登录。</string>
+    <!-- Widgets -->
+    <string name="widget_name_friend_list" tools:keep="@string/widget_name_friend_list">查看当前好友位置</string>
+    <string name="widget_name_loading_text" tools:keep="@string/widget_name_loading_text">原神……启动！</string>
+    <string name="favorite_page_title">收藏</string>
+    <string-array name="favorites_selection_options">
+        <item>世界</item>
+        <item>模型</item>
+        <item>好友</item>
+    </string-array>
+    <string-array name="user_favorites_selection_options">
+        <item>世界</item>
+        <item>模型</item>
+    </string-array>
+    <string name="favorite_label_add">添加到收藏</string>
+    <string name="favorite_label_remove">从收藏中移除</string>
+    <string name="favorite_toast_favorite_added">已将 %1$s 加入收藏。</string>
+    <string name="favorite_toast_favorite_added_failed">无法将添加 %1$s 到收藏。</string>
+    <string name="favorite_toast_favorite_removed">已将 %1$s 从收藏中移除。</string>
+    <string name="favorite_toast_favorite_removed_failed">无法从收藏中移除 %1$s 。</string>
+    <string name="favorite_dialog_button_add">添加</string>
+    <string name="favorite_dialog_button_cancel">取消</string>
+    <string name="favorite_dialog_title">"添加到收藏"</string>
+    <string name="favorite_edit_title">编辑 %1$s</string>
+    <string name="favorite_edit_display_name">显示名称</string>
+    <string name="favorite_edit_visibility">可见性</string>
+    <string name="favorite_edit_discarded">已放弃更改。</string>
+    <string name="favorite_edit_applied">已应用更改。</string>
+    <string name="favorite_dialog_button_edit">编辑</string>
+    <string name="favorite_tab_refresh_favorites">刷新收藏夹</string>
+    <string name="favorite_toast_refreshed_favorites">刷新收藏夹完成~</string>
+    <string name="favorite_remove_dialog_title">请确认取消收藏</string>
+    <string name="favorite_remove_dialog_description">此收藏内容已不可用。它可能已被作者删除或标记为私密，是否将其从收藏中删除？</string>
+    <!-- Activities -->
+    <!-- Worlds -->
+    <string name="worlds_page_title">%1$s 的世界</string>
+    <!-- Avatars -->
+    <string name="avatars_page_title">查看模型</string>
+    <!-- Debug -->
+    <string name="developer_mode_toggle_toast">重启应用以使更改生效。</string>
+    <string name="debug_notification_title_out_of_memory">请注意</string>
+    <string name="debug_notification_content_out_of_memory">内存不足，请清除调试缓存以继续动作。</string>
+    <!-- Loading Texts -->
+    <string name="loading_text_worlds">加载世界…</string>
+    <string name="loading_text_users">加载用户…</string>
+    <string name="loading_text_avatars">加载模型…</string>
+    <string name="loading_text_groups">加载群组…</string>
+    <string name="loading_text_user">加载用户…</string>
+    <string name="loading_text_world">加载世界…</string>
+    <string name="loading_text_avatar">加载模型…</string>
+    <string name="loading_text_group">加载群组…</string>
+    <string name="loading_text_instances">加载房间…</string>
+    <string name="loading_text_gallery">加载图库中…</string>
+    <string name="loading_text_icons">加载图标中…</string>
+    <string name="loading_text_prints">加载拍立得中…</string>
+    <string name="loading_text_stickers">加载贴纸中…</string>
+    <string name="loading_text_emojis">加载 emoji 中…</string>
+    <string name="loading_text_items">加载物品中…</string>
+    <string name="loading_text_favorites">加载收藏中…</string>
+    <string name="loading_text_notifications">加载通知中…</string>
+    <!-- Theming -->
+    <string name="theme_page_title">主题</string>
+    <string name="theme_page_minimalist_mode_text">简约模式</string>
+    <string name="theme_page_minimalist_mode_text_description">"简约模式有助于内容适应较小的屏幕。"</string>
+    <string-array name="theme_page_selection_options">
+        <item>浅色</item>
+        <item>深色</item>
+        <item>跟随系统</item>
+    </string-array>
+    <string-array name="column_count_options">
+        <item>自适应</item>
+        <item>固定</item>
+    </string-array>
+    <string name="theme_page_section_theme_title">主题</string>
+    <string name="theme_page_section_display_title">显示</string>
+    <string name="theme_page_section_column_title">列数</string>
+    <!-- Advanced Settings -->
+    <string name="advanced_page_title">高级设置</string>
+    <string name="advanced_page_section_networking">网络</string>
+    <string name="advanced_page_network_logging">网络记录</string>
+    <string name="advanced_page_network_logging_description">拦截 HTTP 和 WebSocket 流量</string>
+    <string name="advanced_page_view_network_logs">显示网络记录</string>
+    <string name="advanced_page_section_background_activities">后台活动</string>
+    <string name="advanced_page_battery_optimization" tools:keep="@string/advanced_page_battery_optimization">禁用电池优化</string>
+    <string name="advanced_page_battery_optimization_description" tools:keep="@string/advanced_page_battery_optimization_description">可能有助于改善不接收实时网络事件的问题</string>
+    <string name="advanced_page_kill_service">结束后台服务</string>
+    <string name="advanced_page_kill_service_description">停止负责实时事件的后台服务</string>
+    <string name="advanced_page_section_database">数据库</string>
+    <string name="advanced_page_database_delete">删除数据库</string>
+    <string name="advanced_page_database_delete_description">删除负责存储数据的内部数据库</string>
+    <string name="advanced_page_section_testing">测试中</string>
+    <string name="advanced_page_reset_onboarding">重置新手引导状态</string>
+    <string name="advanced_page_reset_onboarding_description">当app启动时再次显示新手教程</string>
+    <string name="advanced_page_reset_onboarding_toast">新手引导状态已重置。</string>
+    <!-- Database -->
+    <string name="database_page_title">数据库和统计信息</string>
+    <string name="database_page_section_statistics">统计数据</string>
+    <string name="database_page_statistics_size">数据库大小</string>
+    <string name="database_page_statistics_row_count">行计数</string>
+    <string name="database_page_section_recovery">恢复与备份</string>
+    <string name="database_page_recovery_backup">备份数据库</string>
+    <string name="database_page_recovery_backup_description">备份数据库到文件</string>
+    <string name="database_page_recovery_restore">恢复数据库</string>
+    <string name="database_page_recovery_restore_description">从文件恢复数据库备份</string>
+    <string name="database_page_section_glide">Glide 缓存</string>
+    <string name="database_page_glide_cache_size">缓存大小</string>
+    <string name="database_page_glide_clean_cache">清理缓存</string>
+    <string name="database_page_glide_clean_cache_description">清理缓存可能会延长应用加载与响应耗时。</string>
+    <string name="database_page_glide_clean_cache_toast">已清理缓存</string>
+    <string name="database_page_toast_recovery_failed">无法从备份恢复数据库！请确定所选的是有效的数据库备份文件。</string>
+    <!-- Inventory -->
+    <string-array name="inventory_selection_options">
+        <item>图库</item>
+        <item>用户头像</item>
+        <item>世界</item>
+        <item>模型</item>
+        <item>群组</item>
+        <item>Emojis</item>
+        <item>贴纸</item>
+        <item>拍立得</item>
+        <item>物品</item>
+    </string-array>
+    <string name="gallery_page_title">图库</string>
+    <string name="gallery_page_button_upload">上传图片</string>
+    <string name="icon_gallery_page_title">用户头像</string>
+    <string name="icon_gallery_page_button_upload">上传头像</string>
+    <string name="prints_page_title">拍立得</string>
+    <string name="prints_page_button_upload">上传拍立得</string>
+    <string name="emojis_page_title">Emojis</string>
+    <string name="emojis_page_button_upload">上传 Emoji</string>
+    <string-array name="emojis_page_sections">
+        <item>官方</item>
+        <item>自定义</item>
+        <item>已归档</item>
+    </string-array>
+    <string name="stickers_page_title">贴纸</string>
+    <string name="stickers_page_button_upload">上传贴纸</string>
+    <string-array name="sticker_page_sections">
+        <item>官方</item>
+        <item>自定义</item>
+        <item>已归档</item>
+    </string-array>
+    <string name="items_page_title">物品</string>
+    <string-array name="items_page_sections">
+        <item>所有物品</item>
+        <item>已归档</item>
+    </string-array>
+    <string name="image_preview_dialog_title">预览</string>
+    <string name="image_preview_toast_picture_saved">图片已保存。</string>
+    <string name="image_preview_toast_picture_save_failed">无法保存图片。</string>
+    <string name="activity_peek_no_url_handler">未找到可打开此链接的应用。</string>
+</resources>

@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- Universal Strings -->
+    <string name="result_not_found">Здесь нет ничего, кроме куриц!</string>
+    <string name="legal_disclaimer">"VRCAA не поддерживает VRChat Inc. и ни один из их филиалов."</string>
+    <!-- Friends -->
+    <string-array name="friend_selection_options">
+        <item>Избранное</item>
+        <item>Онлайн</item>
+        <item>Веб-сайт</item>
+        <item>Офлайн</item>
+    </string-array>
+    <string name="friend_toast_friend_request_cancelled">Your friend request for %1$s was cancelled.</string>
+    <string name="friend_toast_friend_request_cancel_failed">Failed to cancel friend request for %1$s.</string>
+    <string name="friend_toast_friend_removed">Removed %1$s from your friend list.</string>
+    <string name="friend_toast_friend_remove_failed">Failed to remove %1$s from your friend list.</string>
+    <string name="friend_toast_friend_requested">Your friend request was sent to %1$s.</string>
+    <string name="friend_toast_friend_request_failed">Failed to send friend request for %1$s.</string>
+    <string name="friend_toast_friend_request_accepted">Accepted friend request from %1$s.</string>
+    <string name="friend_toast_friend_request_accept_failed">Failed to accept friend request for %1$s.</string>
+    <!-- Home -->
+    <string name="home_active_friends">Друзья онлайн</string>
+    <string name="home_recently_visited">Недавно посещенные</string>
+    <string name="home_friend_locations">Местонахождение друзей</string>
+    <string name="home_curated_for_you">Curated For You</string>
+    <!-- Login -->
+    <string name="login_text">Войти в VRC Android Assistant</string>
+    <string name="login_label_username">Имя пользователя или адрес электронной почты</string>
+    <string name="login_label_password">Пароль</string>
+    <string name="login_button_text">Логин</string>
+    <string name="login_toast_wrong_credentials">Неверное имя пользователя или пароль.</string>
+    <string name="login_toast_wrong_code">Проверка не удалась, проверьте код еще раз.</string>
+    <!-- Onboarding -->
+    <string name="onboarding_title">Let\'s get started!</string>
+    <string name="onboarding_description">Stay connected to your VRChat world. Manage your profile, keep up with friends, and never miss what’s happening — all from your Android device.</string>
+    <string name="onboarding_permissions_title">You might need to grant permissions.</string>
+    <string name="onboarding_permissions_description">Enable notifications to receive friend updates and activity alerts in real time.</string>
+    <!-- Two Auth -->
+    <string name="auth_text_email">Введите код, отправленный на вашу эл. почту</string>
+    <string name="auth_text_app">Введите код из вашего приложения для двухфакторной аутентификации</string>
+    <string name="auth_button_text">Подтвердить</string>
+    <string name="auth_button_paste">Вставить</string>
+    <!-- Main -->
+    <string name="main_search_placeholder">Искать миры, пользователей или аватары…</string>
+    <!-- Profile -->
+    <string name="profile_label_current_location">Текущее расположение</string>
+    <string name="profile_label_note">Примечание </string>
+    <string name="profile_label_biography">О себе</string>
+    <string name="profile_label_last_activity">Последняя активность</string>
+    <string name="profile_label_date_joined">Дата присоединения</string>
+    <string name="profile_text_no_biography">Описание не указано.</string>
+    <string name="profile_user_dropdown_manage_notifications">Управление уведомлениями</string>
+    <string name="profile_user_not_found_message">Юзер не существует.</string>
+    <string name="profile_user_avatar_private">Аватар является приватным!</string>
+    <string name="profile_user_avatar_unreachable">Аватар недоступен!</string>
+    <string name="profile_user_note_dialog_title">Set Note</string>
+    <!-- Search -->
+    <string name="search_text_result">Результаты по</string>
+    <string name="search_filter_label_count">Кол-во</string>
+    <string name="search_filter_label_platform">Platform</string>
+    <string name="search_filter_label_content_gating">Content Gating</string>
+    <string name="search_filter_label_performance_rank">Performance Rank</string>
+    <string name="copy_id_label">Копировать ID</string>
+    <string name="copied_toast">Успешно скопирован ID %1$s</string>
+    <string name="search_filter_button_reset">Сброс</string>
+    <string name="search_filter_button_apply">Применить</string>
+    <string-array name="search_selection_options">
+        <item>Миры</item>
+        <item>Пользователи</item>
+        <item>Аватары</item>
+        <item>Группы</item>
+    </string-array>
+    <string name="search_button_more">Ещё…</string>
+    <!-- Settings -->
+    <string name="settings_item_about">О программе</string>
+    <string name="settings_item_about_description">Подробнее о вашем устройстве и VRCAA</string>
+    <string name="settings_item_theming">Внешний вид</string>
+    <string name="settings_item_theming_description">Конфигурация внешнего вида, минималистский режим</string>
+    <string name="settings_item_rich_presence" tools:keep="@string/settings_item_rich_presence">Rich Presence (экспериментальный)</string>
+    <string name="settings_item_rich_presence_description" tools:keep="@string/settings_item_rich_presence_description">Интеграция с Discord Rich Presence</string>
+    <string name="settings_item_advanced_settings">Расширенные</string>
+    <string name="settings_item_advanced_settings_description">Расширенный логирование и функции</string>
+    <string name="settings_item_database_settings">Статистика  &amp; базы данных</string>
+    <string name="settings_item_database_settings_description">Просмотр статистики, восстановление резервной &amp; копии ваших данных</string>
+    <string name="settings_item_logout">Выйти</string>
+    <string name="settings_kofi_donation_button">Пожертвовать через Ko-fi</string>
+    <!-- Worlds -->
+    <string name="world_label_description">Описание</string>
+    <string name="world_label_tags">Теги</string>
+    <string name="world_text_no_tags">Автор не предоставил теги.</string>
+    <string name="world_title_created_at">Дата создания</string>
+    <string name="world_title_updated_at">Последнее обновление</string>
+    <string name="world_title_visits">Посещения</string>
+    <string name="world_title_favorites">Избранное</string>
+    <string name="world_title_capacity">Вместимость</string>
+    <string name="world_title_occupants">Участники</string>
+    <string name="world_title_time_spent">Time Spent</string>
+    <string name="world_description_no_data_time_spent">No data available.</string>
+    <string name="world_title_publication_date">Дата публикации</string>
+    <string name="world_title_heat">Теплота</string>
+    <string name="world_title_popularity">Популярность</string>
+    <string name="world_toast_not_found">Мир является приватным или не существует.</string>
+    <string-array name="world_selection_options">
+        <item>Инфо</item>
+        <item>Инстансы</item>
+    </string-array>
+    <string name="world_author_label">Автор: %1$s</string>
+    <string name="world_instance_invite_dialog_title">Вы уверены?</string>
+    <string name="world_instance_invite_dialog_description">Вы собираетесь отправить приглашение на этот инстанс, вы действительно хотите это сделать?</string>
+    <string name="world_instance_no_public_instances_message">Нет публичных инстансев</string>
+    <!-- Tabs -->
+    <string name="tabs_label_friends">Друзья</string>
+    <string name="tabs_label_home">Главная</string>
+    <string name="tabs_label_favorites">Избранное</string>
+    <string name="tabs_label_feed">Лента</string>
+    <string name="tabs_label_profile">Профиль</string>
+    <string name="tabs_label_settings">Настройки</string>
+    <!-- Notifications -->
+    <string name="service_notification">VRCAA теперь следит за вашими друзьями в фоновом режиме.</string>
+    <string name="service_killed_by_vendor_notification">VRCAA был убит вашей системой! Проверьте https://dontkillmyapp.com/ для дополнительной информации.</string>
+    <string name="service_notification_rich_presence" tools:keep="@string/service_notification_rich_presence">VRCAA теперь сообщает информацию о Rich Presence</string>
+    <string name="notification_service_title_online">Друг появился в сети!</string>
+    <string name="notification_service_description_online">Ваш друг, %1$s появился в сети!</string>
+    <string name="notification_service_title_offline">Друг вышел из сети!</string>
+    <string name="notification_service_description_offline">Ваш друг, %1$s вышел из сети!</string>
+    <string name="notification_service_title_location">Друг изменил местоположение!</string>
+    <string name="notification_service_description_location">Ваш друг, %1$s отправился в %2$s.</string>
+    <string name="notification_service_title_friend_removed">Ваш друг удалил вас.</string>
+    <string name="notification_service_description_friend_removed">Ваш друг, %1$s больше не является вашим другом :(</string>
+    <string name="notification_service_title_friend_added">У вас новый друг!</string>
+    <string name="notification_service_description_friend_added">%1$s теперь ваш друг!</string>
+    <string name="notification_title_player">Уведомлений</string>
+    <string name="notification_label_enable">Включить уведомления</string>
+    <string name="notification_label_intent_online">Онлайн уведомления</string>
+    <string name="notification_label_intent_offline">Офлайн уведомления</string>
+    <string name="notification_label_intent_location">Уведомления о местоположении</string>
+    <string name="notification_label_intent_status">Уведомления об изменении статуса</string>
+    <string name="notification_service_title_status">Статус друга изменен!</string>
+    <string name="notification_service_description_status">Ваш друг, %1$s изменил его статус с %2$s на %3$s.</string>
+    <string name="notifications_page_title">Notifications</string>
+    <string name="notifications_type_invite">Invite</string>
+    <string name="notifications_type_invite_response">Invite Response</string>
+    <string name="notifications_type_invite_request">Invite Request</string>
+    <string name="notifications_type_invite_request_response">Invite Request Response</string>
+    <string name="notifications_type_friend_request">Friend Request</string>
+    <string name="notifications_type_friend_request_content">%1$s - wants to be your friend!</string>
+    <string name="notification_dialog_title">Notification</string>
+    <string name="notification_dialog_description">What do you want to do with this notification?</string>
+    <string name="notification_dialog_button_delete">Delete</string>
+    <string name="notification_dialog_button_read">Mark As Read</string>
+    <string name="notification_dialog_button_unsubscribe">Unsubscribe</string>
+    <string name="notification_dialog_button_accept">Accept</string>
+    <string name="notification_dialog_button_reject">Reject</string>
+    <string name="notification_dialog_button_block">Block</string>
+    <string name="notification_dialog_button_start">Start</string>
+    <string name="notification_dialog_button_continue">Continue</string>
+    <string name="notification_dialog_button_restart">Restart</string>
+    <string name="notification_dialog_button_abandon">Abandon</string>
+    <string name="notification_invite_text">has invited you to</string>
+    <string name="notification_invite_response_text">rejected your request to join</string>
+    <string name="notification_invite_request_text">wants to join you</string>
+    <string name="notification_invite_request_response_text">rejected your invite request</string>
+    <!-- Avatars -->
+    <string name="avatar_dropdown_label_select">Change to Avatar</string>
+    <string name="avatar_dropdown_toast_select_avatar">Аватар выбран!</string>
+    <string name="avatar_title_description">Описание</string>
+    <string name="avatar_title_created_at">Дата создания</string>
+    <string name="avatar_title_updated_at">Дата последнего обновления</string>
+    <string name="avatar_title_content_labels">Метки содержимого</string>
+    <string name="avatar_text_author">Создано %1$s</string>
+    <string name="avatar_title_version">Версия</string>
+    <string name="avatar_text_content_labels_not_found">Аватар не содержит предупреждений о содержимом.</string>
+    <string name="avatar_toast_avatar_not_found_message">Аватар является либо приватным, либо недействительным.</string>
+    <!-- Feed -->
+    <string name="feed_online_label">Онлайн</string>
+    <string name="feed_online_text">появился в сети.</string>
+    <string name="feed_offline_label">Офлайн</string>
+    <string name="feed_offline_text">вышел из сети.</string>
+    <string name="feed_location_label">GPS</string>
+    <string name="feed_location_text">отправился в</string>
+    <string name="feed_status_label">Статус</string>
+    <string name="feed_status_text">изменил статус на</string>
+    <string name="feed_added_label">Друг добавлен</string>
+    <string name="feed_added_text">добавил(а) вас в друзья.</string>
+    <string name="feed_removed_label">Друг удален</string>
+    <string name="feed_removed_text">удалил вас из друзей.</string>
+    <string name="feed_friend_request_label">Заявка в друзья</string>
+    <string name="feed_friend_request_text">хочет добавить вас в друзья.</string>
+    <string name="feed_search_placeholder">Поиск пользователя или местоположения…</string>
+    <string name="feed_friend_avatar_label">Изменение аватара</string>
+    <string name="feed_friend_avatar_text">изменил(а) свой аватар на</string>
+    <string name="feed_friend_username_changed_label">Username Change</string>
+    <string name="feed_friend_username_changed_text">changed their username to</string>
+    <!-- About -->
+    <string name="about_page_title">О программе</string>
+    <string name="about_page_open_source_licenses_title">Лицензии с открытым исходным кодом</string>
+    <string name="about_page_translate_title">Помочь в переводе</string>
+    <string name="about_page_battery_optimizations_toast" tools:keep="@string/about_page_battery_optimizations_toast">Оптимизация заряда батареи уже отключена.</string>
+    <string name="license_title">Лицензии с открытым исходным кодом</string>
+    <!-- API -->
+    <string name="api_session_has_expired_text">Срок действия вашей сессии истек. Пожалуйста, войдите снова.</string>
+    <!-- Discord Rich Presence -->
+    <string name="discord_login_restarted_service_toast" tools:keep="@string/discord_login_restarted_service_toast">Перезапустите сервис, чтобы вступить в силу.</string>
+    <string name="discord_login_label_enable" tools:keep="@string/discord_login_label_enable">Включить Rich Presence</string>
+    <string name="discord_login_label_set_webhook" tools:keep="@string/discord_login_label_set_webhook">Установить Url Webhook</string>
+    <string name="discord_login_description_set_webhook" tools:keep="@string/discord_login_description_set_webhook">Требуется для поддержки миниатюр мира (необязательно)</string>
+    <string name="discord_login_description_enable" tools:keep="@string/discord_login_description_enable">Показывает ваш текущий статус в discord</string>
+    <!-- Crash -->
+    <string name="crash_title_text">В приложении произошла ошибка.</string>
+    <string name="crash_button_restart_text">Перезапустить</string>
+    <string name="crash_button_copy_log_text">Скопировать информацию об ошибке</string>
+    <string name="crash_button_report_text">Сообщить о проблеме</string>
+    <!-- Groups -->
+    <string-array name="group_selection_options">
+        <item>Инфо</item>
+        <item>Инстансы</item>
+    </string-array>
+    <string name="group_toast_not_found_message">Группа не найдена, вы уверены, что она существует?</string>
+    <string name="group_page_label_description">Описание</string>
+    <string name="group_page_label_rules">Правила</string>
+    <string name="group_page_dropdown_view_author">Посмотреть профиль автора</string>
+    <string name="group_page_dropdown_request_invite">Запросить приглашение</string>
+    <string name="group_page_dropdown_request_invite_cancel">Отменить запрос на приглашение</string>
+    <string name="group_page_dropdown_join_group">Вступить в группу</string>
+    <string name="group_page_dropdown_leave_group">Покинуть группу</string>
+    <string name="group_page_toast_invite_requested">Отправлено запрос на приглашение.</string>
+    <string name="group_page_toast_invite_requested_fail">Не удалось запросить приглашение.</string>
+    <string name="group_page_toast_invite_requested_cancel">Отмененный запрос на приглашение.</string>
+    <string name="group_page_toast_invite_requested_cancel_fail">Не удалось отменить запрос на приглашение.</string>
+    <string name="group_page_toast_join_group">Вступил(а) в группу.</string>
+    <string name="group_page_toast_join_group_fail">Не удалось присоединиться к группе.</string>
+    <string name="group_page_toast_leave_group">Покинул(а) группу.</string>
+    <string name="group_page_toast_leave_group_fail">Не удалось покинуть группу.</string>
+    <string name="group_user_no_groups_message">Этот пользователь не является частью любой группы.</string>
+    <string name="group_user_viewing_groups_username">Группы %1$s</string>
+    <!-- Misc -->
+    <string name="misc_no_internet_title">Нет подключения к интернету</string>
+    <string name="misc_no_internet_description">Пожалуйста, убедитесь, что вы подключены к Интернету, это приложение не может работать без подключения к Интернету.</string>
+    <string name="misc_no_internet_label">Перезапустить приложение</string>
+    <string name="misc_exit_toast_label">Нажмите еще раз для выхода.</string>
+    <string name="misc_no_premium_subscription">Эта функция требует активной подписки VRC+.</string>
+    <string name="global_app_default_loading_text">Инициализация…</string>
+    <string name="generic_text_public">Public</string>
+    <string name="generic_text_private">Private</string>
+    <string name="generic_text_upload">Upload</string>
+    <string name="generic_text_cancel">Cancel</string>
+    <string name="generic_text_ok">OK</string>
+    <!-- User -->
+    <string name="user_overlay_friend_add">Add Friend</string>
+    <string name="user_overlay_friend_remove">Remove Friend</string>
+    <string name="user_overlay_friend_accept">Accept Request</string>
+    <string name="user_overlay_friend_cancel">Cancel Request</string>
+    <string name="user_overlay_groups">Группы</string>
+    <string name="user_overlay_worlds">Миры</string>
+    <string name="user_overlay_favorites">Избранное</string>
+    <string name="user_overlay_find_avatar">Найти аватар</string>
+    <string name="user_overlay_invite">Invite Me</string>
+    <string name="user_overlay_note">Add Note</string>
+    <!-- Profile Edit Dialog -->
+    <string name="profile_edit_dialog_title_status">Статус</string>
+    <string name="profile_edit_dialog_title_age_verification_visibility">Видимость проверки возраста</string>
+    <string name="profile_edit_dialog_title_status_description">Описание статуса</string>
+    <string name="profile_edit_dialog_title_bio">О себе</string>
+    <string name="profile_edit_dialog_title_bio_links">Соц. Сети</string>
+    <string name="profile_edit_dialog_toast_updated">Профиль обновлён.</string>
+    <string name="profile_edit_dialog_toast_cancelled" tools:keep="@string/profile_edit_dialog_toast_cancelled">Изменения были отменены.</string>
+    <string name="profile_edit_dialog_title_pronouns">Местоимения</string>
+    <string name="profile_edit_dialog_button_cancel">Отменить</string>
+    <string name="profile_edit_dialog_button_apply">Применить</string>
+    <!-- Logout dialog -->
+    <string name="logout_dialog_title">Вы уверены?</string>
+    <string name="logout_dialog_description">Нажав «Продолжить» ниже вы выйдете из VRCAA и снова войдите в систему, чтобы продолжать использовать приложение.</string>
+    <!-- Widgets -->
+    <string name="widget_name_friend_list" tools:keep="@string/widget_name_friend_list">Посмотреть текущее местоположение друзей</string>
+    <string name="widget_name_loading_text" tools:keep="@string/widget_name_loading_text">Горизонт светлый, мой друг.</string>
+    <string name="favorite_page_title">Favorites</string>
+    <string-array name="favorites_selection_options">
+        <item>Миры</item>
+        <item>Аватары</item>
+        <item>Друзья</item>
+    </string-array>
+    <string-array name="user_favorites_selection_options">
+        <item>Worlds</item>
+        <item>Avatars</item>
+    </string-array>
+    <string name="favorite_label_add">Добавить в избранное</string>
+    <string name="favorite_label_remove">Удалить из избранного</string>
+    <string name="favorite_toast_favorite_added">%1$s добавлен в избранное.</string>
+    <string name="favorite_toast_favorite_added_failed">Не удалось добавить %1$s в избранное.</string>
+    <string name="favorite_toast_favorite_removed">%1$s удален из избранного.</string>
+    <string name="favorite_toast_favorite_removed_failed">Не удалось удалить %1$s из избранного.</string>
+    <string name="favorite_dialog_button_add">Добавить</string>
+    <string name="favorite_dialog_button_cancel">Отменить</string>
+    <string name="favorite_dialog_title">"Добавить в избранное"</string>
+    <string name="favorite_edit_title">Редактирование %1$s</string>
+    <string name="favorite_edit_display_name">Отображаемое имя</string>
+    <string name="favorite_edit_visibility">Видимость</string>
+    <string name="favorite_edit_discarded">Изменения были отменены.</string>
+    <string name="favorite_edit_applied">Изменения были применены.</string>
+    <string name="favorite_dialog_button_edit">Редактировать</string>
+    <string name="favorite_tab_refresh_favorites">Обновить Избранные</string>
+    <string name="favorite_toast_refreshed_favorites">Избранные обновлены.</string>
+    <string name="favorite_remove_dialog_title">Do you want remove this favorite?</string>
+    <string name="favorite_remove_dialog_description">This favorite is no longer available, it might have been deleted or made private by the author do you want to remove it from the list?</string>
+    <!-- Activities -->
+    <!-- Worlds -->
+    <string name="worlds_page_title">Миры %1$s</string>
+    <!-- Avatars -->
+    <string name="avatars_page_title">Просмотр аватаров</string>
+    <!-- Debug -->
+    <string name="developer_mode_toggle_toast">Перезапустите приложение, чтобы изменения вступили в силу.</string>
+    <string name="debug_notification_title_out_of_memory">Notice!</string>
+    <string name="debug_notification_content_out_of_memory">The application has ran out of memory! Cleared Debug cache to continue operation.</string>
+    <!-- Loading Texts -->
+    <string name="loading_text_worlds">Загрузка миров…</string>
+    <string name="loading_text_users">Загрузка пользователей…</string>
+    <string name="loading_text_avatars">Загрузка аватаров…</string>
+    <string name="loading_text_groups">Загрузка групп…</string>
+    <string name="loading_text_user">Загрузка пользователя…</string>
+    <string name="loading_text_world">Загрузка мира…</string>
+    <string name="loading_text_avatar">Загрузка аватара…</string>
+    <string name="loading_text_group">Загрузка группы…</string>
+    <string name="loading_text_instances">Загрузка инстансев…</string>
+    <string name="loading_text_gallery">Загрузка галереи…</string>
+    <string name="loading_text_icons">Загрузка иконок…</string>
+    <string name="loading_text_prints">Загрузка печатей…</string>
+    <string name="loading_text_stickers">Загрузка стикеров…</string>
+    <string name="loading_text_emojis">Загрузка эмодзи…</string>
+    <string name="loading_text_items">Загрузка предметов...</string>
+    <string name="loading_text_favorites">Loading favorites…</string>
+    <string name="loading_text_notifications">Loading notifications…</string>
+    <!-- Theming -->
+    <string name="theme_page_title">Тема</string>
+    <string name="theme_page_minimalist_mode_text">Минималистский Режим</string>
+    <string name="theme_page_minimalist_mode_text_description">"Минималистский режим позволяет контенту помещаться на меньших экранах."</string>
+    <string-array name="theme_page_selection_options">
+        <item>Светлая</item>
+        <item>Тёмная</item>
+        <item>Система</item>
+    </string-array>
+    <string-array name="column_count_options">
+        <item>Подстраивающееся</item>
+        <item>Постоянное</item>
+    </string-array>
+    <string name="theme_page_section_theme_title">Тема</string>
+    <string name="theme_page_section_display_title">Отображение</string>
+    <string name="theme_page_section_column_title">Количество столбцов</string>
+    <!-- Advanced Settings -->
+    <string name="advanced_page_title">Расширенные настройки</string>
+    <string name="advanced_page_section_networking">Сеть</string>
+    <string name="advanced_page_network_logging">Сетевой журнал</string>
+    <string name="advanced_page_network_logging_description">Перехватывает трафик HTTP и WebSocket</string>
+    <string name="advanced_page_view_network_logs">Показать сетевые журналы</string>
+    <string name="advanced_page_section_background_activities">Фоновая деятельность</string>
+    <string name="advanced_page_battery_optimization" tools:keep="@string/advanced_page_battery_optimization">Отключить оптимизацию батареи</string>
+    <string name="advanced_page_battery_optimization_description" tools:keep="@string/advanced_page_battery_optimization_description">Может помочь с неполучением событий сети в режиме реального времени</string>
+    <string name="advanced_page_kill_service">Убить фоновую службу</string>
+    <string name="advanced_page_kill_service_description">Убивает фоновую службу, ответственную за события в режиме реального времени</string>
+    <string name="advanced_page_section_database">База данных</string>
+    <string name="advanced_page_database_delete">Удалить базу данных</string>
+    <string name="advanced_page_database_delete_description">Удаляет внутреннюю базу данных, ответственную за хранение данных</string>
+    <string name="advanced_page_section_testing">Testing</string>
+    <string name="advanced_page_reset_onboarding">Reset Onboarding State</string>
+    <string name="advanced_page_reset_onboarding_description">Shows onboarding again when the app starts</string>
+    <string name="advanced_page_reset_onboarding_toast">Onboarding state reset.</string>
+    <!-- Database -->
+    <string name="database_page_title">Статистика  &amp; базы данных</string>
+    <string name="database_page_section_statistics">Статистика</string>
+    <string name="database_page_statistics_size">Размер базы данных</string>
+    <string name="database_page_statistics_row_count">Количество строк</string>
+    <string name="database_page_section_recovery">Восстановить &amp; резервную копию</string>
+    <string name="database_page_recovery_backup">Создать резервную копию БД</string>
+    <string name="database_page_recovery_backup_description">Создаёт резервную копию ваших текущих данных</string>
+    <string name="database_page_recovery_restore">Восстановить базу данных</string>
+    <string name="database_page_recovery_restore_description">Восстановить предыдущую резервную копию</string>
+    <string name="database_page_section_glide">Плавный кэш</string>
+    <string name="database_page_glide_cache_size">Размер кэша</string>
+    <string name="database_page_glide_clean_cache">Очистить кэш</string>
+    <string name="database_page_glide_clean_cache_description">Очистка кэша может увеличить время загрузки и уменьшить отзывчивость приложения</string>
+    <string name="database_page_glide_clean_cache_toast">Кэш очищен!</string>
+    <string name="database_page_toast_recovery_failed">Не удалось восстановить базу данных из резервной копии! Вы уверены, что выбрали верную резервную копию базы данных?</string>
+    <!-- Inventory -->
+    <string-array name="inventory_selection_options">
+        <item>Галерея</item>
+        <item>Пользовательские иконки</item>
+        <item>Миры</item>
+        <item>Аватары</item>
+        <item>Группы</item>
+        <item>Смайлики</item>
+        <item>Стикеры</item>
+        <item>Печати</item>
+        <item>Предметы</item>
+    </string-array>
+    <string name="gallery_page_title">Галерея</string>
+    <string name="gallery_page_button_upload">Загрузить изображение</string>
+    <string name="icon_gallery_page_title">Пользовательские Иконки</string>
+    <string name="icon_gallery_page_button_upload">Загрузить иконку</string>
+    <string name="prints_page_title">Печати</string>
+    <string name="prints_page_button_upload">Выгрузить печать</string>
+    <string name="emojis_page_title">Смайлики</string>
+    <string name="emojis_page_button_upload">Загрузить смайлики</string>
+    <string-array name="emojis_page_sections">
+        <item>Официальные</item>
+        <item>Пользовательское</item>
+        <item>В архиве</item>
+    </string-array>
+    <string name="stickers_page_title">Стикеры</string>
+    <string name="stickers_page_button_upload">Загрузить стикер</string>
+    <string-array name="sticker_page_sections">
+        <item>Официальные</item>
+        <item>Пользовательское</item>
+        <item>В архиве</item>
+    </string-array>
+    <string name="items_page_title">Предметы</string>
+    <string-array name="items_page_sections">
+        <item>Все предметы</item>
+        <item>Архивировать</item>
+    </string-array>
+    <string name="image_preview_dialog_title">Предпросмотр</string>
+    <string name="image_preview_toast_picture_saved">Saved picture.</string>
+    <string name="image_preview_toast_picture_save_failed">Unable to save picture.</string>
+    <string name="activity_peek_no_url_handler">No app available to open the URL.</string>
+</resources>

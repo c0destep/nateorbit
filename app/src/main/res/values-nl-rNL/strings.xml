@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- Universal Strings -->
+    <string name="result_not_found">There\'s nothing but chickens here!</string>
+    <string name="legal_disclaimer">"VRCAA wordt niet gesteund door VRChat Inc. of een van hun affiliates."</string>
+    <!-- Friends -->
+    <string-array name="friend_selection_options">
+        <item>Favoriet</item>
+        <item>Online</item>
+        <item>Webpagina</item>
+        <item>Offline</item>
+    </string-array>
+    <string name="friend_toast_friend_request_cancelled">Je vriendenverzoek voor %1$s was afgezegd.</string>
+    <string name="friend_toast_friend_request_cancel_failed">Afzeggen van vriendenverzoek voor %1$s is mislukt.</string>
+    <string name="friend_toast_friend_removed">%1$s Is verwijderd van je vriendenlijst.</string>
+    <string name="friend_toast_friend_remove_failed">Verwijderen van %1$s van je vriendenlijst is mislukt.</string>
+    <string name="friend_toast_friend_requested">Je vriendenverzoek was verstuurd naar %1$s.</string>
+    <string name="friend_toast_friend_request_failed">Versturen van vriendenverzoek naar %1$s is mislukt.</string>
+    <string name="friend_toast_friend_request_accepted">Vriendenverzoek van %1$s is geaccepteerd.</string>
+    <string name="friend_toast_friend_request_accept_failed">Accepteren van %1$s\'s vriendenverzoek is mislukt.</string>
+    <!-- Home -->
+    <string name="home_active_friends">Online Vrienden</string>
+    <string name="home_recently_visited">Onlangs bezocht</string>
+    <string name="home_friend_locations">Vriend Locaties</string>
+    <string name="home_curated_for_you">Curated For You</string>
+    <!-- Login -->
+    <string name="login_text">Inloggen op VRC Android Assistant</string>
+    <string name="login_label_username">Gebruikersnaam of e-mailadres</string>
+    <string name="login_label_password">Wachtwoord</string>
+    <string name="login_button_text">Inloggen</string>
+    <string name="login_toast_wrong_credentials">Foutieve gebruikersnaam of wachtwoord.</string>
+    <string name="login_toast_wrong_code">Verificatie mislukt, controleer de code opnieuw.</string>
+    <!-- Onboarding -->
+    <string name="onboarding_title">Laten we beginnen!</string>
+    <string name="onboarding_description">Blijf aangesloten op de VRChat wereld.
+Manage je profiel, blijf op de hoogte van vrienden, en mis nooit wat er gebeurt - allemaal vanaf je Android apparaat.</string>
+    <string name="onboarding_permissions_title">Je moet mogelijk toestemming verlenen.</string>
+    <string name="onboarding_permissions_description">Zet notificaties aan om updates over vrienden en activity alerts in real time te ontvangen.</string>
+    <!-- Two Auth -->
+    <string name="auth_text_email">Voer de code in die naar uw e-mail verzonden is</string>
+    <string name="auth_text_app">Voer de code van uw verificatie-app in</string>
+    <string name="auth_button_text">Verifiëren</string>
+    <string name="auth_button_paste">Plakken</string>
+    <!-- Main -->
+    <string name="main_search_placeholder">Zoeken naar werelden, gebruikers of avatars...</string>
+    <!-- Profile -->
+    <string name="profile_label_current_location">Huidige locatie</string>
+    <string name="profile_label_note">Notitie</string>
+    <string name="profile_label_biography">Over mij</string>
+    <string name="profile_label_last_activity">Laatste Activiteit</string>
+    <string name="profile_label_date_joined">Lid Sinds</string>
+    <string name="profile_text_no_biography">Geen beschrijving opgegeven.</string>
+    <string name="profile_user_dropdown_manage_notifications">Notificaties beheren</string>
+    <string name="profile_user_not_found_message">Gebruiker bestaat niet.</string>
+    <string name="profile_user_avatar_private">Avatar is privé!</string>
+    <string name="profile_user_avatar_unreachable">Avatar is onbereikbaar!</string>
+    <string name="profile_user_note_dialog_title">Maak Notitie</string>
+    <!-- Search -->
+    <string name="search_text_result">Resultaten voor</string>
+    <string name="search_filter_label_count">Aantal</string>
+    <string name="search_filter_label_platform">Platform</string>
+    <string name="search_filter_label_content_gating">Content Gating</string>
+    <string name="search_filter_label_performance_rank">Performance Rank</string>
+    <string name="copy_id_label">Kopieer ID</string>
+    <string name="copied_toast">%1$s\'s ID succesvol gekopieerd.</string>
+    <string name="search_filter_button_reset">Herstel</string>
+    <string name="search_filter_button_apply">Toepassen</string>
+    <string-array name="search_selection_options">
+        <item>Werelden</item>
+        <item>Gebruikers</item>
+        <item>Avatars</item>
+        <item>Groepen</item>
+    </string-array>
+    <string name="search_button_more">Meer...</string>
+    <!-- Settings -->
+    <string name="settings_item_about">Over</string>
+    <string name="settings_item_about_description">Meer informatie over jouw apparaat en VRCAA</string>
+    <string name="settings_item_theming">Weergave</string>
+    <string name="settings_item_theming_description">Weergave configuratie, simpele modus</string>
+    <string name="settings_item_rich_presence" tools:keep="@string/settings_item_rich_presence">Rich Presence (Experimenteel)</string>
+    <string name="settings_item_rich_presence_description" tools:keep="@string/settings_item_rich_presence_description">Discord rich-presence integratie</string>
+    <string name="settings_item_advanced_settings">Geavanceerd</string>
+    <string name="settings_item_advanced_settings_description">Geavanceerd logging en functies</string>
+    <string name="settings_item_database_settings">Database &amp; Statistieken</string>
+    <string name="settings_item_database_settings_description">Bekijk statistieken, back-up &amp; herstel je data</string>
+    <string name="settings_item_logout">Uitloggen</string>
+    <string name="settings_kofi_donation_button">Doneer via Ko-fi</string>
+    <!-- Worlds -->
+    <string name="world_label_description">Beschrijving</string>
+    <string name="world_label_tags">Tags</string>
+    <string name="world_text_no_tags">De auteur heeft geen tags opgegeven.</string>
+    <string name="world_title_created_at">Datum Aangemaakt</string>
+    <string name="world_title_updated_at">Laatst Bijgewerkt</string>
+    <string name="world_title_visits">Bezoeken</string>
+    <string name="world_title_favorites">Favorieten</string>
+    <string name="world_title_capacity">Capaciteit</string>
+    <string name="world_title_occupants">Aanwezigen</string>
+    <string name="world_title_time_spent">Time Spent</string>
+    <string name="world_description_no_data_time_spent">No data available.</string>
+    <string name="world_title_publication_date">Datum Gepubliceerd</string>
+    <string name="world_title_heat">Heat</string>
+    <string name="world_title_popularity">Populariteit</string>
+    <string name="world_toast_not_found">Wereld is privé, of bestaat niet.</string>
+    <string-array name="world_selection_options">
+        <item>Info</item>
+        <item>Instances</item>
+    </string-array>
+    <string name="world_author_label">Door %1$s</string>
+    <string name="world_instance_invite_dialog_title">Weet je het zeker?</string>
+    <string name="world_instance_invite_dialog_description">Je gaat een uitnodiging naar jezelf sturen voor deze instance, wil je dit echt doen?</string>
+    <string name="world_instance_no_public_instances_message">Geen openbare instances</string>
+    <!-- Tabs -->
+    <string name="tabs_label_friends">Vrienden</string>
+    <string name="tabs_label_home">Thuis</string>
+    <string name="tabs_label_favorites">Favorieten</string>
+    <string name="tabs_label_feed">Feed</string>
+    <string name="tabs_label_profile">Profiel</string>
+    <string name="tabs_label_settings">Instellingen</string>
+    <!-- Notifications -->
+    <string name="service_notification">VRCAA is nu je vrienden in de achtergrond aan her monitoren.</string>
+    <string name="service_killed_by_vendor_notification">VRCAA was getermineerd door je systeem! Check https://dontkillmyapp.com/ voor meer informatie.</string>
+    <string name="service_notification_rich_presence" tools:keep="@string/service_notification_rich_presence">VRCAA is nu rich presence informatie aan het melden.</string>
+    <string name="notification_service_title_online">Vriend is online gekomen!</string>
+    <string name="notification_service_description_online">Je vriend, %1$s is online gekomen!</string>
+    <string name="notification_service_title_offline">Vriend is offline gegaan!</string>
+    <string name="notification_service_description_offline">Je vriend, %1$s is offline gegaan!</string>
+    <string name="notification_service_title_location">Vriend is van locatie verandert!</string>
+    <string name="notification_service_description_location">Je vriend, %1$s is naar %2$s gegaan.</string>
+    <string name="notification_service_title_friend_removed">Je vriend heeft je verwijdert.</string>
+    <string name="notification_service_description_friend_removed">Je vriend, %1$s is niet meer je vriend :(</string>
+    <string name="notification_service_title_friend_added">Je hebt een nieuwe vriend!</string>
+    <string name="notification_service_description_friend_added">%1$s Is nu je vriend!</string>
+    <string name="notification_title_player">\'s Notificaties</string>
+    <string name="notification_label_enable">Zet Notificaties Aan</string>
+    <string name="notification_label_intent_online">Online Notificaties</string>
+    <string name="notification_label_intent_offline">Offline Notificaties</string>
+    <string name="notification_label_intent_location">Locatie Notificaties</string>
+    <string name="notification_label_intent_status">Notificaties voor Veranderen van Status</string>
+    <string name="notification_service_title_status">Vriend is van status verandert!</string>
+    <string name="notification_service_description_status">Je vriend, %1$s heeft hun status aangepast van %2$s naar %3$s.</string>
+    <string name="notifications_page_title">Notificaties</string>
+    <string name="notifications_type_invite">Invite</string>
+    <string name="notifications_type_invite_response">Invite Response</string>
+    <string name="notifications_type_invite_request">Invite Request</string>
+    <string name="notifications_type_invite_request_response">Invite Request Response</string>
+    <string name="notifications_type_friend_request">Friend Request</string>
+    <string name="notifications_type_friend_request_content">%1$s - wants to be your friend!</string>
+    <string name="notification_dialog_title">Notification</string>
+    <string name="notification_dialog_description">What do you want to do with this notification?</string>
+    <string name="notification_dialog_button_delete">Delete</string>
+    <string name="notification_dialog_button_read">Mark As Read</string>
+    <string name="notification_dialog_button_unsubscribe">Unsubscribe</string>
+    <string name="notification_dialog_button_accept">Accept</string>
+    <string name="notification_dialog_button_reject">Reject</string>
+    <string name="notification_dialog_button_block">Block</string>
+    <string name="notification_dialog_button_start">Start</string>
+    <string name="notification_dialog_button_continue">Continue</string>
+    <string name="notification_dialog_button_restart">Restart</string>
+    <string name="notification_dialog_button_abandon">Abandon</string>
+    <string name="notification_invite_text">has invited you to</string>
+    <string name="notification_invite_response_text">rejected your request to join</string>
+    <string name="notification_invite_request_text">wants to join you</string>
+    <string name="notification_invite_request_response_text">rejected your invite request</string>
+    <!-- Avatars -->
+    <string name="avatar_dropdown_label_select">Change to Avatar</string>
+    <string name="avatar_dropdown_toast_select_avatar">Avatar Selected!</string>
+    <string name="avatar_title_description">Description</string>
+    <string name="avatar_title_created_at">Creation Date</string>
+    <string name="avatar_title_updated_at">Last Updated</string>
+    <string name="avatar_title_content_labels">Content Labels</string>
+    <string name="avatar_text_author">By %1$s</string>
+    <string name="avatar_title_version">Version</string>
+    <string name="avatar_text_content_labels_not_found">Avatar has no content warnings specified.</string>
+    <string name="avatar_toast_avatar_not_found_message">The avatar is either private or invalid.</string>
+    <!-- Feed -->
+    <string name="feed_online_label">Online</string>
+    <string name="feed_online_text">has come online.</string>
+    <string name="feed_offline_label">Offline</string>
+    <string name="feed_offline_text">has gone offline.</string>
+    <string name="feed_location_label">GPS</string>
+    <string name="feed_location_text">went to</string>
+    <string name="feed_status_label">Status</string>
+    <string name="feed_status_text">changed status to</string>
+    <string name="feed_added_label">Friend Added</string>
+    <string name="feed_added_text">added you as friend.</string>
+    <string name="feed_removed_label">Friend Removed</string>
+    <string name="feed_removed_text">has removed you as friend.</string>
+    <string name="feed_friend_request_label">Friend Request</string>
+    <string name="feed_friend_request_text">wants to add you as friend.</string>
+    <string name="feed_search_placeholder">Search for User or Location…</string>
+    <string name="feed_friend_avatar_label">Avatar Change</string>
+    <string name="feed_friend_avatar_text">changed their avatar to</string>
+    <string name="feed_friend_username_changed_label">Gebruikersnaam Verandert</string>
+    <string name="feed_friend_username_changed_text">heeft hun gebruikersnaam verandert naar</string>
+    <!-- About -->
+    <string name="about_page_title">Over</string>
+    <string name="about_page_open_source_licenses_title">Open Source Licenties</string>
+    <string name="about_page_translate_title">Draag bij aan het Vertalen</string>
+    <string name="about_page_battery_optimizations_toast" tools:keep="@string/about_page_battery_optimizations_toast">Batterij optimalisaties zijn al uitgeschakeld.</string>
+    <string name="license_title">Open Source licenties</string>
+    <!-- API -->
+    <string name="api_session_has_expired_text">Je sessie is afgelopen, log alsjeblieft opnieuw in.</string>
+    <!-- Discord Rich Presence -->
+    <string name="discord_login_restarted_service_toast" tools:keep="@string/discord_login_restarted_service_toast">Service opnieuw aan het opstarten om toe te passen.</string>
+    <string name="discord_login_label_enable" tools:keep="@string/discord_login_label_enable">Rich Presence Inschakelen</string>
+    <string name="discord_login_label_set_webhook" tools:keep="@string/discord_login_label_set_webhook">Webhook URL Instellen</string>
+    <string name="discord_login_description_set_webhook" tools:keep="@string/discord_login_description_set_webhook">Required for world thumbnail support (Optional)</string>
+    <string name="discord_login_description_enable" tools:keep="@string/discord_login_description_enable">Laat je huidige status is Discord zien.</string>
+    <!-- Crash -->
+    <string name="crash_title_text">De applicatie kwam een fatale error tegen.</string>
+    <string name="crash_button_restart_text">Opnieuw Opstarten</string>
+    <string name="crash_button_copy_log_text">Informatie Kopiëren</string>
+    <string name="crash_button_report_text">Probleem Melden</string>
+    <!-- Groups -->
+    <string-array name="group_selection_options">
+        <item>Info</item>
+        <item>Instances</item>
+    </string-array>
+    <string name="group_toast_not_found_message">Groep niet gevonden, weet je zeker dat het bestaat?</string>
+    <string name="group_page_label_description">Beschrijving</string>
+    <string name="group_page_label_rules">Regels</string>
+    <string name="group_page_dropdown_view_author">Profiel van Auteur Bekijken</string>
+    <string name="group_page_dropdown_request_invite">Uitnodiging Aanvragen</string>
+    <string name="group_page_dropdown_request_invite_cancel">Aanvraag voor Uitnodiging Afzeggen</string>
+    <string name="group_page_dropdown_join_group">Aansluiten bij Groep</string>
+    <string name="group_page_dropdown_leave_group">Groep Verlaten</string>
+    <string name="group_page_toast_invite_requested">Aanvraag voor Uitnodiging Verzonden</string>
+    <string name="group_page_toast_invite_requested_fail">Aanvraag voor Uitnodiging Mislukt</string>
+    <string name="group_page_toast_invite_requested_cancel">Aanvraag voor Uitnodiging Afgezegd</string>
+    <string name="group_page_toast_invite_requested_cancel_fail">Afzeggen van Aanvraag voor Uitnodiging Mislukt</string>
+    <string name="group_page_toast_join_group">Aangesloten bij Groep</string>
+    <string name="group_page_toast_join_group_fail">Aansluiten bij Groep Mislukt</string>
+    <string name="group_page_toast_leave_group">Groep Verlaten</string>
+    <string name="group_page_toast_leave_group_fail">Groep Verlaten Mislukt</string>
+    <string name="group_user_no_groups_message">Gebruiker is geen lid van een groep.</string>
+    <string name="group_user_viewing_groups_username">%1$s\'s Groepen</string>
+    <!-- Misc -->
+    <string name="misc_no_internet_title">Geen Internet Verbinding</string>
+    <string name="misc_no_internet_description">Zorg er alsjeblieft voor dat je bent verbonden met het internet, deze applicatie werkt niet zonder internet.</string>
+    <string name="misc_no_internet_label">Applicatie Opnieuw Opstarten</string>
+    <string name="misc_exit_toast_label">Druk nog een keer om te verlaten.</string>
+    <string name="misc_no_premium_subscription">Deze functie vereist een actief VRC+ abonnement.</string>
+    <string name="global_app_default_loading_text">Initialiseren…</string>
+    <string name="generic_text_public">Openbaar</string>
+    <string name="generic_text_private">Privé</string>
+    <string name="generic_text_upload">Uploaden</string>
+    <string name="generic_text_cancel">Annuleren</string>
+    <string name="generic_text_ok">OK</string>
+    <!-- User -->
+    <string name="user_overlay_friend_add">Vriend Toevoegen</string>
+    <string name="user_overlay_friend_remove">Vriend Verwijderen</string>
+    <string name="user_overlay_friend_accept">Aanvraag Accepteren</string>
+    <string name="user_overlay_friend_cancel">Aanvraag Annuleren</string>
+    <string name="user_overlay_groups">Groepen</string>
+    <string name="user_overlay_worlds">Werelden</string>
+    <string name="user_overlay_favorites">Favorieten</string>
+    <string name="user_overlay_find_avatar">Vind Avatar</string>
+    <string name="user_overlay_invite">Stuur Mij een Uitnodiging</string>
+    <string name="user_overlay_note">Voeg Notitie Toe</string>
+    <!-- Profile Edit Dialog -->
+    <string name="profile_edit_dialog_title_status">Status</string>
+    <string name="profile_edit_dialog_title_age_verification_visibility">Zichtbaarheid van Leeftijdsverificatie</string>
+    <string name="profile_edit_dialog_title_status_description">Status Beschrijving</string>
+    <string name="profile_edit_dialog_title_bio">Bio</string>
+    <string name="profile_edit_dialog_title_bio_links">Social Links</string>
+    <string name="profile_edit_dialog_toast_updated">Profiel bijgewerkt.</string>
+    <string name="profile_edit_dialog_toast_cancelled" tools:keep="@string/profile_edit_dialog_toast_cancelled">Veranderingen zijn verwijderd.</string>
+    <string name="profile_edit_dialog_title_pronouns">Pronouns</string>
+    <string name="profile_edit_dialog_button_cancel">Annuleren</string>
+    <string name="profile_edit_dialog_button_apply">Toepassen</string>
+    <!-- Logout dialog -->
+    <string name="logout_dialog_title">Weet je het zeker?</string>
+    <string name="logout_dialog_description">Door onderaan op \"Doorgaan\" te drukken zul je worden uitgelogd van VRCAA en zul je opnieuw moeten inloggen op de applicatie te blijven gebruiken.</string>
+    <!-- Widgets -->
+    <string name="widget_name_friend_list" tools:keep="@string/widget_name_friend_list">Huidige locatie van vrienden bekijken.</string>
+    <string name="widget_name_loading_text" tools:keep="@string/widget_name_loading_text">De horizon is helder, mijn vriend.</string>
+    <string name="favorite_page_title">Favorieten</string>
+    <string-array name="favorites_selection_options">
+        <item>Werelden</item>
+        <item>Avatars</item>
+        <item>Vrienden</item>
+    </string-array>
+    <string-array name="user_favorites_selection_options">
+        <item>Werelden</item>
+        <item>Avatars</item>
+    </string-array>
+    <string name="favorite_label_add">Aan favorieten toevoegen</string>
+    <string name="favorite_label_remove">Uit favorieten verwijderen</string>
+    <string name="favorite_toast_favorite_added">%1$s Is toegevoegd aan favorieten.</string>
+    <string name="favorite_toast_favorite_added_failed">Toevoegen van %1$s aan favorieten is mislukt.</string>
+    <string name="favorite_toast_favorite_removed">%1$s Is uit favorieten verwijderd.</string>
+    <string name="favorite_toast_favorite_removed_failed">Verwijderen van %1$s uit favorieten is mislukt.</string>
+    <string name="favorite_dialog_button_add">Toevoegen</string>
+    <string name="favorite_dialog_button_cancel">Annuleren</string>
+    <string name="favorite_dialog_title">"Add Favorite"</string>
+    <string name="favorite_edit_title">%1$s Aan het bewerken</string>
+    <string name="favorite_edit_display_name">Display Name</string>
+    <string name="favorite_edit_visibility">Zichtbaarheid</string>
+    <string name="favorite_edit_discarded">Veranderingen zijn verwijderd.</string>
+    <string name="favorite_edit_applied">Veranderingen zijn toegepast.</string>
+    <string name="favorite_dialog_button_edit">Bewerken</string>
+    <string name="favorite_tab_refresh_favorites">Favorieten Verversen</string>
+    <string name="favorite_toast_refreshed_favorites">Favorieten Ververst</string>
+    <string name="favorite_remove_dialog_title">Wil je deze favoriet verwijderen?</string>
+    <string name="favorite_remove_dialog_description">This favorite is no longer available, it might have been deleted or made private by the author do you want to remove it from the list?</string>
+    <!-- Activities -->
+    <!-- Worlds -->
+    <string name="worlds_page_title">%1$s\'s Worlds</string>
+    <!-- Avatars -->
+    <string name="avatars_page_title">Viewing avatars</string>
+    <!-- Debug -->
+    <string name="developer_mode_toggle_toast">Restart the application to make the changes take effect.</string>
+    <string name="debug_notification_title_out_of_memory">Notice!</string>
+    <string name="debug_notification_content_out_of_memory">The application has ran out of memory! Cleared Debug cache to continue operation.</string>
+    <!-- Loading Texts -->
+    <string name="loading_text_worlds">Loading worlds…</string>
+    <string name="loading_text_users">Loading users…</string>
+    <string name="loading_text_avatars">Loading avatars…</string>
+    <string name="loading_text_groups">Loading groups…</string>
+    <string name="loading_text_user">Loading user…</string>
+    <string name="loading_text_world">Loading world…</string>
+    <string name="loading_text_avatar">Loading avatar…</string>
+    <string name="loading_text_group">Loading group…</string>
+    <string name="loading_text_instances">Loading instances…</string>
+    <string name="loading_text_gallery">Loading gallery…</string>
+    <string name="loading_text_icons">Loading icons…</string>
+    <string name="loading_text_prints">Loading prints…</string>
+    <string name="loading_text_stickers">Loading stickers…</string>
+    <string name="loading_text_emojis">Loading emojis…</string>
+    <string name="loading_text_items">Loading items…</string>
+    <string name="loading_text_favorites">Loading favorites…</string>
+    <string name="loading_text_notifications">Loading notifications…</string>
+    <!-- Theming -->
+    <string name="theme_page_title">Theme</string>
+    <string name="theme_page_minimalist_mode_text">Minimalist Mode</string>
+    <string name="theme_page_minimalist_mode_text_description">"Minimalist Mode helps content to fit on smaller screens."</string>
+    <string-array name="theme_page_selection_options">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System</item>
+    </string-array>
+    <string-array name="column_count_options">
+        <item>Adaptive</item>
+        <item>Fixed</item>
+    </string-array>
+    <string name="theme_page_section_theme_title">Theme</string>
+    <string name="theme_page_section_display_title">Display</string>
+    <string name="theme_page_section_column_title">Column Count</string>
+    <!-- Advanced Settings -->
+    <string name="advanced_page_title">Advanced Settings</string>
+    <string name="advanced_page_section_networking">Networking</string>
+    <string name="advanced_page_network_logging">Network Logging</string>
+    <string name="advanced_page_network_logging_description">Intercept HTTP and WebSocket traffic</string>
+    <string name="advanced_page_view_network_logs">Show Network Logs</string>
+    <string name="advanced_page_section_background_activities">Background Activities</string>
+    <string name="advanced_page_battery_optimization" tools:keep="@string/advanced_page_battery_optimization">Disable Battery Optimizations</string>
+    <string name="advanced_page_battery_optimization_description" tools:keep="@string/advanced_page_battery_optimization_description">May help with not receiving real-time network events</string>
+    <string name="advanced_page_kill_service">Kill background service</string>
+    <string name="advanced_page_kill_service_description">Kills the background service responsible for real-time events</string>
+    <string name="advanced_page_section_database">Database</string>
+    <string name="advanced_page_database_delete">Delete Database</string>
+    <string name="advanced_page_database_delete_description">Deletes the internal database responsible for storing data</string>
+    <string name="advanced_page_section_testing">Testing</string>
+    <string name="advanced_page_reset_onboarding">Reset Onboarding State</string>
+    <string name="advanced_page_reset_onboarding_description">Shows onboarding again when the app starts</string>
+    <string name="advanced_page_reset_onboarding_toast">Onboarding state reset.</string>
+    <!-- Database -->
+    <string name="database_page_title">Database &amp; Statistics</string>
+    <string name="database_page_section_statistics">Statistics</string>
+    <string name="database_page_statistics_size">Database Size</string>
+    <string name="database_page_statistics_row_count">Row Count</string>
+    <string name="database_page_section_recovery">Restore &amp; Backup</string>
+    <string name="database_page_recovery_backup">Backup Database</string>
+    <string name="database_page_recovery_backup_description">Backup your current data</string>
+    <string name="database_page_recovery_restore">Restore Database</string>
+    <string name="database_page_recovery_restore_description">Restore previous backup</string>
+    <string name="database_page_section_glide">Glide Cache</string>
+    <string name="database_page_glide_cache_size">Cache Size</string>
+    <string name="database_page_glide_clean_cache">Clean Cache</string>
+    <string name="database_page_glide_clean_cache_description">Cleaning cache may increase load times and decrease application responsiveness</string>
+    <string name="database_page_glide_clean_cache_toast">Cache cleaned!</string>
+    <string name="database_page_toast_recovery_failed">Failed to restore database from backup! are you sure you selected valid database backup?</string>
+    <!-- Inventory -->
+    <string-array name="inventory_selection_options">
+        <item>Gallery</item>
+        <item>User Icons</item>
+        <item>Worlds</item>
+        <item>Avatars</item>
+        <item>Groups</item>
+        <item>Emojis</item>
+        <item>Stickers</item>
+        <item>Prints</item>
+        <item>Items</item>
+    </string-array>
+    <string name="gallery_page_title">Gallery</string>
+    <string name="gallery_page_button_upload">Upload Image</string>
+    <string name="icon_gallery_page_title">User Icons</string>
+    <string name="icon_gallery_page_button_upload">Upload Icon</string>
+    <string name="prints_page_title">Prints</string>
+    <string name="prints_page_button_upload">Upload Print</string>
+    <string name="emojis_page_title">Emojis</string>
+    <string name="emojis_page_button_upload">Upload Emoji</string>
+    <string-array name="emojis_page_sections">
+        <item>Official</item>
+        <item>Custom</item>
+        <item>Archived</item>
+    </string-array>
+    <string name="stickers_page_title">Stickers</string>
+    <string name="stickers_page_button_upload">Upload Sticker</string>
+    <string-array name="sticker_page_sections">
+        <item>Official</item>
+        <item>Custom</item>
+        <item>Archived</item>
+    </string-array>
+    <string name="items_page_title">Items</string>
+    <string-array name="items_page_sections">
+        <item>All Items</item>
+        <item>Archive</item>
+    </string-array>
+    <string name="image_preview_dialog_title">Preview</string>
+    <string name="image_preview_toast_picture_saved">Saved picture.</string>
+    <string name="image_preview_toast_picture_save_failed">Unable to save picture.</string>
+    <string name="activity_peek_no_url_handler">No app available to open the URL.</string>
+</resources>

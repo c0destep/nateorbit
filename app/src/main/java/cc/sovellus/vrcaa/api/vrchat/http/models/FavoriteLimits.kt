@@ -1,0 +1,54 @@
+/*
+ * Copyright (C) 2025. Nyabsi <nyabsi@sovellus.cc>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package cc.sovellus.vrcaa.api.vrchat.http.models
+
+
+import com.google.gson.annotations.SerializedName
+
+
+data class FavoriteLimits(
+    @SerializedName("defaultMaxFavoriteGroups")
+    var defaultMaxFavoriteGroups: Int = 0,
+    @SerializedName("defaultMaxFavoritesPerGroup")
+    var defaultMaxFavoritesPerGroup: Int = 0,
+    @SerializedName("maxFavoriteGroups")
+    var maxFavoriteGroups: MaxFavoriteGroups = MaxFavoriteGroups(),
+    @SerializedName("maxFavoritesPerGroup")
+    var maxFavoritesPerGroup: MaxFavoritesPerGroup = MaxFavoritesPerGroup()
+) {
+    data class MaxFavoriteGroups(
+        @SerializedName("avatar")
+        var avatar: Int = 0,
+        @SerializedName("friend")
+        var friend: Int = 0,
+        @SerializedName("vrcPlusWorld")
+        var vrcPlusWorld: Int = 0,
+        @SerializedName("world")
+        var world: Int = 0
+    )
+
+    data class MaxFavoritesPerGroup(
+        @SerializedName("avatar")
+        var avatar: Int = 0,
+        @SerializedName("friend")
+        var friend: Int = 0,
+        @SerializedName("vrcPlusWorld")
+        var vrcPlusWorld: Int = 0,
+        @SerializedName("world")
+        var world: Int = 0
+    )
+}

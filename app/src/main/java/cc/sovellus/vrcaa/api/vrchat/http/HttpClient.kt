@@ -1,0 +1,2227 @@
+/*
+ * Copyright (C) 2025. Nyabsi <nyabsi@sovellus.cc>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package cc.sovellus.vrcaa.api.vrchat.http
+
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
+import android.net.Uri
+import android.widget.Toast
+import cc.sovellus.vrcaa.App
+import cc.sovellus.vrcaa.BuildConfig
+import cc.sovellus.vrcaa.R
+import cc.sovellus.vrcaa.api.vrchat.Config
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IAuth
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IAuth.AuthType
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IAvatars
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IFavorites
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IFavorites.FavoriteType
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IFiles
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IFiles.ImageAspectRatio
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IFriends
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IGroups
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IInstances
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IInventory
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.INotes
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.INotifications
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IPrints
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IProfile
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IUser
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IUsers
+import cc.sovellus.vrcaa.api.vrchat.http.interfaces.IWorlds
+import cc.sovellus.vrcaa.api.vrchat.http.models.AuthResponse
+import cc.sovellus.vrcaa.api.vrchat.http.models.Avatar
+import cc.sovellus.vrcaa.api.vrchat.http.models.Avatars
+import cc.sovellus.vrcaa.api.vrchat.http.models.Code
+import cc.sovellus.vrcaa.api.vrchat.http.models.ErrorResponse
+import cc.sovellus.vrcaa.api.vrchat.http.models.Favorite
+import cc.sovellus.vrcaa.api.vrchat.http.models.FavoriteAdd
+import cc.sovellus.vrcaa.api.vrchat.http.models.FavoriteAvatar
+import cc.sovellus.vrcaa.api.vrchat.http.models.FavoriteAvatars
+import cc.sovellus.vrcaa.api.vrchat.http.models.FavoriteBody
+import cc.sovellus.vrcaa.api.vrchat.http.models.FavoriteGroup
+import cc.sovellus.vrcaa.api.vrchat.http.models.FavoriteGroups
+import cc.sovellus.vrcaa.api.vrchat.http.models.FavoriteLimits
+import cc.sovellus.vrcaa.api.vrchat.http.models.FavoriteWorld
+import cc.sovellus.vrcaa.api.vrchat.http.models.FavoriteWorlds
+import cc.sovellus.vrcaa.api.vrchat.http.models.Favorites
+import cc.sovellus.vrcaa.api.vrchat.http.models.File
+import cc.sovellus.vrcaa.api.vrchat.http.models.FileMetadata
+import cc.sovellus.vrcaa.api.vrchat.http.models.Files
+import cc.sovellus.vrcaa.api.vrchat.http.models.Friend
+import cc.sovellus.vrcaa.api.vrchat.http.models.FriendStatus
+import cc.sovellus.vrcaa.api.vrchat.http.models.Friends
+import cc.sovellus.vrcaa.api.vrchat.http.models.Group
+import cc.sovellus.vrcaa.api.vrchat.http.models.GroupInstance
+import cc.sovellus.vrcaa.api.vrchat.http.models.GroupInstances
+import cc.sovellus.vrcaa.api.vrchat.http.models.Groups
+import cc.sovellus.vrcaa.api.vrchat.http.models.Instance
+import cc.sovellus.vrcaa.api.vrchat.http.models.InstanceCreateBody
+import cc.sovellus.vrcaa.api.vrchat.http.models.Inventory
+import cc.sovellus.vrcaa.api.vrchat.http.models.LimitedUser
+import cc.sovellus.vrcaa.api.vrchat.http.models.NoteResponse
+import cc.sovellus.vrcaa.api.vrchat.http.models.Notification
+import cc.sovellus.vrcaa.api.vrchat.http.models.NotificationResponse
+import cc.sovellus.vrcaa.api.vrchat.http.models.NotificationV2
+import cc.sovellus.vrcaa.api.vrchat.http.models.Notifications
+import cc.sovellus.vrcaa.api.vrchat.http.models.NotificationsV2
+import cc.sovellus.vrcaa.api.vrchat.http.models.Print
+import cc.sovellus.vrcaa.api.vrchat.http.models.Prints
+import cc.sovellus.vrcaa.api.vrchat.http.models.Profile
+import cc.sovellus.vrcaa.api.vrchat.http.models.ProfileUpdate
+import cc.sovellus.vrcaa.api.vrchat.http.models.UserObjectUpdate
+import cc.sovellus.vrcaa.api.vrchat.http.models.User
+import cc.sovellus.vrcaa.api.vrchat.http.models.UserGroup
+import cc.sovellus.vrcaa.api.vrchat.http.models.UserGroups
+import cc.sovellus.vrcaa.api.vrchat.http.models.UserNoteUpdate
+import cc.sovellus.vrcaa.api.vrchat.http.models.Users
+import cc.sovellus.vrcaa.api.vrchat.http.models.World
+import cc.sovellus.vrcaa.api.vrchat.http.models.Worlds
+import cc.sovellus.vrcaa.base.BaseClient
+import cc.sovellus.vrcaa.extension.authToken
+import cc.sovellus.vrcaa.extension.twoFactorToken
+import cc.sovellus.vrcaa.extension.userCredentials
+import cc.sovellus.vrcaa.manager.ApiManager.api
+import cc.sovellus.vrcaa.manager.CacheManager
+import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import net.thauvin.erik.urlencoder.UrlEncoderUtil
+import okhttp3.Headers
+import java.time.LocalDateTime
+import kotlin.io.encoding.Base64
+import kotlin.io.encoding.ExperimentalEncodingApi
+
+class HttpClient : BaseClient(), CoroutineScope {
+
+    override val coroutineContext =  Dispatchers.IO + SupervisorJob()
+
+    private val gson = Gson()
+    private val context: Context = App.getContext()
+    private val preferences: SharedPreferences = context.getSharedPreferences(App.PREFERENCES_NAME, MODE_PRIVATE)
+    private var listener: SessionListener? = null
+
+    private var reAuthorizationFailureCount: Int = 0
+
+    override suspend fun onAuthorizationFailure() {
+        setAuthorization(AuthorizationType.Cookie, preferences.twoFactorToken)
+
+        if (reAuthorizationFailureCount <= Config.MAX_TOKEN_REFRESH_ATTEMPT) {
+            async {
+                api.auth.login(
+                    preferences.userCredentials.first,
+                    preferences.userCredentials.second
+                )
+            }.await()
+            reAuthorizationFailureCount++
+        } else {
+            setAuthorization(AuthorizationType.Cookie, "")
+            listener?.onSessionInvalidate()
+        }
+    }
+
+    interface SessionListener {
+        fun onSessionInvalidate()
+        fun noInternet()
+    }
+
+    fun setSessionListener(listener: SessionListener) {
+        this.listener = listener
+    }
+
+    fun clearSessionListener() {
+        listener = null
+    }
+
+    private fun handleExceptions(result: Result) {
+        when (result) {
+            Result.InternalError -> {
+                if (BuildConfig.DEBUG)
+                    throw RuntimeException("VRChat returned INTERNAL ERROR 500, please check the API query for invalid parameters.")
+            }
+            Result.NoInternet -> {
+                listener?.noInternet()
+            }
+            Result.RateLimited -> {
+
+                if (BuildConfig.DEBUG)
+                    throw RuntimeException("You're doing actions too quick! Please calm down.")
+
+                launch(Dispatchers.Main) {
+                    Toast.makeText(
+                        context,
+                        "You're doing actions too quick! Please calm down.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+            Result.UnknownMethod -> {
+                if (BuildConfig.DEBUG)
+                    throw RuntimeException("Invalid method used for request, make sure you're using a supported method.")
+            }
+            is Result.InvalidRequest -> {
+                try {
+                    val reason = gson.fromJson(result.body, ErrorResponse::class.java).error.message
+
+                    launch(Dispatchers.Main) {
+                        Toast.makeText(
+                            context,
+                            "API returned (400): $reason",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } catch (_: Throwable) { }
+            }
+            else -> { /* Stub! */ }
+        }
+    }
+
+    @OptIn(ExperimentalEncodingApi::class)
+    val auth = object : IAuth {
+        override suspend fun login(username: String, password: String): IAuth.AuthResult {
+
+            preferences.userCredentials = Pair(username, password)
+
+            val token = Base64.encode(("${UrlEncoderUtil.encode(username)}:${UrlEncoderUtil.encode(password)}").toByteArray())
+
+            val headers = Headers.Builder()
+                .add("Authorization", "Basic $token")
+                .add("User-Agent", Config.API_USER_AGENT)
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/auth/user")
+                },
+                headers = headers.build(),
+                body = null,
+                retryAfterFailure = false,
+                skipAuthorizationFailure = true
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    val cookies = result.response.headers("Set-Cookie")
+                    if (cookies.isNotEmpty()) {
+                        val dType = when {
+                            result.body.contains("emailOtp") -> AuthType.AUTH_EMAIL
+                            result.body.contains("totp") -> AuthType.AUTH_TOTP
+                            else -> AuthType.AUTH_NONE
+                        }
+
+                        reAuthorizationFailureCount = 0
+                        preferences.authToken = cookies[0]
+                        setAuthorization(AuthorizationType.Cookie, preferences.authToken)
+                        return IAuth.AuthResult(true, "", dType)
+                    }
+
+                    return IAuth.AuthResult(true)
+                }
+                is Result.Unauthorized -> {
+                    return IAuth.AuthResult(false, context.getString(R.string.login_toast_wrong_credentials))
+                }
+                is Result.NoInternet -> {
+                    return IAuth.AuthResult(false, "Login Failed: No internet connection.")
+                }
+                is Result.RateLimited -> {
+                    return IAuth.AuthResult(false, "Login Failed: You're logging too quickly!")
+                }
+                else -> {
+                    handleExceptions(result)
+                    return IAuth.AuthResult(false, "Login Failed: Unknown exception from server.")
+                }
+            }
+        }
+
+        override suspend fun verify(type: AuthType, code: String): IAuth.AuthResult {
+
+            val dParameter = when (type) {
+                AuthType.AUTH_EMAIL -> "emailotp"
+                AuthType.AUTH_TOTP -> "totp"
+                else -> { "" }
+            }
+
+            // Forcefully establish authToken before running check logic to prevent
+            // race conditions with onAuthorizationFailure, where request may override authorization.
+            // TODO: is this an architectural issue, or is this what I *should* do?
+            setAuthorization(AuthorizationType.Cookie, preferences.authToken)
+
+            val result = doRequest(
+                method = "POST",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/auth/twofactorauth/")
+                    append(dParameter)
+                    append("/verify")
+                },
+                headers = GENERIC_HEADER,
+                body =  gson.toJson(Code(code)),
+                retryAfterFailure = false,
+                skipAuthorizationFailure = true
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    reAuthorizationFailureCount = 0
+
+                    val cookies = result.response.headers("Set-Cookie")
+                    preferences.twoFactorToken = cookies[0]
+                    setAuthorization(AuthorizationType.Cookie, "${preferences.authToken} ${preferences.twoFactorToken}")
+                    return IAuth.AuthResult(true)
+                }
+                is Result.Unauthorized -> {
+                    return IAuth.AuthResult(false)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return IAuth.AuthResult(false)
+                }
+            }
+        }
+
+        override suspend fun logout(): Boolean {
+
+            val result = doRequest(
+                method = "PUT",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/logout")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return true
+                }
+                else -> {
+                    handleExceptions(result)
+                    return false
+                }
+            }
+        }
+
+        override suspend fun fetchToken(): String? {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/auth")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, AuthResponse::class.java).token
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+
+        // DEPRECATED 15/09/2026, VRChat broke this endpoint and it no longer returns required profile data
+        // we've switched to their new crappy profile API instead
+        override suspend fun fetchCurrentUser(): User? {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/auth/user")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, User::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+    }
+
+    val friends = object : IFriends {
+        override suspend fun sendFriendRequest(userId: String): Notification? {
+
+            val result = doRequest(
+                method = "POST",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/user/")
+                    append(userId)
+                    append("/friendRequest")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, Notification::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+
+        override suspend fun deleteFriendRequest(userId: String): Boolean {
+
+            val result = doRequest(
+                method = "DELETE",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/user/")
+                    append(userId)
+                    append("/friendRequest")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return true
+                }
+                else -> {
+                    handleExceptions(result)
+                    return false
+                }
+            }
+        }
+
+        override suspend fun removeFriend(userId: String): Boolean {
+
+            val result = doRequest(
+                method = "DELETE",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/user/friends/")
+                    append(userId)
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return true
+                }
+                else -> {
+                    handleExceptions(result)
+                    return false
+                }
+            }
+        }
+
+        override suspend fun fetchFriendStatus(userId: String): FriendStatus? {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/user/")
+                    append(userId)
+                    append("/friendStatus")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, FriendStatus::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+
+        override tailrec suspend fun fetchFriends(
+            offline: Boolean,
+            n: Int,
+            offset: Int,
+            friends: ArrayList<Friend>
+        ): ArrayList<Friend> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/auth/user/friends")
+                    append("?offline=${offline}")
+                    append("&n=${n}")
+                    append("&offset=${offset}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    if (result.body == "[]")
+                        return friends
+
+                    val json = gson.fromJson(result.body, Friends::class.java)
+
+                    friends.addAll(json)
+                    fetchFriends(offline, n, offset + n, friends)
+                }
+                is Result.NotModified -> {
+                    friends
+                }
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+    }
+
+    val users = object : IUsers {
+
+        override suspend fun fetchUserByUserId(userId: String): LimitedUser? {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/users/")
+                    append(userId)
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, LimitedUser::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+
+        override suspend fun fetchUsersByName(
+            query: String,
+            n: Int,
+            offset: Int
+        ): ArrayList<LimitedUser> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/users")
+                    append("?search=${query}")
+                    append("&n=${n}")
+                    append("&offset=${offset}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    if (result.body == "[]")
+                        return arrayListOf()
+
+                    val users: ArrayList<LimitedUser> = arrayListOf()
+                    val json = gson.fromJson(result.body, Users::class.java)
+
+                    users.addAll(json)
+                    users
+                }
+                is Result.NotModified -> {
+                    arrayListOf()
+                }
+                is Result.Forbidden -> {
+                    arrayListOf()
+                }
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+
+        override suspend fun fetchGroupsByUserId(userId: String): ArrayList<UserGroup> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/users/")
+                    append(userId)
+                    append("/groups")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, UserGroups::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return arrayListOf()
+                }
+            }
+        }
+    }
+
+    val instances = object : IInstances {
+
+        override suspend fun fetchInstance(intent: String): Instance? {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/instances/")
+                    append(intent)
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, Instance::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+
+        override suspend fun selfInvite(intent: String): Notification? {
+
+            val result = doRequest(
+                method = "POST",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/invite/myself/to/")
+                    append(intent)
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, Notification::class.java)
+                }
+                is Result.NotFound -> {
+                    return null
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+
+        override suspend fun fetchGroupInstancesById(groupId: String): ArrayList<GroupInstance> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/groups/")
+                    append(groupId)
+                    append("/instances")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, GroupInstances::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return arrayListOf()
+                }
+            }
+        }
+
+        override suspend fun createInstance(
+            worldId: String,
+            type: IInstances.InstanceType,
+            region: IInstances.InstanceRegion,
+            ownerId: String?,
+            canRequestInvite: Boolean
+        ): Instance? {
+
+            val body = gson.toJson(InstanceCreateBody(
+                worldId = worldId,
+                type = type.toString(),
+                region = region.toString(),
+                ownerId = ownerId,
+                canRequestInvite = canRequestInvite
+            ))
+
+            val result = doRequest(
+                method = "POST",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/instances")
+                },
+                headers = GENERIC_HEADER,
+                body = body
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, Instance::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+    }
+
+    val worlds = object : IWorlds {
+
+        override suspend fun fetchRecent(): ArrayList<World> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/worlds/recent")
+                    append("?featured=false")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, Worlds::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return arrayListOf()
+                }
+            }
+        }
+
+        override suspend fun fetchWorldsByName(
+            query: String,
+            sort: String,
+            tags: List<String>,
+            notags: List<String>,
+            n: Int,
+            offset: Int
+        ): ArrayList<World> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/worlds")
+                    append("?featured=false")
+                    append("&n=${n}")
+                    append("&sort=${sort}")
+                    append("&search=${query}")
+                    if (tags.isNotEmpty()) {
+                        append("&tag=${tags.joinToString(",")}")
+                    }
+                    if (notags.isNotEmpty()) {
+                        append("&notag=${notags.joinToString(",")}")
+                    }
+                    append("&offset=${offset}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    if (result.body == "[]")
+                         return arrayListOf()
+
+                    val worlds: ArrayList<World> = arrayListOf()
+                    val json = gson.fromJson(result.body, Worlds::class.java)
+
+                    worlds.addAll(json)
+                    worlds
+                }
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+
+        override suspend fun fetchWorldsByAuthorId(
+            userId: String,
+            private: Boolean,
+            n: Int,
+            offset: Int,
+            worlds: ArrayList<World>
+        ): ArrayList<World> {
+
+            val releaseStatus = if (private) {
+                "all"
+            } else {
+                "public"
+            }
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/worlds")
+                    append("?releaseStatus=${releaseStatus}")
+                    // TODO: document all options and make them changeable dynamically
+                    append("&sort=updated")
+                    append("&order=descending")
+                    append("&userId=${userId}")
+                    append("&n=${n}")
+                    append("&offset=${offset}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    if (result.body == "[]")
+                        return worlds
+
+                    val json = gson.fromJson(
+                        result.body,
+                        Worlds::class.java
+                    )
+
+                    worlds.addAll(json)
+                    fetchWorldsByAuthorId(userId, private, n, offset + n, worlds)
+                }
+                is Result.NotModified -> {
+                    worlds
+                }
+                is Result.Forbidden -> {
+                    worlds
+                }
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+
+        override suspend fun fetchWorldByWorldId(worldId: String): World? {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/worlds/")
+                    append(worldId)
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, World::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+    }
+
+    val favorites = object: IFavorites {
+
+        override suspend fun fetchLimits(): FavoriteLimits? {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/auth/user")
+                    append("/favoritelimits")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, FavoriteLimits::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+
+        override suspend fun fetchFavoriteGroups(type: FavoriteType): ArrayList<FavoriteGroup> {
+
+            val dTypeString = when (type) {
+                FavoriteType.FAVORITE_WORLD -> "world"
+                FavoriteType.FAVORITE_VRC_PLUS_WORLD -> "vrcPlusWorld"
+                FavoriteType.FAVORITE_AVATAR -> "avatar"
+                FavoriteType.FAVORITE_FRIEND -> "friend"
+                FavoriteType.FAVORITE_NONE -> ""
+            }
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/favorite/groups")
+                    append("?type=${dTypeString}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, FavoriteGroups::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return arrayListOf()
+                }
+            }
+        }
+
+        override suspend fun fetchFavoriteGroupsByUserId(
+            userId: String,
+            type: FavoriteType
+        ): ArrayList<FavoriteGroup> {
+
+            val dTypeString = when (type) {
+                FavoriteType.FAVORITE_WORLD -> "world"
+                FavoriteType.FAVORITE_VRC_PLUS_WORLD -> "vrcPlusWorld"
+                FavoriteType.FAVORITE_AVATAR -> "avatar"
+                FavoriteType.FAVORITE_FRIEND -> "friend"
+                FavoriteType.FAVORITE_NONE -> ""
+            }
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/favorite/groups")
+                    append("?type=${dTypeString}")
+                    append("&ownerId=${userId}")
+                    append("&visibility=public")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, FavoriteGroups::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return arrayListOf()
+                }
+            }
+        }
+
+        override suspend fun addFavorite(
+            type: FavoriteType,
+            favoriteId: String,
+            tag: String
+        ): FavoriteAdd? {
+
+            val dTypeString = when (type) {
+                FavoriteType.FAVORITE_WORLD -> "world"
+                FavoriteType.FAVORITE_VRC_PLUS_WORLD -> "vrcPlusWorld"
+                FavoriteType.FAVORITE_AVATAR -> "avatar"
+                FavoriteType.FAVORITE_FRIEND -> "friend"
+                FavoriteType.FAVORITE_NONE -> ""
+            }
+
+            val body = gson.toJson(FavoriteBody(dTypeString, favoriteId, arrayListOf(tag)))
+
+            val result = doRequest(
+                method = "POST",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/favorites")
+                },
+                headers = GENERIC_HEADER,
+                body = body
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, FavoriteAdd::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+
+        override suspend fun removeFavorite(favoriteId: String): Boolean {
+
+            val result = doRequest(
+                method = "DELETE",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/favorites/")
+                    append(favoriteId)
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return true
+                }
+                is Result.NotFound -> {
+                    return false
+                }
+                else -> {
+                    handleExceptions(result)
+                    return false
+                }
+            }
+        }
+
+        override suspend fun updateFavoriteGroup(
+            type: FavoriteType,
+            tag: String,
+            newDisplayName: String,
+            newVisibility: String?
+        ): Boolean {
+
+            var body = "{\"displayName\":\"$newDisplayName\"}"
+            if (newVisibility != null)
+                body = "{\"displayName\":\"$newDisplayName\",\"visibility\":\"$newVisibility\"}"
+
+            val user = CacheManager.profile.value.id
+
+            val dTypeString = when (type) {
+                FavoriteType.FAVORITE_WORLD -> "world"
+                FavoriteType.FAVORITE_VRC_PLUS_WORLD -> "vrcPlusWorld"
+                FavoriteType.FAVORITE_AVATAR -> "avatar"
+                FavoriteType.FAVORITE_FRIEND -> "friend"
+                FavoriteType.FAVORITE_NONE -> ""
+            }
+
+            val result = doRequest(
+                method = "PUT",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/favorite/group/")
+                    append(dTypeString)
+                    append("/${tag}")
+                    append("/${user}")
+                },
+                headers = GENERIC_HEADER,
+                body = body
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return true
+                }
+                is Result.NotFound -> {
+                    return false
+                }
+                else -> {
+                    handleExceptions(result)
+                    return false
+                }
+            }
+        }
+
+        override tailrec suspend fun fetchFavorites(
+            type: FavoriteType,
+            tag: String,
+            n: Int,
+            offset: Int,
+            favorites: ArrayList<Favorite>
+        ): ArrayList<Favorite> {
+
+            val dTypeString = when (type) {
+                FavoriteType.FAVORITE_WORLD -> "world"
+                FavoriteType.FAVORITE_VRC_PLUS_WORLD -> "vrcPlusWorld"
+                FavoriteType.FAVORITE_AVATAR -> "avatar"
+                FavoriteType.FAVORITE_FRIEND -> "friend"
+                FavoriteType.FAVORITE_NONE -> ""
+            }
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/favorites")
+                    append("?type=${dTypeString}")
+                    append("&n=${n}")
+                    append("&offset=${offset}")
+                    append("&tag=${tag}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    if (result.body == "[]")
+                        return favorites
+
+                    val json = gson.fromJson(result.body, Favorites::class.java)
+
+                    favorites.addAll(json)
+                    fetchFavorites(type, tag, n, offset + n, favorites)
+                }
+
+                is Result.NotModified -> {
+                    favorites
+                }
+
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+
+        override tailrec suspend fun fetchFavoritesByUserId(
+            userId: String,
+            type: FavoriteType,
+            tag: String,
+            n: Int,
+            offset: Int,
+            favorites: ArrayList<Favorite>
+        ): ArrayList<Favorite> {
+
+            val dTypeString = when (type) {
+                FavoriteType.FAVORITE_WORLD -> "world"
+                FavoriteType.FAVORITE_VRC_PLUS_WORLD -> "vrcPlusWorld"
+                FavoriteType.FAVORITE_AVATAR -> "avatar"
+                FavoriteType.FAVORITE_FRIEND -> "friend"
+                FavoriteType.FAVORITE_NONE -> ""
+            }
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/favorites")
+                    append("?type=${dTypeString}")
+                    append("&n=${n}")
+                    append("&offset=${offset}")
+                    append("&tag=${tag}")
+                    append("&ownerId=${userId}")
+                    append("&visibility=public")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    if (result.body == "[]")
+                        return favorites
+
+                    val json = gson.fromJson(result.body, Favorites::class.java)
+
+                    favorites.addAll(json)
+                    fetchFavoritesByUserId(userId, type, tag, n, offset + n, favorites)
+                }
+
+                is Result.NotModified -> {
+                    favorites
+                }
+
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+
+        override tailrec suspend fun fetchFavoriteAvatars(
+            tag: String,
+            n: Int,
+            offset: Int,
+            favorites: ArrayList<FavoriteAvatar>
+        ): ArrayList<FavoriteAvatar> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/avatars/favorites")
+                    append("?n=${n}")
+                    append("&offset=${offset}")
+                    append("&tag=${tag}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    if (result.body == "[]")
+                        return favorites
+
+                    val json = gson.fromJson(result.body, FavoriteAvatars::class.java)
+
+                    favorites.addAll(json)
+                    fetchFavoriteAvatars(tag, n, offset + n, favorites)
+                }
+
+                is Result.NotModified -> {
+                    favorites
+                }
+
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+
+        override tailrec suspend fun fetchFavoriteWorlds(
+            tag: String,
+            n: Int,
+            offset: Int,
+            favorites: ArrayList<FavoriteWorld>
+        ): ArrayList<FavoriteWorld> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/worlds/favorites")
+                    append("?n=${n}")
+                    append("&offset=${offset}")
+                    append("&tag=${tag}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    if (result.body == "[]")
+                        return favorites
+
+                    val json = gson.fromJson(result.body, FavoriteWorlds::class.java)
+
+                    favorites.addAll(json)
+                    fetchFavoriteWorlds(tag, n, offset + n, favorites)
+                }
+
+                is Result.NotModified -> {
+                    favorites
+                }
+
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+    }
+
+    val avatars = object : IAvatars {
+
+        override suspend fun selectAvatarById(avatarId: String): Boolean {
+
+            val result = doRequest(
+                method = "PUT",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/avatars/")
+                    append(avatarId)
+                    append("/select")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return true
+                }
+                is Result.NotFound -> {
+                    return false
+                }
+                else -> {
+                    handleExceptions(result)
+                    return false
+                }
+            }
+        }
+
+        override suspend fun fetchAvatarById(avatarId: String): Avatar? {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/avatars/")
+                    append(avatarId)
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, Avatar::class.java)
+                }
+                is Result.NotFound -> {
+                    return null
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+    }
+
+    val groups = object : IGroups {
+
+        override suspend fun fetchGroupsByName(
+            query: String,
+            n: Int,
+            offset: Int
+        ): ArrayList<Group> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/groups")
+                    append("?query=${query}")
+                    append("&n=${n}")
+                    append("&offset=${offset}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    if (result.body == "[]")
+                        return arrayListOf()
+
+                    val groups: ArrayList<Group> = arrayListOf()
+
+                    val json = gson.fromJson(result.body, Groups::class.java)
+
+                    groups.addAll(json)
+                    groups
+                }
+                is Result.NotModified -> {
+                    arrayListOf()
+                }
+                is Result.Forbidden -> {
+                    arrayListOf()
+                }
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+
+        override suspend fun fetchGroupByGroupId(groupId: String): Group? {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/groups/")
+                    append(groupId)
+                    append("?includeRoles=true")
+                    append("&purpose=group")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, Group::class.java)
+                }
+                is Result.NotFound -> {
+                    return null
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+
+        override suspend fun joinGroupByGroupId(groupId: String): Boolean {
+
+            val result = doRequest(
+                method = "POST",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/groups/")
+                    append(groupId)
+                    append("/join")
+                    append("?confirmOverrideBlock=false")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return true
+                }
+                is Result.NotFound -> {
+                    return false
+                }
+                else -> {
+                    handleExceptions(result)
+                    return false
+                }
+            }
+        }
+
+        override suspend fun leaveGroupByGroupId(groupId: String): Boolean {
+
+            val result = doRequest(
+                method = "POST",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/groups/")
+                    append(groupId)
+                    append("/leave")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return true
+                }
+                is Result.NotFound -> {
+                    return false
+                }
+                else -> {
+                    handleExceptions(result)
+                    return false
+                }
+            }
+        }
+
+        override suspend fun withdrawRequestByGroupId(groupId: String): Boolean {
+
+            val result = doRequest(
+                method = "DELETE",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/groups/")
+                    append(groupId)
+                    append("/requests")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return true
+                }
+                is Result.NotFound -> {
+                    return false
+                }
+                else -> {
+                    handleExceptions(result)
+                    return false
+                }
+            }
+        }
+    }
+
+    val files = object : IFiles {
+
+        override suspend fun fetchMetadataByFileId(fileId: String): FileMetadata? {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/file/")
+                    append(fileId)
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, FileMetadata::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+
+        override suspend fun fetchFilesByTag(
+            tag: String,
+            n: Int,
+            offset: Int
+        ): ArrayList<File> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/files")
+                    append("?tag=${tag}")
+                    append("&n=${n}")
+                    append("&offset=${offset}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    if (result.body == "[]")
+                        return arrayListOf()
+
+                    val groups: ArrayList<File> = arrayListOf()
+                    val json = gson.fromJson(result.body, Files::class.java)
+
+                    groups.addAll(json)
+                    groups
+                }
+                is Result.NotModified -> {
+                    arrayListOf()
+                }
+                is Result.Forbidden -> {
+                    arrayListOf()
+                }
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+
+        override suspend fun fetchFilesByTagWithUserId(
+            tag: String,
+            userId: String,
+            n: Int,
+            offset: Int,
+        ): ArrayList<File> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/files")
+                    append("?tag=${tag}")
+                    append("&n=${n}")
+                    append("&offset=${offset}")
+                    append("&userId=${userId}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    if (result.body == "[]")
+                        return arrayListOf()
+
+                    val groups: ArrayList<File> = arrayListOf()
+                    val json = gson.fromJson(result.body, Files::class.java)
+
+                    groups.addAll(json)
+                    groups
+                }
+                is Result.NotModified -> {
+                    arrayListOf()
+                }
+                is Result.Forbidden -> {
+                    arrayListOf()
+                }
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+
+        override suspend fun uploadImage(tag: String, file: Uri, aspectRatio: ImageAspectRatio): File? {
+
+            val fields: MutableMap<String, String> = mutableMapOf("tag" to tag)
+
+            if (aspectRatio == ImageAspectRatio.IMAGE_ASPECT_RATIO_SQUARE)
+                fields["maskTag"] = "square"
+
+            val result = doRequestUpload(
+                App.getContext(),
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/file/image")
+                },
+                fileUri = file,
+                formFields = fields,
+                headers = GENERIC_HEADER
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    gson.fromJson(result.body, File::class.java)
+                }
+                is Result.NotModified -> {
+                    null
+                }
+                is Result.Forbidden -> {
+                    null
+                }
+                else -> {
+                    handleExceptions(result)
+                    null
+                }
+            }
+        }
+
+        override suspend fun uploadEmoji(
+            type: String,
+            file: Uri
+        ): File? {
+
+            val fields: MutableMap<String, String> = mutableMapOf("tag" to "emoji", "maskTag" to "square", "frames" to "1", "framesOverTime" to "1", "animationStyle" to type)
+
+            val result = doRequestUpload(
+                App.getContext(),
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/file/image")
+                },
+                fileUri = file,
+                formFields = fields,
+                headers = GENERIC_HEADER
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    gson.fromJson(result.body, File::class.java)
+                }
+                is Result.NotModified -> {
+                    null
+                }
+                is Result.Forbidden -> {
+                    null
+                }
+                else -> {
+                    handleExceptions(result)
+                    null
+                }
+            }
+        }
+    }
+
+    val user = object : IUser {
+
+        override suspend fun markNotificationAsRead(notificationId: String): Notification? {
+
+            val result = doRequest(
+                method = "PUT",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/auth/user/notifications/")
+                    append(notificationId)
+                    append("/see")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, Notification::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+
+        override suspend fun hideNotification(notificationId: String): Notification? {
+
+            val result = doRequest(
+                method = "PUT",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/auth/user/notifications/")
+                    append(notificationId)
+                    append("/hide")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, Notification::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+
+        override tailrec suspend fun fetchNotifications(
+            n: Int,
+            offset: Int,
+            notifications: ArrayList<Notification>
+        ): ArrayList<Notification> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/auth/user/notifications")
+                    append("?n=${n}")
+                    append("&offset=${offset}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    if (result.body == "[]")
+                        return notifications
+
+                    val json = gson.fromJson(result.body, Notifications::class.java)
+                    notifications.addAll(json)
+                    fetchNotifications(n, offset + n, notifications)
+                }
+                is Result.NotModified -> {
+                    notifications
+                }
+                is Result.Forbidden -> {
+                    arrayListOf()
+                }
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+
+        override suspend fun updateUser(
+            userId: String,
+            newStatus: String,
+            newDescription: String,
+            newPronouns: String,
+            newAgeVerificationStatus: String?
+        ): User? {
+
+            val update = UserObjectUpdate(
+                ageVerificationStatus = newAgeVerificationStatus,
+                status = newStatus,
+                statusDescription = newDescription,
+                pronouns = newPronouns
+            )
+
+            val result = doRequest(
+                method = "PUT",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/users/")
+                    append(userId)
+                },
+                headers = GENERIC_HEADER,
+                body = gson.toJson(update, UserObjectUpdate::class.java)
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, User::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+
+        override tailrec suspend fun fetchOwnedAvatars(
+            n: Int,
+            offset: Int,
+            avatars: ArrayList<Avatar>
+        ): ArrayList<Avatar> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/avatars")
+                    append("?releaseStatus=all")
+                    append("&sort=updated")
+                    append("&order=descending")
+                    append("&user=me")
+                    append("&n=${n}")
+                    append("&offset=${offset}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    if (result.body == "[]")
+                        return avatars
+
+                    val json = gson.fromJson(result.body, Avatars::class.java)
+
+                    avatars.addAll(json)
+                    fetchOwnedAvatars(n, offset + n, avatars)
+                }
+                is Result.NotModified -> {
+                    avatars
+                }
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+    }
+
+    val prints = object : IPrints {
+        override tailrec suspend fun fetchPrintsByUserId(
+            userId: String,
+            n: Int,
+            offset: Int,
+            prints: ArrayList<Print>
+        ): ArrayList<Print> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/prints/user/")
+                    append(userId)
+                    append("?n=${n}")
+                    append("&offset=${offset}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    if (result.body == "[]")
+                        return prints
+
+                    val json = gson.fromJson(result.body, Prints::class.java)
+                    prints.addAll(json)
+
+                    fetchPrintsByUserId(userId, n, offset + n, prints)
+                }
+                is Result.NotModified -> {
+                    arrayListOf()
+                }
+                is Result.Forbidden -> {
+                    arrayListOf()
+                }
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+
+        override suspend fun fetchPrint(printId: String): Print? {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/prints/")
+                    append(printId)
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    gson.fromJson(result.body, Print::class.java)
+                }
+                is Result.NotModified -> {
+                    null
+                }
+                is Result.Forbidden -> {
+                    null
+                }
+                else -> {
+                    handleExceptions(result)
+                    null
+                }
+            }
+        }
+
+        override suspend fun deletePrint(printId: String): Print? {
+
+            val result = doRequest(
+                method = "DELETE",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/prints/")
+                    append(printId)
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    gson.fromJson(result.body, Print::class.java)
+                }
+                is Result.NotModified -> {
+                    null
+                }
+                is Result.Forbidden -> {
+                    null
+                }
+                else -> {
+                    handleExceptions(result)
+                    null
+                }
+            }
+        }
+
+        override suspend fun editPrint(printId: String): Print? {
+            return null // STUB!
+        }
+
+        override suspend fun uploadPrint(
+            file: Uri,
+            note: String,
+            timestamp: LocalDateTime,
+            border: Boolean
+        ): Print? {
+
+            val result = doRequestUpload(
+                App.getContext(),
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/prints")
+                },
+                fileUri = file,
+                formFields = mapOf("note" to note, "timestamp" to timestamp.toString()),
+                headers = GENERIC_HEADER,
+                addWhiteBorder = border
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    gson.fromJson(result.body, Print::class.java)
+                }
+                is Result.NotModified -> {
+                    null
+                }
+                is Result.Forbidden -> {
+                    null
+                }
+                else -> {
+                    handleExceptions(result)
+                    null
+                }
+            }
+        }
+    }
+
+    val inventory = object : IInventory {
+        override tailrec suspend fun fetchInventory(
+            type: IInventory.PropType,
+            tags: List<String>,
+            flags: List<String>,
+            notFlags: List<String>,
+            archived: Boolean,
+            n: Int,
+            offset: Int,
+            order: String,
+            items: ArrayList<Inventory.Data>
+        ): ArrayList<Inventory.Data> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/inventory/?types=${type}")
+                    if (tags.isNotEmpty()) {
+                        append("&tags=${tags.joinToString(",")}")
+                    }
+                    if (flags.isNotEmpty()) {
+                        append("&flags=${flags.joinToString(",")}")
+                    }
+                    if (notFlags.isNotEmpty()) {
+                        append("&notFlags=${notFlags.joinToString(",")}")
+                    }
+                    append("&archived=${archived}")
+                    append("&n=${n}")
+                    append("&offset=${offset}")
+                    append("&order=${order}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    val json = gson.fromJson(result.body, Inventory::class.java)
+
+                    if (json.data.isEmpty())
+                        return items
+
+                    items.addAll(json.data)
+                    fetchInventory(type, tags, flags, notFlags, archived, n, offset + n, order, items)
+                }
+                is Result.NotModified -> {
+                    arrayListOf()
+                }
+                is Result.Forbidden -> {
+                    arrayListOf()
+                }
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+    }
+
+    val notes = object : INotes {
+
+        override suspend fun updateNote(userId: String, note: String): NoteResponse? {
+            try {
+                val update = UserNoteUpdate(
+                    targetUserId = userId,
+                    note = note
+                )
+
+                val result = doRequest(
+                    method = "POST",
+                    url = buildString {
+                        append(Config.API_BASE_URL)
+                        append("/userNotes")
+                    },
+                    headers = GENERIC_HEADER,
+                    body = gson.toJson(update, UserNoteUpdate::class.java)
+                )
+
+                when (result) {
+                    is Result.Succeeded -> {
+                        return gson.fromJson(result.body, NoteResponse::class.java)
+                    }
+                    else -> {
+                        handleExceptions(result)
+                        return null
+                    }
+                }
+            } catch (_: Throwable) { // for some reason, this crashed for someone, so let's just catch it.
+                return null
+            }
+        }
+    }
+
+    val notifications = object : INotifications {
+        override suspend fun respondToNotification(
+            notificationId: String,
+            type: INotifications.ResponseType,
+            response: String
+        ): String {
+
+            val response = NotificationResponse(
+                responseType = type.toString(),
+                responseData = response
+            )
+
+            val result = doRequest(
+                method = "POST",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/notifications/")
+                    append(notificationId)
+                    append("/respond")
+                },
+                headers = GENERIC_HEADER,
+                body = gson.toJson(response, NotificationResponse::class.java)
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return result.body
+                }
+                else -> {
+                    handleExceptions(result)
+                    return ""
+                }
+            }
+        }
+
+        override suspend fun fetchNotifications(
+            n: Int
+        ): ArrayList<NotificationV2> {
+
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/notifications")
+                    append("?n=${n}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            return when (result) {
+                is Result.Succeeded -> {
+                    gson.fromJson(result.body, NotificationsV2::class.java)
+                }
+                is Result.Forbidden -> {
+                    arrayListOf()
+                }
+                else -> {
+                    handleExceptions(result)
+                    arrayListOf()
+                }
+            }
+        }
+    }
+
+    val profile = object : IProfile {
+        override suspend fun fetchProfile(
+            userId: String,
+            asSelf: Boolean,
+            withGroupsAndWorlds: Boolean
+        ): Profile? {
+            val result = doRequest(
+                method = "GET",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/profile/${userId}")
+                    append("?asSelf=${asSelf}")
+                    append("&withGroupsAndWorlds=${withGroupsAndWorlds}")
+                },
+                headers = GENERIC_HEADER,
+                body = null
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, Profile::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+
+        override suspend fun updateProfile(
+            userId: String,
+            newBio: String,
+            newBioLinks: List<String>
+        ): Profile? {
+
+            val update = ProfileUpdate(
+                bio = newBio,
+                bioLinks = newBioLinks,
+            )
+
+            val result = doRequest(
+                method = "PUT",
+                url = buildString {
+                    append(Config.API_BASE_URL)
+                    append("/profile/")
+                    append(userId)
+                },
+                headers = GENERIC_HEADER,
+                body = gson.toJson(update, ProfileUpdate::class.java)
+            )
+
+            when (result) {
+                is Result.Succeeded -> {
+                    return gson.fromJson(result.body, Profile::class.java)
+                }
+                else -> {
+                    handleExceptions(result)
+                    return null
+                }
+            }
+        }
+    }
+
+    companion object {
+        private val GENERIC_HEADER = Headers.Builder()
+            .add("User-Agent", Config.API_USER_AGENT)
+            .build()
+    }
+}
