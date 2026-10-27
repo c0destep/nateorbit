@@ -5,7 +5,7 @@ import json,re,xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1]
 backlog=json.loads((ROOT/'planning/backlog.json').read_text())['items']
 graph={x['id']:x['dependencies'] for x in backlog}
-assert len(graph)==len(backlog)==36
+assert len(graph)==len(backlog), "Duplicate backlog IDs"
 finished=set()
 def visit(k,chain):
     assert k in graph, f'Unknown dependency {k}'

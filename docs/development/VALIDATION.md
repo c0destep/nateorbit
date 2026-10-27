@@ -34,3 +34,16 @@ Validar ambiente e tasks no CI, inventariar dependências, implementar testes de
   esse job usa contents:write para o primeiro envio; o CI recorrente usa leitura.
 - Resultado remoto de importação e build deve ser consultado em Actions; esta
   seção não antecipa aprovação. O app continua sem modo fake implementado.
+
+
+## Importação remota e primeiro CI
+
+Importação confirmada na main: d9902091568c9be990ff466271ba97d3031d4623,
+com eb3978247d969e2c593837175fc7598e95f51b35 como segundo pai; 510 arquivos
+confirmados pela árvore GitHub. Workflow temporário removido.
+
+Execução https://github.com/c0destep/nateorbit/actions/runs/40585324935:
+importação e JDK aprovados, setup Android falhou antes da compilação porque a
+action fixada solicita o pacote descontinuado `tools` por padrão. Correção:
+passar `packages: platform-tools` explicitamente, mantendo as versões do app.
+O CI recorrente será executado novamente; este registro não declara build aprovado.
