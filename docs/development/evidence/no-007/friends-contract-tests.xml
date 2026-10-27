@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="cc.sovellus.vrcaa.data.friends.FriendsRepositoryTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-27T21:49:59.686Z" hostname="683867062069" time="0.233">
+  <properties/>
+  <testcase name="failuresNeverBecomeEmptySuccess" classname="cc.sovellus.vrcaa.data.friends.FriendsRepositoryTest" time="0.109"/>
+  <testcase name="missingStatusRemainsUnknownRatherThanOffline" classname="cc.sovellus.vrcaa.data.friends.FriendsRepositoryTest" time="0.096"/>
+  <testcase name="fakeAndLegacyHaveSamePaginationContract" classname="cc.sovellus.vrcaa.data.friends.FriendsRepositoryTest" time="0.005"/>
+  <testcase name="oversizedPageIsRejected" classname="cc.sovellus.vrcaa.data.friends.FriendsRepositoryTest" time="0.003"/>
+  <testcase name="oneRequestPreservesQueryAndProjectsOnlyRequiredFields" classname="cc.sovellus.vrcaa.data.friends.FriendsRepositoryTest" time="0.004"/>
+  <testcase name="fakeCopiesInputAndSupportsTypedFailure" classname="cc.sovellus.vrcaa.data.friends.FriendsRepositoryTest" time="0.001"/>
+  <testcase name="validEmptyPageIsSuccess" classname="cc.sovellus.vrcaa.data.friends.FriendsRepositoryTest" time="0.001"/>
+  <testcase name="malformedOrIncompletePayloadIsFailure" classname="cc.sovellus.vrcaa.data.friends.FriendsRepositoryTest" time="0.004"/>
+  <testcase name="cancellationPropagatesWithoutRetry" classname="cc.sovellus.vrcaa.data.friends.FriendsRepositoryTest" time="0.002"/>
+  <testcase name="invalidQueriesFailBeforeAnyRequest" classname="cc.sovellus.vrcaa.data.friends.FriendsRepositoryTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

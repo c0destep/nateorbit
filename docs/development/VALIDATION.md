@@ -77,3 +77,38 @@ sem alterar os registros históricos acima. Aparelho e benchmark continuam pende
 
 NO-004 iniciado com [inventário de dependências, ativos e links](NO-004-inventory.md).
 Revisão de transitivas/proveniência e avisos distribuídos permanece aberta.
+
+## NO-007 — primeira fatia do contrato de amigos
+
+Contrato, fake determinístico e adapter legado por transporte injetado entregues;
+[escopo e pendências](NO-007-friends-contract.md). Sem mudanças no fluxo autenticado
+ou na tela. NO-007 permanece In Progress, pois a UI ainda depende dos managers.
+
+`bash scripts/check.sh --max-workers=4` concluído com saída zero: BUILD SUCCESSFUL
+em 3m16s, 21 tarefas executadas e 34 atualizadas. Build standardDebug e lint
+aprovados; dez testes novos de contrato e um teste herdado executados, sem falhas,
+erros ou ignorados. Os sete testes dos scripts também passaram. Lint reutilizou
+o relatório com 137 avisos e nenhum erro; análise foi executada nesta rodada.
+
+[Log completo](evidence/no-007/android-check.log) e
+[JUnit dos dez testes novos](evidence/no-007/friends-contract-tests.xml).
+Não foram executados requests reais, testes instrumentados ou validação visual.
+As alterações desta fatia não mudam a UI. `git diff --check` aprovado.
+
+## NO-007 — revisão delegada e correção do parser
+
+Três subtarefas delegadas: revisão independente do contrato, regressões adicionais
+e análise da migração do ScreenModel. A revisão encontrou JSON não padrão aceito
+por parsing leniente. O teste novo reproduziu a falha antes da correção:
+[13 testes, uma falha](evidence/no-007-review/before-fix.log).
+
+Aplicado Gson em modo estrito com validação integral do documento. Dois testes
+adicionais verificam sintaxe JSON inválida e isolamento de páginas retornadas
+pelo fake. [Após a correção](evidence/no-007-review/after-fix.log),
+`bash scripts/check.sh --max-workers=4` passou em 3m04s: build, sete testes dos
+scripts, 13 testes unitários (12 do contrato e um herdado) e lint. Nenhum teste
+unitário falhou ou foi ignorado; [JUnit](evidence/no-007-review/friends-contract-tests.xml).
+Lint com 137 avisos e nenhum erro, relatório reutilizado após análise executada.
+
+O handoff NO-007 registra os campos de apresentação ainda ausentes e os cenários
+para a migração offline. Essa migração não foi implementada nesta revisão.

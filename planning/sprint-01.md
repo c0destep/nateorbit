@@ -27,3 +27,7 @@ Gate G0: build demonstrado, baseline com protocolo, inventário inicial e decis�
 - NO-004: In Progress; [inventário inicial](../docs/development/NO-004-inventory.md)
   entregue. Licenças transitivas, proveniência de ativos e avisos empacotados ainda
   exigem revisão. As demais tarefas conservam seus estados. G0 permanece aberto.
+
+- NO-007: In Progress; [contrato de leitura de amigos](../docs/development/NO-007-friends-contract.md),
+  fake e adapter com doze testes de contrato aprovados. Falta migrar o ScreenModel;
+  nenhuma integração autenticada ou tela fake foi habilitada nesta fatia.
